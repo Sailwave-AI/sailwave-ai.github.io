@@ -1,0 +1,291 @@
+// ==========================================================================
+// Blog — Listing, Post, Metadata, Tags, Reading Time
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// Blog Listing
+// --------------------------------------------------------------------------
+.blog-listing {
+  padding: $space-9 0;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// --------------------------------------------------------------------------
+// Blog Card (listing item)
+// --------------------------------------------------------------------------
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  transition: all $transition-base;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    border-color: transparent;
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.blog-card__body {
+  padding: $space-5;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.blog-card__meta {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-3;
+  font-size: $font-size-xs;
+  color: $color-muted;
+}
+
+.blog-card__date {
+  font-weight: $font-weight-medium;
+}
+
+.blog-card__reading-time {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+
+  &::before {
+    content: '\00B7'; // middle dot
+    margin-right: $space-1;
+  }
+}
+
+.blog-card__title {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-dark;
+  line-height: $line-height-tight;
+  margin-bottom: $space-3;
+}
+
+.blog-card__desc {
+  font-size: $font-size-sm;
+  color: $color-text-light;
+  line-height: $line-height-base;
+  margin-bottom: $space-4;
+  flex: 1;
+}
+
+.blog-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  margin-top: auto;
+}
+
+// --------------------------------------------------------------------------
+// Blog Post (single)
+// --------------------------------------------------------------------------
+.blog-post {
+  max-width: $container-narrow;
+  margin: 0 auto;
+  padding: $space-9 $space-5;
+}
+
+.blog-post__header {
+  margin-bottom: $space-8;
+  text-align: center;
+}
+
+.blog-post__title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: $font-weight-bold;
+  color: $color-dark;
+  line-height: $line-height-heading;
+  margin-bottom: $space-5;
+}
+
+.blog-post__meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: $space-3;
+  font-size: $font-size-sm;
+  color: $color-muted;
+}
+
+.blog-post__meta-item {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+}
+
+.blog-post__meta-divider {
+  color: $color-border;
+}
+
+.blog-post__content {
+  font-size: $font-size-lg;
+  line-height: 1.75;
+  color: $color-text;
+
+  h2, h3, h4 {
+    margin-top: $space-8;
+    margin-bottom: $space-4;
+  }
+
+  p {
+    margin-bottom: $space-5;
+  }
+
+  img {
+    border-radius: $border-radius;
+    margin: $space-6 0;
+    box-shadow: $shadow;
+  }
+}
+
+.blog-post__tags {
+  margin-top: $space-8;
+  padding-top: $space-6;
+  border-top: 1px solid $color-border;
+}
+
+.blog-post__tags-label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-muted;
+  margin-bottom: $space-3;
+}
+
+// --------------------------------------------------------------------------
+// Post Navigation (prev/next)
+// --------------------------------------------------------------------------
+.post-nav {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-4;
+  margin-top: $space-8;
+  padding-top: $space-6;
+  border-top: 1px solid $color-border;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.post-nav__item {
+  display: flex;
+  flex-direction: column;
+  padding: $space-4;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  text-decoration: none;
+  color: inherit;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-primary;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: $shadow-sm;
+  }
+
+  &--next {
+    text-align: right;
+
+    @media (min-width: $bp-md) {
+      grid-column: 2;
+    }
+  }
+}
+
+.post-nav__label {
+  font-size: $font-size-xs;
+  color: $color-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $space-2;
+}
+
+.post-nav__title {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-dark;
+}
+
+// --------------------------------------------------------------------------
+// Pagination
+// --------------------------------------------------------------------------
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  margin-top: $space-9;
+  padding-top: $space-6;
+}
+
+.pagination__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: $space-2 $space-3;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-light;
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary;
+    text-decoration: none;
+  }
+
+  &--active {
+    background-color: $color-primary;
+    border-color: $color-primary;
+    color: $color-white;
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-primary-dark;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+.pagination__info {
+  font-size: $font-size-sm;
+  color: $color-muted;
+  margin: 0 $space-3;
+}

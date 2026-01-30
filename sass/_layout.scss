@@ -1,0 +1,355 @@
+// ==========================================================================
+// Layout — Container, Grid, Flexbox, Header, Footer, Main
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// Container
+// --------------------------------------------------------------------------
+.container {
+  width: 100%;
+  max-width: $container-max;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $space-5;
+  padding-right: $space-5;
+}
+
+.container--narrow {
+  max-width: $container-narrow;
+}
+
+.container--wide {
+  max-width: $container-wide;
+}
+
+// --------------------------------------------------------------------------
+// Grid System
+// --------------------------------------------------------------------------
+.grid {
+  display: grid;
+  gap: $space-6;
+}
+
+.grid--2 {
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid--3 {
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid--4 {
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// --------------------------------------------------------------------------
+// Flexbox Utilities
+// --------------------------------------------------------------------------
+.flex {
+  display: flex;
+}
+
+.flex--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex--between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex--column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
+}
+
+.flex--gap-sm {
+  gap: $space-2;
+}
+
+.flex--gap {
+  gap: $space-4;
+}
+
+.flex--gap-lg {
+  gap: $space-6;
+}
+
+// --------------------------------------------------------------------------
+// Page Structure
+// --------------------------------------------------------------------------
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+
+// --------------------------------------------------------------------------
+// Header
+// --------------------------------------------------------------------------
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba($color-white, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $color-border;
+  height: $header-height;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-dark;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+
+  &:hover {
+    color: $color-primary;
+    text-decoration: none;
+  }
+}
+
+.header__logo-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.header__nav-link {
+  padding: $space-2 $space-3;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-light;
+  text-decoration: none;
+  border-radius: $border-radius;
+  transition: color $transition-fast, background-color $transition-fast;
+
+  &:hover {
+    color: $color-primary;
+    background-color: rgba($color-primary, 0.06);
+    text-decoration: none;
+  }
+
+  &--active {
+    color: $color-primary;
+    background-color: rgba($color-primary, 0.08);
+  }
+}
+
+// --------------------------------------------------------------------------
+// Footer
+// --------------------------------------------------------------------------
+.footer {
+  background-color: $color-dark;
+  color: rgba($color-white, 0.7);
+  padding: $space-10 0 $space-6;
+  margin-top: $space-12;
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.footer__top {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+
+  @media (min-width: $bp-md) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.footer__brand {
+  max-width: 360px;
+}
+
+.footer__logo {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin-bottom: $space-3;
+}
+
+.footer__tagline {
+  font-size: $font-size-sm;
+  color: rgba($color-white, 0.5);
+  line-height: $line-height-base;
+}
+
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-6;
+}
+
+.footer__nav-group {
+  min-width: 120px;
+}
+
+.footer__nav-title {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: rgba($color-white, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: $space-3;
+}
+
+.footer__nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__nav-list li {
+  list-style: none;
+  margin-bottom: $space-2;
+}
+
+.footer__nav-link {
+  font-size: $font-size-sm;
+  color: rgba($color-white, 0.6);
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-white;
+    text-decoration: none;
+  }
+}
+
+.footer__bottom {
+  padding-top: $space-6;
+  border-top: 1px solid rgba($color-white, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  font-size: $font-size-sm;
+
+  @media (min-width: $bp-md) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.footer__copyright {
+  color: rgba($color-white, 0.4);
+}
+
+// --------------------------------------------------------------------------
+// Section Spacing
+// --------------------------------------------------------------------------
+.section {
+  padding: $space-10 0;
+}
+
+.section--lg {
+  padding: $space-12 0;
+}
+
+.section--alt {
+  background-color: $color-light;
+}
+
+.section--dark {
+  background-color: $color-dark;
+  color: $color-white;
+}
+
+.section__header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto $space-9;
+}
+
+.section__title {
+  margin-bottom: $space-4;
+}
+
+.section__subtitle {
+  font-size: $font-size-lg;
+  color: $color-text-light;
+  line-height: $line-height-base;
+}
+
+// --------------------------------------------------------------------------
+// Two-column Layout (with sidebar)
+// --------------------------------------------------------------------------
+.layout-sidebar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-8;
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: 260px 1fr;
+    gap: $space-9;
+  }
+}
+
+.layout-sidebar__aside {
+  @media (min-width: $bp-lg) {
+    position: sticky;
+    top: calc(#{$header-height} + #{$space-6});
+    align-self: start;
+  }
+}
+
+.layout-sidebar__main {
+  min-width: 0;
+}

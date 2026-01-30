@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-header__title">{{ page.title }}</h1>
+    {% if page.description %}
+    <p class="page-header__desc">{{ page.description }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<section class="service-detail">
+  <div class="container">
+    <div class="layout-sidebar">
+
+      {# Sidebar: navigation to other services #}
+      <aside class="layout-sidebar__aside">
+        <nav class="sidebar-nav" aria-label="Services navigation">
+          <div class="sidebar-nav__title">Services</div>
+          <ul class="sidebar-nav__list">
+            {% set services_section = get_section(path="services/_index.md") %}
+            {% for service in services_section.pages %}
+            <li>
+              <a href="{{ service.permalink }}"
+                 class="sidebar-nav__link{% if service.permalink == page.permalink %} sidebar-nav__link--active{% endif %}">
+                {{ service.title }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </aside>
+
+      {# Main content #}
+      <div class="layout-sidebar__main">
+        <div class="service-detail__content content">
+          {{ page.content | safe }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

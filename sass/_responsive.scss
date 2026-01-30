@@ -1,0 +1,243 @@
+// ==========================================================================
+// Responsive — Mobile-first Media Queries, CSS-only Responsive Nav
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// CSS-Only Responsive Navigation (no hamburger, collapsible via checkbox)
+// --------------------------------------------------------------------------
+// On small screens the nav wraps under the logo.
+// No hamburger menu — nav links remain visible and reflow.
+
+.header__nav-toggle {
+  display: none; // hidden checkbox for potential future use
+}
+
+// Small screens: stack nav items
+@media (max-width: $bp-md - 1) {
+  .header {
+    height: auto;
+    min-height: $header-height;
+  }
+
+  .header__inner {
+    flex-wrap: wrap;
+    padding-top: $space-3;
+    padding-bottom: $space-3;
+  }
+
+  .header__nav {
+    width: 100%;
+    justify-content: center;
+    padding-top: $space-2;
+    gap: $space-1;
+  }
+
+  .header__nav-link {
+    padding: $space-2;
+    font-size: $font-size-xs;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Container adjustments
+// --------------------------------------------------------------------------
+@media (max-width: $bp-sm - 1) {
+  .container {
+    padding-left: $space-4;
+    padding-right: $space-4;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Hero responsive
+// --------------------------------------------------------------------------
+@media (max-width: $bp-md - 1) {
+  .hero {
+    padding: $space-9 0 $space-8;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
+// Section spacing on mobile
+// --------------------------------------------------------------------------
+@media (max-width: $bp-md - 1) {
+  .section {
+    padding: $space-8 0;
+  }
+
+  .section--lg {
+    padding: $space-9 0;
+  }
+
+  .section__header {
+    margin-bottom: $space-6;
+  }
+}
+
+// --------------------------------------------------------------------------
+// CTA responsive
+// --------------------------------------------------------------------------
+@media (max-width: $bp-md - 1) {
+  .cta {
+    padding: $space-8 0;
+    border-radius: $border-radius;
+    margin-left: $space-4;
+    margin-right: $space-4;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Blog grid responsive
+// --------------------------------------------------------------------------
+@media (max-width: $bp-sm - 1) {
+  .blog-grid {
+    gap: $space-4;
+  }
+
+  .blog-card__body {
+    padding: $space-4;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Blog post responsive
+// --------------------------------------------------------------------------
+@media (max-width: $bp-md - 1) {
+  .blog-post {
+    padding: $space-6 $space-4;
+  }
+
+  .blog-post__header {
+    margin-bottom: $space-6;
+  }
+
+  .blog-post__content {
+    font-size: $font-size-base;
+  }
+
+  .post-nav {
+    gap: $space-3;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Services responsive
+// --------------------------------------------------------------------------
+@media (max-width: $bp-md - 1) {
+  .service-card {
+    padding: $space-5;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Sidebar layout responsive
+// --------------------------------------------------------------------------
+@media (max-width: $bp-lg - 1) {
+  .layout-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    padding: $space-4;
+  }
+
+  .sidebar-nav__title {
+    width: 100%;
+    margin-bottom: $space-2;
+    padding-bottom: $space-2;
+  }
+
+  .sidebar-nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-1;
+    width: 100%;
+  }
+
+  .sidebar-nav__link {
+    margin-bottom: 0;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Footer responsive
+// --------------------------------------------------------------------------
+@media (max-width: $bp-md - 1) {
+  .footer {
+    padding: $space-8 0 $space-5;
+    margin-top: $space-9;
+  }
+
+  .footer__nav {
+    flex-direction: column;
+    gap: $space-5;
+  }
+
+  .footer__bottom {
+    text-align: center;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Page header responsive
+// --------------------------------------------------------------------------
+@media (max-width: $bp-md - 1) {
+  .page-header {
+    padding: $space-7 0 $space-6;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Pagination responsive
+// --------------------------------------------------------------------------
+@media (max-width: $bp-sm - 1) {
+  .pagination {
+    gap: $space-1;
+  }
+
+  .pagination__link {
+    min-width: 36px;
+    height: 36px;
+    font-size: $font-size-xs;
+  }
+
+  .pagination__info {
+    display: none;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Utility: Hide/Show by breakpoint
+// --------------------------------------------------------------------------
+.hide-mobile {
+  @media (max-width: $bp-md - 1) {
+    display: none !important;
+  }
+}
+
+.show-mobile {
+  display: none !important;
+
+  @media (max-width: $bp-md - 1) {
+    display: block !important;
+  }
+}
+
+.hide-desktop {
+  @media (min-width: $bp-md) {
+    display: none !important;
+  }
+}

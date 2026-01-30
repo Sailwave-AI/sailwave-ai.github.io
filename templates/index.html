@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>{{ config.title }} &mdash; {{ config.extra.tagline | default(value="AI-Powered Sales Operations") }}</title>
+{% endblock title %}
+
+{% block meta %}
+<meta name="description" content="{{ config.description }}">
+{% endblock meta %}
+
+{% block content %}
+
+{# ================================================================ #}
+{# Hero Section                                                     #}
+{# ================================================================ #}
+<section class="hero">
+  <div class="container hero__inner">
+    <span class="hero__badge">AI-Powered Sales Ops</span>
+    <h1 class="hero__title">
+      {{ config.extra.tagline | default(value="Ride the AI Wave") }}
+    </h1>
+    <p class="hero__subtitle">
+      {{ config.description | default(value="Intelligent sales operations built for small and mid-size businesses. Automate prospecting, streamline pipelines, and close more deals with AI that works for you.") }}
+    </p>
+    <div class="hero__actions">
+      <a href="{{ config.base_url }}/services/" class="btn btn--primary btn--lg">Explore Services</a>
+      <a href="{{ config.base_url }}/about/" class="btn btn--outline btn--lg">Learn More</a>
+    </div>
+  </div>
+</section>
+
+{# ================================================================ #}
+{# Problem Statement                                                #}
+{# ================================================================ #}
+<section class="section">
+  <div class="container">
+    <div class="section__header">
+      <h2 class="section__title">Sales Is Broken for SMEs</h2>
+      <p class="section__subtitle">
+        Enterprise tools are bloated and expensive. Manual processes waste time and miss opportunities. Your sales team deserves intelligent systems that scale with your ambition, not your headcount.
+      </p>
+    </div>
+  </div>
+</section>
+
+{# ================================================================ #}
+{# Service Pillars                                                  #}
+{# ================================================================ #}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__header">
+      <h2 class="section__title">How We Help</h2>
+      <p class="section__subtitle">
+        Three pillars of AI-powered sales transformation, designed to deliver results from day one.
+      </p>
+    </div>
+
+    <div class="grid grid--3">
+      {# Pillar 1: Prospecting #}
+      <div class="card">
+        <div class="card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <h3 class="card__title">AI Prospecting</h3>
+        <p class="card__desc">
+          Automatically identify and qualify your ideal prospects using machine learning models trained on your best customers.
+        </p>
+        <span class="card__link">Learn more</span>
+      </div>
+
+      {# Pillar 2: Pipeline #}
+      <div class="card">
+        <div class="card__icon card__icon--accent">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3 class="card__title">Pipeline Intelligence</h3>
+        <p class="card__desc">
+          Real-time pipeline health monitoring with predictive analytics that surface risks and opportunities before they become surprises.
+        </p>
+        <span class="card__link">Learn more</span>
+      </div>
+
+      {# Pillar 3: Automation #}
+      <div class="card">
+        <div class="card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3 class="card__title">Sales Automation</h3>
+        <p class="card__desc">
+          Eliminate repetitive tasks with intelligent workflows. From follow-ups to reporting, let AI handle the busywork so your team can sell.
+        </p>
+        <span class="card__link">Learn more</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ================================================================ #}
+{# Final CTA                                                        #}
+{# ================================================================ #}
+<section class="section">
+  <div class="container">
+    <div class="cta cta--inline">
+      <div class="cta__inner">
+        <h2 class="cta__title">Ready to Transform Your Sales?</h2>
+        <p class="cta__desc">
+          Join the growing number of SMEs using AI to compete with enterprises. Start your journey today.
+        </p>
+        <a href="{{ config.base_url }}/services/" class="btn btn--outline-white btn--lg">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

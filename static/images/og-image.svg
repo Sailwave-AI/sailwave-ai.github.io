@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Salewave Open Graph Image — 1200x630 -->
+  <defs>
+    <linearGradient id="ogWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0057FF"/>
+      <stop offset="100%" stop-color="#00C9A7"/>
+    </linearGradient>
+    <linearGradient id="bgGlow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#0057FF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#1A1A2E" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="1200" height="630" fill="#1A1A2E"/>
+
+  <!-- Subtle radial glow behind logo area -->
+  <ellipse cx="600" cy="260" rx="500" ry="220" fill="url(#bgGlow)"/>
+
+  <!-- Decorative background wave lines -->
+  <path d="M0 480 Q150 440, 300 480 Q450 520, 600 480 Q750 440, 900 480 Q1050 520, 1200 480"
+        stroke="#0057FF" stroke-opacity="0.12" stroke-width="2" fill="none"/>
+  <path d="M0 510 Q150 470, 300 510 Q450 550, 600 510 Q750 470, 900 510 Q1050 550, 1200 510"
+        stroke="#00C9A7" stroke-opacity="0.10" stroke-width="2" fill="none"/>
+  <path d="M0 540 Q150 500, 300 540 Q450 580, 600 540 Q750 500, 900 540 Q1050 580, 1200 540"
+        stroke="#0057FF" stroke-opacity="0.06" stroke-width="2" fill="none"/>
+
+  <!-- Logo wordmark: "Sale" -->
+  <text x="372" y="280" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="88" font-weight="700" fill="#0057FF" letter-spacing="-2">
+    Sale
+  </text>
+
+  <!-- Logo wordmark: "wave" -->
+  <text x="628" y="280" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="88" font-weight="700" fill="#0057FF" letter-spacing="-2">
+    wave
+  </text>
+
+  <!-- Wave motif under "wave" -->
+  <path d="M628 298 Q666 278, 704 298 Q742 318, 780 298 Q818 278, 856 298 Q894 318, 932 298"
+        stroke="url(#ogWaveGrad)" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Accent dot -->
+  <circle cx="948" cy="298" r="5" fill="#00C9A7"/>
+
+  <!-- Tagline -->
+  <text x="600" y="370" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="400" fill="#F8F9FA" text-anchor="middle" letter-spacing="4" opacity="0.85">
+    Ride the AI Wave
+  </text>
+
+  <!-- Thin accent line separator -->
+  <line x1="530" y1="330" x2="670" y2="330" stroke="url(#ogWaveGrad)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+</svg>

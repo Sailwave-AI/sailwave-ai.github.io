@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {% block title %}
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{% if section.title and section.title != config.title %}{{ section.title }} | {% endif %}{{ config.title }}</title>
+  {% endblock title %}
+
+  {% block meta %}
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.description }}{% endif %}">
+  <meta name="author" content="{{ config.extra.author | default(value='Salewave') }}">
+  {% endblock meta %}
+
+  {# Open Graph #}
+  {% block opengraph %}
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ config.title }}{% elif section.title %}{{ section.title }} | {{ config.title }}{% else %}{{ config.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.description }}{% endif %}">
+  <meta property="og:type" content="{% if page %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{% if page.permalink %}{{ page.permalink }}{% elif section.permalink %}{{ section.permalink }}{% else %}{{ config.base_url }}{% endif %}">
+  <meta property="og:image" content="{% if page.extra.og_image %}{{ config.base_url }}{{ page.extra.og_image }}{% else %}{{ config.base_url }}/images/og-default.png{% endif %}">
+  <meta property="og:site_name" content="{{ config.title }}">
+  {% endblock opengraph %}
+
+  {# Canonical URL #}
+  <link rel="canonical" href="{% if page.permalink %}{{ page.permalink }}{% elif section.permalink %}{{ section.permalink }}{% else %}{{ config.base_url }}{% endif %}">
+
+  {# Favicon #}
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+
+  {# Google Fonts: Inter + JetBrains Mono #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  {# Stylesheet (compiled from Sass by Zola) #}
+  <link rel="stylesheet" href="/style.css">
+
+  {# Feed #}
+  {% if config.generate_feeds %}
+  {% for feed in config.feed_filenames %}
+  <link rel="alternate" type="application/atom+xml" title="{{ config.title }} Feed" href="{{ config.base_url }}/{{ feed }}">
+  {% endfor %}
+  {% endif %}
+
+  {% block head_extra %}{% endblock head_extra %}
+</head>
+<body>
+  <div class="page-wrapper">
+
+    {# ================================================================ #}
+    {# Header                                                           #}
+    {# ================================================================ #}
+    <header class="header">
+      <div class="container header__inner">
+        <a href="{{ config.base_url }}" class="header__logo">
+          <span class="header__logo-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 18C4 18 7 10 14 10C21 10 24 18 24 18" stroke="#0057FF" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M2 22C2 22 6 14 14 14C22 14 26 22 26 22" stroke="#00C9A7" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="14" cy="8" r="3" fill="#0057FF"/>
+            </svg>
+          </span>
+          Salewave
+        </a>
+
+        <nav class="header__nav" aria-label="Main navigation">
+          <a href="{{ config.base_url }}/services/" class="header__nav-link">Services</a>
+          <a href="{{ config.base_url }}/about/" class="header__nav-link">About</a>
+          <a href="{{ config.base_url }}/blog/" class="header__nav-link">Blog</a>
+        </nav>
+      </div>
+    </header>
+
+    {# ================================================================ #}
+    {# Main Content                                                     #}
+    {# ================================================================ #}
+    <main class="main">
+      {% block content %}{% endblock content %}
+    </main>
+
+    {# ================================================================ #}
+    {# Footer                                                           #}
+    {# ================================================================ #}
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <div class="footer__logo">Salewave</div>
+            <p class="footer__tagline">{{ config.extra.tagline | default(value="AI-powered sales operations for SMEs") }}</p>
+          </div>
+
+          <div class="footer__nav">
+            <div class="footer__nav-group">
+              <div class="footer__nav-title">Services</div>
+              <ul class="footer__nav-list">
+                <li><a href="{{ config.base_url }}/services/" class="footer__nav-link">All Services</a></li>
+              </ul>
+            </div>
+
+            <div class="footer__nav-group">
+              <div class="footer__nav-title">Company</div>
+              <ul class="footer__nav-list">
+                <li><a href="{{ config.base_url }}/about/" class="footer__nav-link">About</a></li>
+                <li><a href="{{ config.base_url }}/blog/" class="footer__nav-link">Blog</a></li>
+              </ul>
+            </div>
+
+            <div class="footer__nav-group">
+              <div class="footer__nav-title">Connect</div>
+              <ul class="footer__nav-list">
+                <li><a href="{{ config.base_url }}/atom.xml" class="footer__nav-link">RSS Feed</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <span class="footer__copyright">&copy; {{ now() | date(format="%Y") }} {{ config.title }}. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+// ==========================================================================
+// Typography — Headings, Body Text, Links, Lists, Code
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// Headings
+// --------------------------------------------------------------------------
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-heading;
+  color: $color-dark;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: $font-weight-extrabold;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: clamp(1.625rem, 3.5vw, 2.5rem);
+  font-weight: $font-weight-bold;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: $font-weight-semibold;
+}
+
+h4 {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: $font-weight-semibold;
+}
+
+h5 {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+}
+
+h6 {
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// --------------------------------------------------------------------------
+// Body Text
+// --------------------------------------------------------------------------
+p {
+  margin-bottom: $space-4;
+  color: $color-text;
+  line-height: $line-height-base;
+}
+
+.lead {
+  font-size: $font-size-xl;
+  line-height: 1.5;
+  color: $color-text-light;
+  font-weight: $font-weight-normal;
+}
+
+small, .text-sm {
+  font-size: $font-size-sm;
+}
+
+.text-xs {
+  font-size: $font-size-xs;
+}
+
+.text-muted {
+  color: $color-muted;
+}
+
+.text-center {
+  text-align: center;
+}
+
+strong, b {
+  font-weight: $font-weight-semibold;
+}
+
+em, i {
+  font-style: italic;
+}
+
+// --------------------------------------------------------------------------
+// Links
+// --------------------------------------------------------------------------
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-dark;
+    text-decoration: underline;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Lists
+// --------------------------------------------------------------------------
+ul, ol {
+  padding-left: $space-5;
+  margin-bottom: $space-4;
+}
+
+li {
+  margin-bottom: $space-2;
+  line-height: $line-height-base;
+}
+
+ul li {
+  list-style-type: disc;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+
+li ul,
+li ol {
+  margin-top: $space-2;
+  margin-bottom: $space-2;
+}
+
+// --------------------------------------------------------------------------
+// Blockquotes
+// --------------------------------------------------------------------------
+blockquote {
+  border-left: 4px solid $color-primary;
+  padding: $space-4 $space-5;
+  margin: $space-6 0;
+  background-color: $color-light;
+  border-radius: 0 $border-radius $border-radius 0;
+
+  p {
+    font-size: $font-size-lg;
+    color: $color-text-light;
+    font-style: italic;
+    margin-bottom: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  cite {
+    display: block;
+    margin-top: $space-3;
+    font-size: $font-size-sm;
+    color: $color-muted;
+    font-style: normal;
+    font-weight: $font-weight-medium;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Code (Inline + Block)
+// --------------------------------------------------------------------------
+code {
+  font-family: $font-code;
+  font-size: 0.875em;
+  background-color: rgba($color-primary, 0.06);
+  color: $color-primary-dark;
+  padding: 0.15em 0.4em;
+  border-radius: $border-radius-sm;
+  font-weight: $font-weight-normal;
+}
+
+pre {
+  margin: $space-6 0;
+  padding: $space-5;
+  background-color: $color-dark;
+  color: $color-light;
+  border-radius: $border-radius;
+  overflow-x: auto;
+  line-height: 1.5;
+  box-shadow: $shadow;
+
+  code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: $font-size-sm;
+    border-radius: 0;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Horizontal Rules
+// --------------------------------------------------------------------------
+hr {
+  border: none;
+  height: 1px;
+  background-color: $color-border;
+  margin: $space-8 0;
+}
+
+// --------------------------------------------------------------------------
+// Tables (content context)
+// --------------------------------------------------------------------------
+.content table {
+  width: 100%;
+  margin: $space-6 0;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  th, td {
+    padding: $space-3 $space-4;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+  }
+
+  th {
+    background-color: $color-light;
+    font-weight: $font-weight-semibold;
+    color: $color-dark;
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:hover td {
+    background-color: rgba($color-primary, 0.02);
+  }
+}
+
+// --------------------------------------------------------------------------
+// Content flow — spacing for prose
+// --------------------------------------------------------------------------
+.content {
+  > h1, > h2, > h3, > h4, > h5, > h6 {
+    margin-top: $space-8;
+    margin-bottom: $space-4;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  > p + p {
+    margin-top: 0;
+  }
+
+  > ul, > ol {
+    margin-bottom: $space-5;
+  }
+
+  > img {
+    border-radius: $border-radius;
+    margin: $space-6 0;
+    box-shadow: $shadow;
+  }
+}

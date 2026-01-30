@@ -1,0 +1,120 @@
+// ==========================================================================
+// Reset — Modern CSS Reset / Normalize
+// ==========================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  line-height: $line-height-base;
+  font-family: $font-body;
+  font-size: $font-size-base;
+  color: $color-text;
+  background-color: $color-white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Remove default margins
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote,
+dl, dd, ol, ul {
+  margin: 0;
+}
+
+// Remove list styles
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+// Core body defaults
+body {
+  text-rendering: optimizeSpeed;
+}
+
+// Anchors
+a {
+  text-decoration-skip-ink: auto;
+  color: inherit;
+}
+
+// Media defaults
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// Inherit fonts for inputs and buttons
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+// Button reset
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+// Textarea without overflow
+textarea {
+  white-space: revert;
+}
+
+// Table reset
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// Remove animations for reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Focus visible styles
+:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+// Remove focus styles for non-keyboard focus
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// Selection
+::selection {
+  background-color: rgba($color-primary, 0.15);
+  color: $color-dark;
+}

@@ -1,0 +1,267 @@
+// ==========================================================================
+// Services — Cards Grid, Service Detail, Icon + Text Blocks
+// ==========================================================================
+
+// --------------------------------------------------------------------------
+// Services Listing (card grid)
+// --------------------------------------------------------------------------
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  background-color: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  padding: $space-7;
+  text-decoration: none;
+  color: inherit;
+  transition: all $transition-base;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $color-primary, $color-accent);
+    opacity: 0;
+    transition: opacity $transition-base;
+  }
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    border-color: transparent;
+    transform: translateY(-3px);
+    text-decoration: none;
+    color: inherit;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.service-card__icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba($color-primary, 0.1), rgba($color-accent, 0.08));
+  border-radius: $border-radius-lg;
+  margin-bottom: $space-5;
+  font-size: 1.75rem;
+  color: $color-primary;
+}
+
+.service-card__title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-dark;
+  margin-bottom: $space-3;
+  line-height: $line-height-tight;
+}
+
+.service-card__desc {
+  font-size: $font-size-sm;
+  color: $color-text-light;
+  line-height: $line-height-base;
+  margin-bottom: $space-5;
+  flex: 1;
+}
+
+.service-card__action {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  text-decoration: none;
+  margin-top: auto;
+  transition: gap $transition-fast;
+
+  &::after {
+    content: '\2192';
+    transition: transform $transition-fast;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.service-card:hover .service-card__action::after {
+  transform: translateX(3px);
+}
+
+// --------------------------------------------------------------------------
+// Service Detail Page
+// --------------------------------------------------------------------------
+.service-detail {
+  padding: $space-9 0;
+}
+
+.service-detail__content {
+  font-size: $font-size-lg;
+  line-height: 1.75;
+
+  h2, h3, h4 {
+    margin-top: $space-8;
+    margin-bottom: $space-4;
+  }
+
+  p {
+    margin-bottom: $space-5;
+  }
+
+  ul, ol {
+    margin-bottom: $space-5;
+
+    li {
+      margin-bottom: $space-2;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
+// Sidebar Navigation (for service pages)
+// --------------------------------------------------------------------------
+.sidebar-nav {
+  background-color: $color-light;
+  border-radius: $border-radius-lg;
+  padding: $space-5;
+}
+
+.sidebar-nav__title {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: $space-3;
+  padding-bottom: $space-3;
+  border-bottom: 1px solid $color-border;
+}
+
+.sidebar-nav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav__list li {
+  list-style: none;
+}
+
+.sidebar-nav__link {
+  display: block;
+  padding: $space-2 $space-3;
+  font-size: $font-size-sm;
+  color: $color-text-light;
+  text-decoration: none;
+  border-radius: $border-radius;
+  margin-bottom: $space-1;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: rgba($color-primary, 0.06);
+    color: $color-primary;
+    text-decoration: none;
+  }
+
+  &--active {
+    background-color: rgba($color-primary, 0.1);
+    color: $color-primary;
+    font-weight: $font-weight-medium;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Icon + Text Blocks
+// --------------------------------------------------------------------------
+.icon-text-block {
+  display: flex;
+  gap: $space-4;
+  align-items: flex-start;
+}
+
+.icon-text-block__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($color-primary, 0.08);
+  color: $color-primary;
+  border-radius: $border-radius;
+  font-size: 1.25rem;
+}
+
+.icon-text-block__content {
+  flex: 1;
+}
+
+.icon-text-block__title {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-dark;
+  margin-bottom: $space-2;
+}
+
+.icon-text-block__desc {
+  font-size: $font-size-sm;
+  color: $color-text-light;
+  line-height: $line-height-base;
+}
+
+// --------------------------------------------------------------------------
+// Service Benefits List
+// --------------------------------------------------------------------------
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: $space-6 0;
+}
+
+.benefits-list li {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+  padding: $space-3 0;
+  font-size: $font-size-base;
+  color: $color-text;
+
+  &::before {
+    content: '\2713'; // checkmark
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $color-accent;
+    background-color: rgba($color-accent, 0.1);
+    border-radius: $border-radius-full;
+  }
+}

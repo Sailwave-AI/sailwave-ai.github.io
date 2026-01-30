@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Page Not Found | {{ config.title }}</title>
+{% endblock title %}
+
+{% block content %}
+
+<section class="section section--lg">
+  <div class="container" style="text-align: center;">
+    <div style="font-size: 6rem; font-weight: 800; color: #DEE2E6; line-height: 1; margin-bottom: 1.5rem;">404</div>
+    <h1 style="font-size: 1.75rem; margin-bottom: 1rem;">Page Not Found</h1>
+    <p class="lead" style="max-width: 480px; margin: 0 auto 2rem;">
+      The page you are looking for does not exist or has been moved.
+    </p>
+    <div class="flex--center" style="gap: 1rem; display: flex; justify-content: center; flex-wrap: wrap;">
+      <a href="{{ config.base_url }}" class="btn btn--primary">Back to Home</a>
+      <a href="{{ config.base_url }}/blog/" class="btn btn--outline">Read the Blog</a>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

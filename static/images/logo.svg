@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" fill="none">
+  <!-- Salewave Wordmark Logo -->
+  <defs>
+    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0057FF"/>
+      <stop offset="100%" stop-color="#00C9A7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Wordmark: "Sale" in primary blue -->
+  <text x="0" y="56" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="52" font-weight="700" fill="#0057FF" letter-spacing="-1">
+    Sale
+  </text>
+
+  <!-- Wordmark: "wave" in primary blue -->
+  <text x="148" y="56" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="52" font-weight="700" fill="#0057FF" letter-spacing="-1">
+    wave
+  </text>
+
+  <!-- Wave motif integrated under the "wave" portion -->
+  <path d="M148 66 Q168 54, 188 66 Q208 78, 228 66 Q248 54, 268 66 Q288 78, 308 66"
+        stroke="url(#waveGrad)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Small accent dot -->
+  <circle cx="320" cy="66" r="3.5" fill="#00C9A7"/>
+</svg>

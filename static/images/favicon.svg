@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Salewave Favicon: Stylized "S" with wave -->
+  <defs>
+    <linearGradient id="favGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0057FF"/>
+      <stop offset="100%" stop-color="#00C9A7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="#1A1A2E"/>
+
+  <!-- Stylized S built from two wave arcs -->
+  <path d="M18 22 Q32 10, 46 22 Q38 28, 32 32 Q26 36, 18 42 Q32 54, 46 42"
+        stroke="url(#favGrad)" stroke-width="5.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,28 @@
+base_url = "https://salewave.github.io"
+title = "Salewave"
+description = "AI-powered sales operations for SMEs"
+default_language = "en"
+compile_sass = true
+build_search_index = false
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+minify_html = true
+
+[markdown]
+highlight_code = true
+highlight_theme = "css"
+
+[extra]
+author = "Salewave"
+tagline = "Ride the AI Wave"
+
+[[taxonomies]]
+name = "tags"
+feed = true
+
+[[taxonomies]]
+name = "categories"
+feed = true
+
+[link_checker]
+skip_anchor_prefixes = ["https://"]
