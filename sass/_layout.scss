@@ -127,10 +127,10 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba($color-white, 0.97);
-  border-bottom: 1px solid $color-border;
+  background-color: transparent;
+  border-bottom: 1px solid rgba($color-white, 0.1);
   height: $header-height;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(14px);
 }
 
 .header__inner {
@@ -146,12 +146,13 @@
   gap: $space-2;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
-  color: $color-dark;
+  color: $color-white;
+  text-shadow: 0 4px 10px rgba($color-dark, 0.5);
   text-decoration: none;
   letter-spacing: -0.02em;
 
   &:hover {
-    color: $color-primary;
+    color: $color-accent;
     text-decoration: none;
   }
 }
@@ -174,20 +175,21 @@
   padding: $space-2 $space-3;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
-  color: $color-text-light;
+  color: rgba($color-white, 0.85);
+  text-shadow: 0 2px 8px rgba($color-dark, 0.45);
   text-decoration: none;
   border-radius: $border-radius;
   transition: color $transition-fast, background-color $transition-fast;
 
   &:hover {
-    color: $color-primary;
-    background-color: rgba($color-primary, 0.06);
+    color: $color-white;
+    background-color: rgba($color-white, 0.12);
     text-decoration: none;
   }
 
   &--active {
-    color: $color-primary;
-    background-color: rgba($color-primary, 0.08);
+    color: $color-white;
+    background-color: rgba($color-white, 0.22);
   }
 }
 
