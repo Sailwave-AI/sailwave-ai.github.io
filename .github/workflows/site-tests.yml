@@ -1,0 +1,29 @@
+name: Site Tests
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  site-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Zola
+        uses: taiki-e/install-action@v2
+        with:
+          tool: zola@0.19.2
+
+      - name: Run site smoke tests
+        run: |
+          if [ ! -f tests/run_site_tests.sh ]; then
+            echo "No tests/run_site_tests.sh found. Skipping site smoke tests."
+            exit 0
+          fi
+          chmod +x tests/run_site_tests.sh
+          tests/run_site_tests.sh
