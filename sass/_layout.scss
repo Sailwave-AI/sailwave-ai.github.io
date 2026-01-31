@@ -122,9 +122,9 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba($color-white, 0.95);
+  background-color: rgba($color-dark, 0.78);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid $color-border;
+  border-bottom: 1px solid rgba($color-white, 0.08);
   height: $header-height;
 }
 
@@ -141,12 +141,12 @@
   gap: $space-2;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
-  color: $color-dark;
+  color: $color-white;
   text-decoration: none;
   letter-spacing: -0.02em;
 
   &:hover {
-    color: $color-primary;
+    color: $color-accent;
     text-decoration: none;
   }
 }
@@ -169,20 +169,20 @@
   padding: $space-2 $space-3;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
-  color: $color-text-light;
+  color: rgba($color-white, 0.8);
   text-decoration: none;
   border-radius: $border-radius;
   transition: color $transition-fast, background-color $transition-fast;
 
   &:hover {
-    color: $color-primary;
-    background-color: rgba($color-primary, 0.06);
+    color: $color-white;
+    background-color: rgba($color-white, 0.12);
     text-decoration: none;
   }
 
   &--active {
-    color: $color-primary;
-    background-color: rgba($color-primary, 0.08);
+    color: $color-white;
+    background-color: rgba($color-white, 0.2);
   }
 }
 
