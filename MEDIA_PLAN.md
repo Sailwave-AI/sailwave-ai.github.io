@@ -49,7 +49,7 @@
 
 ## Source Notes
 - Photo assets are sourced from Unsplash (free license) and downloaded at 1600px width.
-  - Hero background: https://unsplash.com/photos/V2fDh-_1SMw
+  - Hero background: https://unsplash.com/photos/ZhVUAUc8V4s
   - CRM automation consulting: https://unsplash.com/photos/yd_RKGH_RH4
   - Data integration consulting: https://unsplash.com/photos/WbLJd4M88I8
   - CX consulting: https://unsplash.com/photos/qoLY6vRnJsE
