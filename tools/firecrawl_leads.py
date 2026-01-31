@@ -45,6 +45,12 @@ def normalize_company_size(count: int) -> str:
     return "1000+"
 
 
+def normalize_exclusions(raw: Optional[str]) -> List[str]:
+    if not raw:
+        return []
+    return [item.strip().lower() for item in raw.split(",") if item.strip()]
+
+
 def build_query(region: str, industry: str, company_size: str, employee_role: str) -> str:
     parts = []
     for value in (region, industry, employee_role, company_size):
@@ -59,9 +65,16 @@ def filter_leads(
     industry: Optional[str] = None,
     company_size: Optional[str] = None,
     employee_role: Optional[str] = None,
+    exclude_companies: Optional[List[str]] = None,
 ) -> List[Dict[str, str]]:
     results = []
+    exclusions = exclude_companies or []
     for lead in leads:
+        company = lead.get("company", "")
+        if exclusions:
+            company_lower = company.lower()
+            if any(term in company_lower for term in exclusions):
+                continue
         if region and region.lower() not in (lead.get("region", "").lower()):
             continue
         if industry and industry.lower() not in (lead.get("industry", "").lower()):
@@ -125,6 +138,7 @@ def discover_leads(
     industry: str,
     company_size: str,
     employee_role: str,
+    exclude_companies: Optional[List[str]] = None,
     fetcher: Callable[[str, Dict[str, Any]], Dict[str, Any]] = _fetch_json,
     rate_limit_sec: float = 0.5,
 ) -> List[Dict[str, str]]:
@@ -156,7 +170,16 @@ def discover_leads(
                 leads.append(lead)
         time.sleep(rate_limit_sec)
 
-    return dedupe_leads(filter_leads(leads, region, industry, company_size, employee_role))
+    return dedupe_leads(
+        filter_leads(
+            leads,
+            region=region,
+            industry=industry,
+            company_size=company_size,
+            employee_role=employee_role,
+            exclude_companies=exclude_companies,
+        )
+    )
 
 
 def export_json(leads: List[Dict[str, str]], path: str) -> None:
@@ -180,6 +203,7 @@ def main() -> None:
     parser.add_argument("--industry", required=True)
     parser.add_argument("--company-size", required=True)
     parser.add_argument("--employee-role", required=True)
+    parser.add_argument("--exclude-companies", default="", help="Comma-separated company names to exclude")
     parser.add_argument("--out-json", default="leads.json")
     parser.add_argument("--out-csv", default="leads.csv")
     args = parser.parse_args()
@@ -189,6 +213,7 @@ def main() -> None:
         industry=args.industry,
         company_size=args.company_size,
         employee_role=args.employee_role,
+        exclude_companies=normalize_exclusions(args.exclude_companies),
     )
     export_json(leads, args.out_json)
     export_csv(leads, args.out_csv)

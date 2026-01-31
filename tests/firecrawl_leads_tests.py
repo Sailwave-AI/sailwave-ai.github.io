@@ -15,6 +15,7 @@ from tools.firecrawl_leads import (
     dedupe_leads,
     validate_lead,
     build_query,
+    normalize_exclusions,
 )
 
 
@@ -70,6 +71,43 @@ class FirecrawlLeadTests(unittest.TestCase):
         )
         self.assertEqual(len(filtered), 1)
         self.assertEqual(filtered[0]["name"], "Jane Doe")
+
+    def test_filter_exclusions(self):
+        leads = [
+            {
+                "name": "Owner",
+                "role": "Owner",
+                "email": "owner@boots.com",
+                "phone": "+441234567890",
+                "company": "Boots UK",
+                "region": "UK",
+                "industry": "Pharmacy",
+                "company_size": "1000+",
+                "source_url": "https://boots.com/contact",
+            },
+            {
+                "name": "Owner",
+                "role": "Owner",
+                "email": "owner@independentpharmacy.co.uk",
+                "phone": "+441111111111",
+                "company": "Independent Pharmacy",
+                "region": "UK",
+                "industry": "Pharmacy",
+                "company_size": "11-50",
+                "source_url": "https://independentpharmacy.co.uk/about",
+            },
+        ]
+        exclusions = normalize_exclusions("boots, lloyds")
+        filtered = filter_leads(
+            leads,
+            region="UK",
+            industry="Pharmacy",
+            company_size=None,
+            employee_role="Owner",
+            exclude_companies=exclusions,
+        )
+        self.assertEqual(len(filtered), 1)
+        self.assertIn("Independent", filtered[0]["company"])
 
     def test_dedupe_leads(self):
         leads = [
