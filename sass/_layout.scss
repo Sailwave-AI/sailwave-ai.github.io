@@ -122,10 +122,15 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba($color-dark, 0.78);
-  backdrop-filter: blur(12px);
+  background-color: $color-dark;
   border-bottom: 1px solid rgba($color-white, 0.08);
   height: $header-height;
+  transition: background-color $transition-base, backdrop-filter $transition-base;
+}
+
+.header--scrolled {
+  background-color: rgba($color-dark, 0.78);
+  backdrop-filter: blur(12px);
 }
 
 .header__inner {
