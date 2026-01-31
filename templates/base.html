@@ -52,7 +52,8 @@
     {# ================================================================ #}
     {# Header                                                           #}
     {# ================================================================ #}
-    <header class="header">
+    {% set is_home = current_path == "/" %}
+    <header class="header{% if is_home %} header--on-hero{% else %} header--light{% endif %}">
       <div class="container header__inner">
         <a href="{{ config.base_url }}" class="header__logo">
           <span class="header__logo-icon">

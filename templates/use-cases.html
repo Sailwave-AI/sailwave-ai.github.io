@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-header__title">{{ section.title | default(value="Use Cases") }}</h1>
+    {% if section.description %}
+    <p class="page-header__desc">{{ section.description }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<section class="section">
+  <div class="container container--narrow">
+    <div class="content">
+      {{ section.content | safe }}
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

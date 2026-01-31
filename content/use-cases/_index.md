@@ -1,7 +1,7 @@
 +++
 title = "Use Cases"
 description = "Industries where AI-powered sales and service systems unlock measurable growth."
-template = "page.html"
+template = "use-cases.html"
 +++
 
 ## Healthcare Clinics

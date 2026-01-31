@@ -128,9 +128,17 @@
   top: 0;
   z-index: 100;
   background-color: transparent;
-  border-bottom: 1px solid rgba($color-white, 0.1);
+  border-bottom: 1px solid transparent;
   height: $header-height;
   backdrop-filter: blur(14px);
+}
+
+.header--on-hero {
+  border-bottom-color: rgba($color-white, 0.12);
+}
+
+.header--light {
+  border-bottom-color: rgba($color-dark, 0.08);
 }
 
 .header__inner {
@@ -146,13 +154,12 @@
   gap: $space-2;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
-  color: $color-white;
-  text-shadow: 0 4px 10px rgba($color-dark, 0.5);
+  color: $color-dark;
   text-decoration: none;
   letter-spacing: -0.02em;
 
   &:hover {
-    color: $color-accent;
+    color: $color-primary;
     text-decoration: none;
   }
 }
@@ -175,22 +182,37 @@
   padding: $space-2 $space-3;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
-  color: rgba($color-white, 0.85);
-  text-shadow: 0 2px 8px rgba($color-dark, 0.45);
+  color: $color-text-light;
   text-decoration: none;
   border-radius: $border-radius;
   transition: color $transition-fast, background-color $transition-fast;
 
   &:hover {
-    color: $color-white;
-    background-color: rgba($color-white, 0.12);
+    color: $color-primary;
+    background-color: rgba($color-primary, 0.06);
     text-decoration: none;
   }
 
   &--active {
-    color: $color-white;
-    background-color: rgba($color-white, 0.22);
+    color: $color-primary;
+    background-color: rgba($color-primary, 0.08);
   }
+}
+
+.header--on-hero .header__logo,
+.header--on-hero .header__nav-link {
+  color: $color-white;
+  text-shadow: 0 4px 10px rgba($color-dark, 0.5);
+}
+
+.header--on-hero .header__nav-link:hover {
+  color: $color-white;
+  background-color: rgba($color-white, 0.12);
+}
+
+.header--on-hero .header__nav-link--active {
+  color: $color-white;
+  background-color: rgba($color-white, 0.22);
 }
 
 // --------------------------------------------------------------------------
