@@ -4,9 +4,9 @@
 
 <div class="page-header">
   <div class="container">
-    <h1 class="page-header__title">{{ page.title | default(value="About Salewave") }}</h1>
-    {% if page.description %}
-    <p class="page-header__desc">{{ page.description }}</p>
+    <h1 class="page-header__title">{{ section.title | default(value="About Salewave") }}</h1>
+    {% if section.description %}
+    <p class="page-header__desc">{{ section.description }}</p>
     {% endif %}
   </div>
 </div>
@@ -14,7 +14,7 @@
 <section class="section">
   <div class="container container--narrow">
     <div class="content">
-      {{ page.content | safe }}
+      {{ section.content | safe }}
     </div>
   </div>
 </section>

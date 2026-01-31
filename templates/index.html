@@ -57,7 +57,7 @@
 
     <div class="grid grid--3">
       {# Pillar 1: Prospecting #}
-      <div class="card">
+      <a href="{{ config.base_url }}/services/ai-prospecting/" class="card card--link">
         <div class="card__icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -68,10 +68,10 @@
           Automatically identify and qualify your ideal prospects using machine learning models trained on your best customers.
         </p>
         <span class="card__link">Learn more</span>
-      </div>
+      </a>
 
       {# Pillar 2: Pipeline #}
-      <div class="card">
+      <a href="{{ config.base_url }}/services/pipeline-intelligence/" class="card card--link">
         <div class="card__icon card__icon--accent">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
@@ -82,10 +82,10 @@
           Real-time pipeline health monitoring with predictive analytics that surface risks and opportunities before they become surprises.
         </p>
         <span class="card__link">Learn more</span>
-      </div>
+      </a>
 
       {# Pillar 3: Automation #}
-      <div class="card">
+      <a href="{{ config.base_url }}/services/sales-automation/" class="card card--link">
         <div class="card__icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
@@ -96,7 +96,7 @@
           Eliminate repetitive tasks with intelligent workflows. From follow-ups to reporting, let AI handle the busywork so your team can sell.
         </p>
         <span class="card__link">Learn more</span>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -112,7 +112,7 @@
         <p class="cta__desc">
           Join the growing number of SMEs using AI to compete with enterprises. Start your journey today.
         </p>
-        <a href="{{ config.base_url }}/services/" class="btn btn--outline-white btn--lg">Get Started</a>
+        <a href="mailto:{{ config.extra.contact_email }}" class="btn btn--outline-white btn--lg">Get in Touch</a>
       </div>
     </div>
   </div>

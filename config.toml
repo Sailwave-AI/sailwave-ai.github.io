@@ -15,6 +15,7 @@ highlight_theme = "css"
 [extra]
 author = "Salewave"
 tagline = "Ride the AI Wave"
+contact_email = "contact@sailwave.ai"
 
 [[taxonomies]]
 name = "tags"
