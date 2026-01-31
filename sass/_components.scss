@@ -245,6 +245,21 @@
     );
     z-index: 0;
   }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(
+      circle,
+      rgba($color-accent, 0.35) 0%,
+      rgba($color-primary, 0.1) 35%,
+      transparent 60%
+    );
+    opacity: 0.5;
+    animation: pulseGlow 10s ease-in-out infinite;
+    z-index: 0;
+  }
 }
 
 .hero__inner {
@@ -270,6 +285,8 @@
   margin-bottom: $space-6;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  box-shadow: 0 0 18px rgba($color-accent, 0.35);
+  animation: pulseBadge 4.5s ease-in-out infinite;
 }
 
 .hero__title {
@@ -301,6 +318,56 @@
   flex-wrap: wrap;
   gap: $space-4;
   justify-content: center;
+}
+
+.hero__fx {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba($color-accent, 0.45), transparent 60%);
+  filter: blur(2px);
+  animation: floatOrb 12s ease-in-out infinite;
+}
+
+.hero__orb--one {
+  width: 280px;
+  height: 280px;
+  top: -40px;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.hero__orb--two {
+  width: 220px;
+  height: 220px;
+  bottom: -60px;
+  right: 12%;
+  animation-delay: 2s;
+}
+
+.hero__orb--three {
+  width: 160px;
+  height: 160px;
+  top: 25%;
+  right: 25%;
+  animation-delay: 4s;
+}
+
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba($color-white, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba($color-white, 0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.25;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 70%);
 }
 
 .hero__actions .btn--outline {
@@ -508,4 +575,38 @@
 
 .empty-state__text {
   font-size: $font-size-lg;
+}
+
+// --------------------------------------------------------------------------
+// Futuristic motion accents
+// --------------------------------------------------------------------------
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.75;
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-18px) translateX(12px);
+  }
+}
+
+@keyframes pulseBadge {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 18px rgba($color-accent, 0.35);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 26px rgba($color-accent, 0.55);
+  }
 }
