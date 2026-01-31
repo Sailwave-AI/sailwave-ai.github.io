@@ -418,6 +418,68 @@
 }
 
 // --------------------------------------------------------------------------
+// Use Cases
+// --------------------------------------------------------------------------
+.use-cases-grid {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.use-case-card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding: $space-6;
+}
+
+.use-case-card__badge {
+  align-self: flex-start;
+  padding: $space-1 $space-3;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-primary;
+  background: rgba($color-primary, 0.12);
+  border-radius: $border-radius-full;
+}
+
+.use-case-card__title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+}
+
+.use-case-card__desc {
+  color: $color-text-light;
+  margin-bottom: 0;
+}
+
+.use-case-card__list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+
+  li {
+    position: relative;
+    padding-left: $space-5;
+    margin-bottom: $space-2;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $color-accent;
+      box-shadow: 0 0 8px rgba($color-accent, 0.6);
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
 // Feature Blocks
 // --------------------------------------------------------------------------
 .features {
