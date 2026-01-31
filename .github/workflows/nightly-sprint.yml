@@ -1,0 +1,97 @@
+name: Nightly Agent Sprint
+
+on:
+  schedule:
+    - cron: "0 22 * * 1-5" # 22:00 UTC, Mon-Fri
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  fetch-issues:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.get-issues.outputs.matrix }}
+      has_issues: ${{ steps.get-issues.outputs.has_issues }}
+    steps:
+      - name: Get nightly-sprint issues
+        id: get-issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          issues=$(gh issue list \
+            --repo "${{ github.repository }}" \
+            --label "nightly-sprint" \
+            --state open \
+            --limit 5 \
+            --json number,title,body \
+            --jq '[.[] | {number, title, body}]')
+
+          if [ "$issues" = "[]" ] || [ -z "$issues" ]; then
+            echo "has_issues=false" >> "$GITHUB_OUTPUT"
+            echo "matrix={\"issue\":[]}" >> "$GITHUB_OUTPUT"
+            echo "No issues found with nightly-sprint label."
+          else
+            echo "has_issues=true" >> "$GITHUB_OUTPUT"
+            echo "matrix={\"issue\":$(echo "$issues" | jq -c '.')}" >> "$GITHUB_OUTPUT"
+            echo "Found $(echo "$issues" | jq length) issue(s)."
+          fi
+
+  sprint:
+    needs: fetch-issues
+    if: needs.fetch-issues.outputs.has_issues == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix: ${{ fromJson(needs.fetch-issues.outputs.matrix) }}
+      max-parallel: 2
+      fail-fast: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Claude Code
+        uses: anthropics/claude-code-base-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          model: claude-sonnet-4-5-20250929
+          max_turns: 25
+          allowed_tools: "Bash(git:*),Bash(gh:*),Bash(zola:*),Bash(cargo:*),View,GlobTool,GrepTool,BatchTool,Edit,Write"
+          prompt: |
+            You are a Sailwave AI agent working on a nightly sprint.
+
+            ## Task
+            Implement the following GitHub issue and open a PR for review.
+
+            **Issue #${{ matrix.issue.number }}:** ${{ matrix.issue.title }}
+
+            **Description:**
+            ${{ matrix.issue.body }}
+
+            ## Instructions
+            1. Create a new branch named `nightly/${{ matrix.issue.number }}` from the default branch.
+            2. Implement the changes described in the issue.
+            3. Follow existing code patterns and conventions in this repository.
+            4. Commit your changes with a clear message referencing the issue: `fix #${{ matrix.issue.number }}: <summary>`.
+            5. Push the branch and create a PR with:
+               - Title: the issue title
+               - Body: a summary of the changes made, referencing the issue
+               - Label: `nightly-sprint-review`
+            6. If the repo uses Zola, run `zola build` to verify the site builds correctly.
+            7. If the repo uses Cargo, run `cargo build` to verify compilation.
+
+            ## Brand Guidelines
+            - Primary color: #0057FF | Accent: #00C9A7
+            - Dark: #1A1A2E | Light: #F8F9FA | Muted: #6C757D
+            - Fonts: Inter (headings + body), JetBrains Mono (code)
+            - Tone: Professional, confident, approachable
+
+            ## Important
+            - Do NOT modify workflow files under `.github/`.
+            - Keep changes minimal and focused on the issue scope.
+            - If the task is too large or unclear, comment on the issue explaining why and stop.

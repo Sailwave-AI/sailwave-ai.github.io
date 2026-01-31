@@ -1,0 +1,126 @@
+name: Morning QA Review
+
+on:
+  schedule:
+    - cron: "0 7 * * 2-6" # 07:00 UTC, Tue-Sat
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  fetch-prs:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.get-prs.outputs.matrix }}
+      has_prs: ${{ steps.get-prs.outputs.has_prs }}
+    steps:
+      - name: Get nightly-sprint-review PRs
+        id: get-prs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          prs=$(gh pr list \
+            --repo "${{ github.repository }}" \
+            --label "nightly-sprint-review" \
+            --state open \
+            --json number,title,headRefName \
+            --jq '[.[] | {number, title, headRefName}]')
+
+          if [ "$prs" = "[]" ] || [ -z "$prs" ]; then
+            echo "has_prs=false" >> "$GITHUB_OUTPUT"
+            echo "matrix={\"pr\":[]}" >> "$GITHUB_OUTPUT"
+            echo "No PRs found with nightly-sprint-review label."
+          else
+            echo "has_prs=true" >> "$GITHUB_OUTPUT"
+            echo "matrix={\"pr\":$(echo "$prs" | jq -c '.')}" >> "$GITHUB_OUTPUT"
+            echo "Found $(echo "$prs" | jq length) PR(s) to review."
+          fi
+
+  review:
+    needs: fetch-prs
+    if: needs.fetch-prs.outputs.has_prs == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix: ${{ fromJson(needs.fetch-prs.outputs.matrix) }}
+      max-parallel: 2
+      fail-fast: false
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.pr.headRefName }}
+          fetch-depth: 0
+
+      - name: Install Zola
+        uses: taiki-e/install-action@v2
+        with:
+          tool: zola@0.19.2
+
+      - name: Build site
+        id: build
+        run: |
+          if zola build 2>&1 | tee /tmp/build-output.txt; then
+            echo "build_status=success" >> "$GITHUB_OUTPUT"
+          else
+            echo "build_status=failure" >> "$GITHUB_OUTPUT"
+          fi
+          echo "build_log<<EOFLOG" >> "$GITHUB_OUTPUT"
+          cat /tmp/build-output.txt >> "$GITHUB_OUTPUT"
+          echo "EOFLOG" >> "$GITHUB_OUTPUT"
+
+      - name: Check links
+        id: linkcheck
+        run: |
+          if zola check 2>&1 | tee /tmp/linkcheck-output.txt; then
+            echo "linkcheck_status=success" >> "$GITHUB_OUTPUT"
+          else
+            echo "linkcheck_status=failure" >> "$GITHUB_OUTPUT"
+          fi
+          echo "linkcheck_log<<EOFLOG" >> "$GITHUB_OUTPUT"
+          cat /tmp/linkcheck-output.txt >> "$GITHUB_OUTPUT"
+          echo "EOFLOG" >> "$GITHUB_OUTPUT"
+
+      - name: Run Claude QA Review
+        uses: anthropics/claude-code-base-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          model: claude-sonnet-4-5-20250929
+          max_turns: 15
+          allowed_tools: "Bash(git:*),Bash(gh:*),View,GlobTool,GrepTool,BatchTool"
+          prompt: |
+            You are a Sailwave QA reviewer. Review PR #${{ matrix.pr.number }} ("${{ matrix.pr.title }}") and post a review.
+
+            ## Build Results
+            - **Zola build:** ${{ steps.build.outputs.build_status }}
+            - **Link check:** ${{ steps.linkcheck.outputs.linkcheck_status }}
+
+            Build log:
+            ```
+            ${{ steps.build.outputs.build_log }}
+            ```
+
+            Link check log:
+            ```
+            ${{ steps.linkcheck.outputs.linkcheck_log }}
+            ```
+
+            ## Review Checklist
+            1. **Build status**: Does the site build without errors?
+            2. **Brand alignment**: Colors (#0057FF, #00C9A7, #1A1A2E, #F8F9FA, #6C757D), fonts (Inter, JetBrains Mono), professional tone
+            3. **Code quality**: Clean HTML/CSS/Markdown, no dead code, follows existing patterns
+            4. **Broken links**: Any link check failures?
+            5. **Accessibility**: Alt text on images, semantic HTML, sufficient contrast
+            6. **Content**: No placeholder text, accurate information, proper grammar
+
+            ## Actions
+            1. Review the diff with `gh pr diff ${{ matrix.pr.number }}`.
+            2. Post a PR review using `gh pr review` with your findings.
+            3. If all checks pass and quality is acceptable:
+               - Run: `gh pr edit ${{ matrix.pr.number }} --remove-label "nightly-sprint-review" --add-label "qa-passed"`
+            4. If issues are found:
+               - Run: `gh pr edit ${{ matrix.pr.number }} --remove-label "nightly-sprint-review" --add-label "qa-needs-work"`
+            5. Be specific in your review comments — reference file paths and line numbers.
