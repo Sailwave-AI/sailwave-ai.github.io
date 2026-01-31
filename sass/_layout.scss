@@ -153,6 +153,7 @@
 
 .header--light {
   border-bottom-color: rgba($color-dark, 0.08);
+  background-color: rgba($color-white, 0.98);
 }
 
 .header__inner {
@@ -212,6 +213,12 @@
   &--active {
     color: $color-primary;
     background-color: rgba($color-primary, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba($color-primary, 0.5);
+    outline-offset: 2px;
+    background-color: rgba($color-primary, 0.1);
   }
 }
 

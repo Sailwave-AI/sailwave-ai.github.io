@@ -56,6 +56,14 @@
     padding: $space-9 0 $space-8;
   }
 
+  .hero__fx {
+    opacity: 0.35;
+  }
+
+  .hero__orb {
+    display: none;
+  }
+
   .hero__actions {
     flex-direction: column;
     align-items: center;
