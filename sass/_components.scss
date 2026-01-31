@@ -256,6 +256,43 @@
   justify-content: center;
 }
 
+.hero__media {
+  margin-top: $space-8;
+}
+
+.media-figure {
+  margin: $space-6 auto 0;
+  max-width: 900px;
+  text-align: left;
+
+  img,
+  video {
+    width: 100%;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow;
+    background-color: $color-light;
+  }
+
+  figcaption {
+    margin-top: $space-3;
+    font-size: $font-size-sm;
+    color: $color-muted;
+  }
+}
+
+.media-figure--wide {
+  max-width: 980px;
+}
+
+.media-figure--video video {
+  width: 100%;
+  height: auto;
+}
+
+.page-header__media {
+  margin-top: $space-6;
+}
+
 // --------------------------------------------------------------------------
 // Feature Blocks
 // --------------------------------------------------------------------------
