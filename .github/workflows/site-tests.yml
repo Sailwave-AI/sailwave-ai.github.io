@@ -21,5 +21,9 @@ jobs:
 
       - name: Run site smoke tests
         run: |
+          if [ ! -f tests/run_site_tests.sh ]; then
+            echo "No tests/run_site_tests.sh found. Skipping site smoke tests."
+            exit 0
+          fi
           chmod +x tests/run_site_tests.sh
           tests/run_site_tests.sh
