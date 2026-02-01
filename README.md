@@ -21,6 +21,13 @@ zola build
 zola check
 ```
 
+## Tests
+
+```bash
+# Build the site and run smoke tests
+./tests/run_site_tests.sh
+```
+
 ## Structure
 
 - `content/` — Markdown content (pages, blog posts, services)
