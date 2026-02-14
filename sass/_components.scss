@@ -320,11 +320,51 @@
   justify-content: center;
 }
 
-.hero__proof {
-  margin-top: $space-5;
+// Hero stats block
+.hero__stats {
+  display: flex;
+  justify-content: center;
+  gap: $space-8;
+  margin-top: $space-7;
+  padding-top: $space-5;
+  border-top: 1px solid rgba($color-white, 0.15);
+}
+
+.hero__stat {
+  text-align: center;
+}
+
+.hero__stat-number {
+  display: block;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: $font-weight-extrabold;
+  color: $color-white;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hero__stat-unit {
   font-size: $font-size-sm;
-  color: rgba($color-white, 0.8);
+  font-weight: $font-weight-semibold;
+  color: $color-accent;
+}
+
+.hero__stat-label {
+  display: block;
+  margin-top: $space-1;
+  font-size: $font-size-xs;
+  color: rgba($color-white, 0.65);
   letter-spacing: 0.02em;
+}
+
+@media (max-width: $bp-sm - 1) {
+  .hero__stats {
+    gap: $space-5;
+  }
+
+  .hero__stat-number {
+    font-size: 1.5rem;
+  }
 }
 
 .hero__fx {
@@ -606,6 +646,44 @@
   line-height: $line-height-base;
 }
 
+// CTA benefits list (used in audit CTA)
+.cta__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 $space-6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-3;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: $font-size-sm;
+    color: rgba($color-white, 0.9);
+
+    &::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $color-accent;
+      box-shadow: 0 0 8px rgba($color-accent, 0.5);
+      flex-shrink: 0;
+    }
+  }
+}
+
+// Dark CTA variant (inverted — dark background instead of gradient)
+.cta--dark {
+  background: linear-gradient(135deg, $color-dark, darken($color-dark, 5%));
+
+  &::after {
+    background: rgba($color-primary, 0.1);
+  }
+}
+
 // --------------------------------------------------------------------------
 // Tag Badges
 // --------------------------------------------------------------------------
@@ -632,6 +710,52 @@
   display: flex;
   flex-wrap: wrap;
   gap: $space-2;
+}
+
+// --------------------------------------------------------------------------
+// Breadcrumb Navigation
+// --------------------------------------------------------------------------
+.breadcrumb {
+  margin-bottom: $space-4;
+}
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  font-size: $font-size-sm;
+  color: $color-muted;
+
+  &:not(:last-child)::after {
+    content: '/';
+    margin-left: $space-1;
+    color: $color-border;
+  }
+}
+
+.breadcrumb__item--current {
+  color: $color-text;
+  font-weight: $font-weight-medium;
+}
+
+.breadcrumb__link {
+  color: $color-muted;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary;
+    text-decoration: underline;
+  }
 }
 
 // --------------------------------------------------------------------------

@@ -189,6 +189,36 @@
   justify-content: center;
 }
 
+// Hamburger toggle (CSS-only, hidden on desktop)
+.header__nav-toggle {
+  display: none;
+}
+
+.header__toggle-label {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.header__toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: $color-text;
+  border-radius: 2px;
+  transition: all $transition-fast;
+  margin: 0 auto;
+}
+
+.header--on-hero .header__toggle-bar {
+  background-color: $color-white;
+}
+
 .header__nav {
   display: flex;
   align-items: center;

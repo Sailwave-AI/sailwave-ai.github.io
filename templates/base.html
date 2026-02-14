@@ -45,8 +45,14 @@
   {% endif %}
 
   {% block head_extra %}{% endblock head_extra %}
+
+  {# Inline IntersectionObserver for scroll-reveal (< 300 bytes, progressive enhancement) #}
+  <script>
+  document.addEventListener("DOMContentLoaded",function(){if(!("IntersectionObserver"in window))return;document.querySelectorAll(".reveal").forEach(function(e){e.style.willChange="opacity,transform"});var o=new IntersectionObserver(function(e){e.forEach(function(e){e.isIntersecting&&(e.target.classList.add("is-visible"),o.unobserve(e.target))})},{threshold:0.15,rootMargin:"0px 0px -40px 0px"});document.querySelectorAll(".reveal").forEach(function(e){o.observe(e)})});
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="page-wrapper">
 
     {# ================================================================ #}
@@ -66,11 +72,19 @@
           Salewave
         </a>
 
+        <input type="checkbox" id="nav-toggle" class="header__nav-toggle" aria-hidden="true">
+        <label for="nav-toggle" class="header__toggle-label" aria-label="Toggle navigation menu">
+          <span class="header__toggle-bar"></span>
+          <span class="header__toggle-bar"></span>
+          <span class="header__toggle-bar"></span>
+        </label>
+
+        {% set current = current_path | default(value="/") %}
         <nav class="header__nav" aria-label="Main navigation">
-          <a href="{{ config.base_url }}/services/" class="header__nav-link">Services</a>
-          <a href="{{ config.base_url }}/use-cases/" class="header__nav-link">Use Cases</a>
-          <a href="{{ config.base_url }}/about/" class="header__nav-link">About</a>
-          <a href="{{ config.base_url }}/blog/" class="header__nav-link">Blog</a>
+          <a href="{{ config.base_url }}/services/" class="header__nav-link{% if current is starting_with("/services") %} header__nav-link--active{% endif %}">Services</a>
+          <a href="{{ config.base_url }}/use-cases/" class="header__nav-link{% if current is starting_with("/use-cases") %} header__nav-link--active{% endif %}">Use Cases</a>
+          <a href="{{ config.base_url }}/about/" class="header__nav-link{% if current is starting_with("/about") %} header__nav-link--active{% endif %}">About</a>
+          <a href="{{ config.base_url }}/blog/" class="header__nav-link{% if current is starting_with("/blog") %} header__nav-link--active{% endif %}">Blog</a>
           <a href="mailto:{{ config.extra.contact_email }}" class="header__nav-link">Contact</a>
         </nav>
       </div>
@@ -79,7 +93,7 @@
     {# ================================================================ #}
     {# Main Content                                                     #}
     {# ================================================================ #}
-    <main class="main">
+    <main class="main" id="main-content">
       {% block content %}{% endblock content %}
     </main>
 
@@ -99,6 +113,10 @@
               <div class="footer__nav-title">Services</div>
               <ul class="footer__nav-list">
                 <li><a href="{{ config.base_url }}/services/" class="footer__nav-link">All Services</a></li>
+                {% set_global services_section = get_section(path="services/_index.md", metadata_only=true) %}
+                {% for service in services_section.pages %}
+                <li><a href="{{ service.permalink }}" class="footer__nav-link">{{ service.title }}</a></li>
+                {% endfor %}
               </ul>
             </div>
 
@@ -106,6 +124,7 @@
               <div class="footer__nav-title">Company</div>
               <ul class="footer__nav-list">
                 <li><a href="{{ config.base_url }}/about/" class="footer__nav-link">About</a></li>
+                <li><a href="{{ config.base_url }}/use-cases/" class="footer__nav-link">Use Cases</a></li>
                 <li><a href="{{ config.base_url }}/blog/" class="footer__nav-link">Blog</a></li>
               </ul>
             </div>
