@@ -32,7 +32,23 @@
       <a href="{{ config.base_url }}/services/" class="btn btn--primary btn--lg">Explore Services</a>
       <a href="{{ config.base_url }}/about/" class="btn btn--outline btn--lg">Learn More</a>
     </div>
-    <p class="hero__proof">Teams see measurable lift in pipeline velocity within the first 90 days.</p>
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <span class="hero__stat-number">90</span>
+        <span class="hero__stat-unit">days</span>
+        <span class="hero__stat-label">to measurable ROI</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-number">3x</span>
+        <span class="hero__stat-unit"></span>
+        <span class="hero__stat-label">pipeline velocity lift</span>
+      </div>
+      <div class="hero__stat">
+        <span class="hero__stat-number">40%</span>
+        <span class="hero__stat-unit"></span>
+        <span class="hero__stat-label">less manual busywork</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -41,7 +57,7 @@
 {# ================================================================ #}
 <section class="section">
   <div class="container">
-    <div class="section__header">
+    <div class="section__header reveal">
       <h2 class="section__title">Sales Is Broken for SMEs</h2>
       <p class="section__subtitle">
         Enterprise tools are bloated and expensive. Manual processes waste time and miss opportunities. Your sales team deserves intelligent systems that scale with your ambition, not your headcount.
@@ -62,9 +78,9 @@
       </p>
     </div>
 
-    <div class="grid grid--3">
+    <div class="grid grid--3 reveal-stagger">
       {# Pillar 1: Prospecting #}
-      <a href="{{ config.base_url }}/services/ai-prospecting/" class="card card--link">
+      <a href="{{ config.base_url }}/services/ai-prospecting/" class="card card--link reveal">
         <div class="card__icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -78,7 +94,7 @@
       </a>
 
       {# Pillar 2: Pipeline #}
-      <a href="{{ config.base_url }}/services/pipeline-intelligence/" class="card card--link">
+      <a href="{{ config.base_url }}/services/pipeline-intelligence/" class="card card--link reveal">
         <div class="card__icon card__icon--accent">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
@@ -92,7 +108,7 @@
       </a>
 
       {# Pillar 3: Automation #}
-      <a href="{{ config.base_url }}/services/sales-automation/" class="card card--link">
+      <a href="{{ config.base_url }}/services/sales-automation/" class="card card--link reveal">
         <div class="card__icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
@@ -109,34 +125,39 @@
 </section>
 
 {# ================================================================ #}
-{# Mid CTA                                                          #}
+{# Mid CTA — Specific: Audit Offer                                  #}
 {# ================================================================ #}
 <section class="section">
   <div class="container">
-    <div class="cta cta--inline">
+    <div class="cta cta--inline reveal" aria-label="Book a sales audit">
       <div class="cta__inner">
         <h2 class="cta__title">Book a 30-minute AI sales audit</h2>
         <p class="cta__desc">
-          Get a fast diagnosis of pipeline gaps, automation wins, and the next 90-day plan.
+          Get a fast diagnosis of pipeline gaps, automation wins, and a concrete 90-day action plan — no strings attached.
         </p>
-        <a href="mailto:{{ config.extra.contact_email }}" class="btn btn--outline-white btn--lg">Book the Audit</a>
+        <ul class="cta__benefits">
+          <li>Pipeline health snapshot</li>
+          <li>Top 3 automation quick wins</li>
+          <li>Personalised 90-day roadmap</li>
+        </ul>
+        <a href="mailto:{{ config.extra.contact_email }}?subject=AI%20Sales%20Audit%20Request" class="btn btn--outline-white btn--lg">Book the Audit</a>
       </div>
     </div>
   </div>
 </section>
 
 {# ================================================================ #}
-{# Final CTA                                                        #}
+{# Final CTA — General: Contact                                     #}
 {# ================================================================ #}
 <section class="section">
   <div class="container">
-    <div class="cta cta--inline">
+    <div class="cta cta--inline cta--dark reveal" aria-label="Get in touch">
       <div class="cta__inner">
         <h2 class="cta__title">Ready to Transform Your Sales?</h2>
         <p class="cta__desc">
-          Join the growing number of SMEs using AI to compete with enterprises. Start your journey today.
+          Join the growing number of SMEs using AI to compete with enterprises. Let's talk about what's possible for your team.
         </p>
-        <a href="mailto:{{ config.extra.contact_email }}" class="btn btn--outline-white btn--lg">Get in Touch</a>
+        <a href="mailto:{{ config.extra.contact_email }}?subject=Let%27s%20Talk" class="btn btn--primary btn--lg">Get in Touch</a>
       </div>
     </div>
   </div>

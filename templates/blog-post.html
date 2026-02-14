@@ -23,6 +23,22 @@
 {% block content %}
 
 <article class="blog-post">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol class="breadcrumb__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ config.base_url }}/" class="breadcrumb__link" itemprop="item"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ config.base_url }}/blog/" class="breadcrumb__link" itemprop="item"><span itemprop="name">Blog</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li class="breadcrumb__item breadcrumb__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+        <span itemprop="name">{{ page.title }}</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </nav>
   <header class="blog-post__header">
     <h1 class="blog-post__title">{{ page.title }}</h1>
     <div class="blog-post__meta">

@@ -1,0 +1,48 @@
+// ==========================================================================
+// Animations — Scroll-triggered reveal effects
+// ==========================================================================
+
+// Keyframes for reveal animation
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Elements start hidden, animate when .is-visible is added via IntersectionObserver
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity $transition-slow, transform $transition-slow;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// Stagger children for grid items
+.reveal-stagger > .reveal {
+  &:nth-child(2) { transition-delay: 100ms; }
+  &:nth-child(3) { transition-delay: 200ms; }
+  &:nth-child(4) { transition-delay: 300ms; }
+}
+
+// Respect reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
