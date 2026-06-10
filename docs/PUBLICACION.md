@@ -2,6 +2,12 @@
 
 La web es un sitio estático (Astro), así que el hosting es gratis o casi. Recomendación: **Cloudflare Pages** (gratis, CDN global, SSL automático y el dominio en el mismo sitio). Hostinger funciona, pero pagarías por algo que aquí es gratis.
 
+> **Estado actual (provisional):** la web se sirve en GitHub Pages en
+> `https://sailwave-ai.github.io/eraldia-web/` (subcarpeta, porque el repo se
+> renombró a `eraldia-web`). El workflow compila con las variables de entorno
+> `ASTRO_SITE` y `ASTRO_BASE` para que los enlaces y el CSS funcionen en esa
+> subcarpeta. Todo esto desaparece al pasar a Cloudflare Pages con dominio propio.
+
 ## Paso 0 — Comprar el dominio
 
 1. Verifica disponibilidad de `eraldia.com` y `eraldia.es` en [Cloudflare Registrar](https://domains.cloudflare.com) (vende a precio de coste) o Namecheap.
@@ -11,14 +17,14 @@ La web es un sitio estático (Astro), así que el hosting es gratis o casi. Reco
 ## Paso 1 — Desplegar en Cloudflare Pages
 
 1. [dash.cloudflare.com](https://dash.cloudflare.com) → **Workers & Pages → Create → Pages → Connect to Git**.
-2. Autoriza GitHub y elige el repositorio `Sailwave-AI/sailwave-ai.github.io` (puedes renombrarlo a `eraldia` en GitHub Settings; los despliegues siguen funcionando).
+2. Autoriza GitHub y elige el repositorio `Sailwave-AI/eraldia-web`.
 3. Configuración de build:
    - **Framework preset:** Astro
    - **Build command:** `npm run build`
    - **Build output directory:** `dist`
 4. Deploy. Tendrás el sitio en `https://<proyecto>.pages.dev` en un minuto.
 5. **Custom domain:** en el proyecto de Pages → Custom domains → añade `eraldia.com` (y `www.eraldia.com`). Cloudflare crea los DNS y el SSL solo.
-6. Cuando el dominio funcione, edita `.github/workflows/deploy.yml` y quita el flag `--site` (o desactiva el workflow de GitHub Pages, ya no hará falta).
+6. Cuando el dominio funcione, edita `.github/workflows/deploy.yml` y elimina el bloque `env` (`ASTRO_SITE`/`ASTRO_BASE`) del paso de build — o borra el workflow entero si dejas de usar GitHub Pages, que es lo razonable una vez estés en Cloudflare.
 
 ## Paso 2 — Correo profesional (gratis)
 

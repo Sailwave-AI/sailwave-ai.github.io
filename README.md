@@ -38,4 +38,6 @@ En `src/consts.ts`:
 
 ## Despliegue
 
-Mientras no haya dominio propio: GitHub Actions despliega a GitHub Pages en cada push a `main` (el workflow fuerza `--site`). El plan de producción es Cloudflare Pages con el dominio `eraldia.com` — pasos en [`docs/PUBLICACION.md`](docs/PUBLICACION.md).
+Mientras no haya dominio propio: GitHub Actions despliega a GitHub Pages en cada push a `main`, en **https://sailwave-ai.github.io/eraldia-web/** (subcarpeta, porque el repo se llama `eraldia-web`). El workflow define `ASTRO_SITE` y `ASTRO_BASE` para que enlaces y assets funcionen en esa subcarpeta; en local y en producción la base es `/`.
+
+El plan de producción es Cloudflare Pages con el dominio `eraldia.com` — pasos en [`docs/PUBLICACION.md`](docs/PUBLICACION.md).
