@@ -4,7 +4,7 @@
 
 <div class="page-header">
   <div class="container">
-    <h1 class="page-header__title">{{ section.title | default(value="Use Cases") }}</h1>
+    <h1 class="page-header__title">{{ section.title | default(value="Casos de uso") }}</h1>
     {% if section.description %}
     <p class="page-header__desc">{{ section.description }}</p>
     {% endif %}
@@ -13,79 +13,88 @@
 
 <section class="section">
   <div class="container container--narrow">
-    {% set cases = section.pages | default(value=[]) %}
     <div class="use-cases-grid">
       <article class="card use-case-card">
         <div class="use-case-card__image">
-          <img src="/images/use-cases/healthcare.jpg" alt="Healthcare clinic team using digital tools" loading="lazy" decoding="async">
+          <img src="/images/use-cases/healthcare.jpg" alt="Equipo de una clínica usando herramientas digitales" loading="lazy" decoding="async">
         </div>
-        <div class="use-case-card__badge">Healthcare</div>
-        <h2 class="use-case-card__title">Healthcare Clinics</h2>
-        <p class="use-case-card__desc">From pharmacies to dental and dermatology clinics, patient expectations are rising while staff time stays limited.</p>
+        <div class="use-case-card__badge">Salud</div>
+        <h2 class="use-case-card__title">Clínicas y centros de salud</h2>
+        <p class="use-case-card__desc">Dentistas, fisios, veterinarias... Los pacientes esperan respuesta inmediata y el personal no da abasto.</p>
         <ul class="use-case-card__list">
-          <li>AI chatbots for common questions and pre-visit triage</li>
-          <li>AI-powered appointment booking to reduce no-shows</li>
-          <li>CRM automation for follow-ups and renewals</li>
+          <li>Asistente de IA para dudas frecuentes y pre-triaje</li>
+          <li>Citas automatizadas con recordatorios que reducen ausencias</li>
+          <li>Seguimiento automático de tratamientos y revisiones</li>
         </ul>
         <div class="use-case-card__kpis">
-          <span class="use-case-card__kpi">No-shows ↓</span>
-          <span class="use-case-card__kpi">Response time ↓</span>
+          <span class="use-case-card__kpi">Ausencias ↓</span>
+          <span class="use-case-card__kpi">Tiempo de respuesta ↓</span>
         </div>
       </article>
 
       <article class="card use-case-card">
         <div class="use-case-card__image">
-          <img src="/images/use-cases/legal.jpg" alt="Law professional working with case files" loading="lazy" decoding="async">
+          <img src="/images/use-cases/legal.jpg" alt="Profesional trabajando con expedientes" loading="lazy" decoding="async">
         </div>
-        <div class="use-case-card__badge">Legal</div>
-        <h2 class="use-case-card__title">Law Firms</h2>
-        <p class="use-case-card__desc">Legal teams lose time to intake backlogs and scattered case updates. We streamline client acquisition and retention.</p>
+        <div class="use-case-card__badge">Gestorías</div>
+        <h2 class="use-case-card__title">Gestorías, asesorías y despachos</h2>
+        <p class="use-case-card__desc">Donde más papel y más plazos hay, más se nota la automatización con IA.</p>
         <ul class="use-case-card__list">
-          <li>Smart intake workflows to qualify matters quickly</li>
-          <li>Automated reminders for deadlines and payments</li>
-          <li>Client status portals that reduce support load</li>
+          <li>Facturas y nóminas que se procesan solas</li>
+          <li>Recordatorios automáticos de plazos e impuestos a clientes</li>
+          <li>Respuestas asistidas por IA a las consultas repetitivas</li>
         </ul>
         <div class="use-case-card__kpis">
-          <span class="use-case-card__kpi">Intake time ↓</span>
-          <span class="use-case-card__kpi">Case updates ↑</span>
+          <span class="use-case-card__kpi">Horas de picado ↓</span>
+          <span class="use-case-card__kpi">Plazos cumplidos ↑</span>
         </div>
       </article>
 
       <article class="card use-case-card">
         <div class="use-case-card__image">
-          <img src="/images/use-cases/hospitality.jpg" alt="Restaurant staff preparing service" loading="lazy" decoding="async">
+          <img src="/images/use-cases/hospitality.jpg" alt="Personal de un restaurante preparando el servicio" loading="lazy" decoding="async">
         </div>
-        <div class="use-case-card__badge">Hospitality</div>
-        <h2 class="use-case-card__title">Restaurants &amp; Hospitality</h2>
-        <p class="use-case-card__desc">Busy service teams need to move fast and keep every guest informed with consistent updates.</p>
+        <div class="use-case-card__badge">Hostelería</div>
+        <h2 class="use-case-card__title">Hostelería y restauración</h2>
+        <p class="use-case-card__desc">Equipos que van a tope y clientes que quieren respuesta al momento.</p>
         <ul class="use-case-card__list">
-          <li>Reservation automation with instant confirmations</li>
-          <li>Guest feedback loops that surface service gaps early</li>
-          <li>CRM-driven campaigns for repeat visits and loyalty</li>
+          <li>Reservas automatizadas con confirmación instantánea</li>
+          <li>Recogida de opiniones que detecta problemas a tiempo</li>
+          <li>Campañas automáticas para que el cliente vuelva</li>
         </ul>
         <div class="use-case-card__kpis">
-          <span class="use-case-card__kpi">Repeat visits ↑</span>
-          <span class="use-case-card__kpi">Review rating ↑</span>
+          <span class="use-case-card__kpi">Clientes que repiten ↑</span>
+          <span class="use-case-card__kpi">Valoraciones ↑</span>
         </div>
       </article>
 
       <article class="card use-case-card">
         <div class="use-case-card__image">
-          <img src="/images/use-cases/fitness.jpg" alt="Gym member training with coach" loading="lazy" decoding="async">
+          <img src="/images/use-cases/fitness.jpg" alt="Socio de gimnasio entrenando con su monitor" loading="lazy" decoding="async">
         </div>
-        <div class="use-case-card__badge">Fitness</div>
-        <h2 class="use-case-card__title">Gyms &amp; Fitness Studios</h2>
-        <p class="use-case-card__desc">Membership growth depends on consistent follow-up, nurturing, and retention signals.</p>
+        <div class="use-case-card__badge">Deporte</div>
+        <h2 class="use-case-card__title">Gimnasios y centros deportivos</h2>
+        <p class="use-case-card__desc">El crecimiento depende del seguimiento constante y de la retención de socios.</p>
         <ul class="use-case-card__list">
-          <li>Lead nurturing flows for tours and trials</li>
-          <li>Automated onboarding with personalised training plans</li>
-          <li>Retention signals that trigger save actions before churn</li>
+          <li>Seguimiento automático de interesados en pruebas y visitas</li>
+          <li>Alta y bienvenida automatizadas con plan personalizado</li>
+          <li>Señales de abandono que avisan antes de la baja</li>
         </ul>
         <div class="use-case-card__kpis">
-          <span class="use-case-card__kpi">Trial conversion ↑</span>
-          <span class="use-case-card__kpi">Churn risk ↓</span>
+          <span class="use-case-card__kpi">Pruebas convertidas ↑</span>
+          <span class="use-case-card__kpi">Bajas ↓</span>
         </div>
       </article>
+    </div>
+
+    <div class="cta cta--inline cta--dark reveal" aria-label="Contacto" style="margin-top: 3rem;">
+      <div class="cta__inner">
+        <h2 class="cta__title">¿Tu sector no está aquí?</h2>
+        <p class="cta__desc">
+          Estos son solo ejemplos. Si en tu negocio hay tareas repetitivas, hay margen para automatizar. Cuéntamelo y te digo si tiene sentido.
+        </p>
+        <a href="{{ config.base_url }}/#contacto" class="btn btn--primary btn--lg">Hablamos 30 minutos, gratis</a>
+      </div>
     </div>
   </div>
 </section>

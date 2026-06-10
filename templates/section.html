@@ -28,7 +28,7 @@
         <p class="card__desc">{{ page.description }}</p>
         {% endif %}
         {% if page.date %}
-        <span class="text-sm text-muted">{{ page.date | date(format="%B %d, %Y") }}</span>
+        <span class="text-sm text-muted">{{ page.date | date(format="%d/%m/%Y") }}</span>
         {% endif %}
       </a>
       {% endfor %}

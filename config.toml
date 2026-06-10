@@ -1,7 +1,7 @@
-base_url = "https://sailwave-ai.github.io"
-title = "Salewave"
-description = "AI-powered sales operations for SMEs"
-default_language = "en"
+base_url = "https://eraldia.com"
+title = "Eraldia"
+description = "Consultoría de transformación digital e inteligencia artificial para pymes. Automatizaciones con precio cerrado, resultados medibles y sin humo."
+default_language = "es"
 compile_sass = true
 build_search_index = false
 generate_feeds = true
@@ -13,9 +13,13 @@ highlight_code = true
 highlight_theme = "css"
 
 [extra]
-author = "Salewave"
-tagline = "Ride the AI Wave"
-contact_email = "contact@sailwave.ai"
+author = "Gorka Alapont"
+tagline = "Pon tu pyme al día con la IA"
+# TODO: cambiar por hola@eraldia.com cuando el dominio y el reenvío de correo estén activos
+contact_email = "alapontgorka@gmail.com"
+# TODO: crear el formulario en https://formspree.io (gratis) y pegar aquí el ID (p. ej. "xqkrgyzb")
+formspree_id = ""
+linkedin_url = ""
 
 [[taxonomies]]
 name = "tags"
