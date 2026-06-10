@@ -1,4 +1,5 @@
 ---
+import { url } from '../../utils';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
@@ -39,7 +40,7 @@ function formatDate(date: Date) {
   <div class="container">
     <div class="blog-grid">
       {posts.map(post => (
-        <a href={`/blog/${post.slug}/`} class="blog-card">
+        <a href={url(`/blog/${post.slug}/`)} class="blog-card">
           <div class="blog-card__body">
             <div class="blog-card__meta">
               {post.data.date && (

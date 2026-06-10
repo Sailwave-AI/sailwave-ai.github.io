@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { url } from '../utils';
 
 export async function GET(context) {
   const posts = await getCollection('blog');
@@ -14,7 +15,7 @@ export async function GET(context) {
       title: post.data.title,
       pubDate: post.data.date,
       description: post.data.description,
-      link: `/blog/${post.slug}/`,
+      link: url(`/blog/${post.slug}/`),
     })),
     customData: '<language>es</language>',
   });

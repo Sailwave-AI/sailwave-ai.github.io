@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Sobre mí';
@@ -38,9 +39,9 @@ const description = 'Soy Gorka Alapont. Ayudo a pymes a aprovechar la IA y la au
 
       <h2>Cómo es trabajar conmigo</h2>
 
-      <p>Empezamos siempre por una <strong>llamada gratuita de 30 minutos</strong> en la que me cuentas cómo funciona tu negocio. A partir de ahí, si tiene sentido, seguimos con un <a href="/servicios/diagnostico-ia/">diagnóstico</a> con precio cerrado. Tú decides hasta dónde llegar: cada paso tiene valor por sí mismo.</p>
+      <p>Empezamos siempre por una <strong>llamada gratuita de 30 minutos</strong> en la que me cuentas cómo funciona tu negocio. A partir de ahí, si tiene sentido, seguimos con un <a href={url('/servicios/diagnostico-ia/')}>diagnóstico</a> con precio cerrado. Tú decides hasta dónde llegar: cada paso tiene valor por sí mismo.</p>
 
-      <p>¿Hablamos? <a href="/#contacto">Escríbeme desde aquí</a>.</p>
+      <p>¿Hablamos? <a href={url('/#contacto')}>Escríbeme desde aquí</a>.</p>
     </div>
   </div>
 </section>

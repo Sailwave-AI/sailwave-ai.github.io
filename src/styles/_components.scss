@@ -223,7 +223,7 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background-image: url('/images/hero/hero-background.jpg');
+  // background-image: se aplica inline desde index.astro (helper url() con la base)
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

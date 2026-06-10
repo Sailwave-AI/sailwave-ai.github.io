@@ -1,4 +1,5 @@
 ---
+import { url } from '../../utils';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
@@ -34,7 +35,7 @@ function formatDate(date: Date) {
     {posts.length > 0 ? (
       <div class="blog-grid">
         {posts.map(post => (
-          <a href={`/blog/${post.slug}/`} class="blog-card">
+          <a href={url(`/blog/${post.slug}/`)} class="blog-card">
             <div class="blog-card__body">
               <div class="blog-card__meta">
                 {post.data.date && (
@@ -71,7 +72,7 @@ function formatDate(date: Date) {
         <span class="pagination__link pagination__link--disabled" aria-disabled="true">&laquo; Anterior</span>
         <span class="pagination__link pagination__link--active" aria-current="page">1</span>
         {totalPages > 1 && (
-          <a href="/blog/page/2/" class="pagination__link">Siguiente &raquo;</a>
+          <a href={url('/blog/page/2/')} class="pagination__link">Siguiente &raquo;</a>
         )}
       </nav>
     )}

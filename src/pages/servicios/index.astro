@@ -1,4 +1,5 @@
 ---
+import { url } from '../../utils';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
@@ -27,7 +28,7 @@ const description = 'Tres servicios sencillos que funcionan como una escalera: p
     {servicios.length > 0 ? (
       <div class="services-grid">
         {servicios.map(servicio => (
-          <a href={`/servicios/${servicio.slug}/`} class="service-card">
+          <a href={url(`/servicios/${servicio.slug}/`)} class="service-card">
             {servicio.data.icon && (
               <div class="service-card__icon" set:html={servicio.data.icon} />
             )}

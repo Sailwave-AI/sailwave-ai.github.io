@@ -1,4 +1,5 @@
 ---
+import { url, BASE } from '../utils';
 import { SITE_TITLE, SITE_DESCRIPTION, TAGLINE, CONTACT_EMAIL, LINKEDIN_URL, AUTHOR } from '../consts';
 import '../styles/style.scss';
 
@@ -27,9 +28,11 @@ const {
 const pageTitle = title ? `${title} | ${SITE_TITLE}` : `${SITE_TITLE} — ${TAGLINE}`;
 const ogTitle = title ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
 const canonical = canonicalUrl ?? Astro.url.href;
-const ogImageUrl = ogImage ?? '/images/og-image.svg';
+const ogImageUrl = new URL(ogImage ?? url('/images/og-image.svg'), Astro.url).href;
 
-const currentPath = Astro.url.pathname;
+// Ruta sin el prefijo de la base, para detectar la sección activa
+const pathname = Astro.url.pathname;
+const currentPath = BASE && pathname.startsWith(BASE) ? pathname.slice(BASE.length) : pathname;
 const isServiciosActive = currentPath.startsWith('/servicios');
 const isCasosActive = currentPath.startsWith('/casos');
 const isSobreMiActive = currentPath.startsWith('/sobre-mi');
@@ -63,7 +66,7 @@ const currentYear = new Date().getFullYear();
   <link rel="canonical" href={canonical}>
 
   {/* Favicon */}
-  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href={url('/images/favicon.svg')} type="image/svg+xml">
 
   {/* Google Fonts: Space Grotesk (títulos) + Inter (texto) + JetBrains Mono (código) */}
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,7 +74,7 @@ const currentYear = new Date().getFullYear();
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   {/* Feed */}
-  <link rel="alternate" type="application/atom+xml" title={`${SITE_TITLE} Feed`} href="/atom.xml">
+  <link rel="alternate" type="application/atom+xml" title={`${SITE_TITLE} Feed`} href={url('/atom.xml')}>
 
   {/* Inline IntersectionObserver para scroll-reveal (< 300 bytes, progressive enhancement) */}
   <script is:inline>
@@ -87,7 +90,7 @@ const currentYear = new Date().getFullYear();
     <!-- ================================================================ -->
     <header class={`header${isHome ? ' header--on-hero' : ' header--light'}`}>
       <div class="container header__inner">
-        <a href="/" class="header__logo">
+        <a href={url('/')} class="header__logo">
           <span class="header__logo-icon">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M6 7.5H22" stroke="#0F766E" stroke-width="3" stroke-linecap="round"/>
@@ -107,11 +110,11 @@ const currentYear = new Date().getFullYear();
         </label>
 
         <nav class="header__nav" aria-label="Navegación principal">
-          <a href="/servicios/" class={`header__nav-link${isServiciosActive ? ' header__nav-link--active' : ''}`}>Servicios</a>
-          <a href="/casos/" class={`header__nav-link${isCasosActive ? ' header__nav-link--active' : ''}`}>Casos de uso</a>
-          <a href="/sobre-mi/" class={`header__nav-link${isSobreMiActive ? ' header__nav-link--active' : ''}`}>Sobre mí</a>
-          <a href="/blog/" class={`header__nav-link${isBlogActive ? ' header__nav-link--active' : ''}`}>Blog</a>
-          <a href="/#contacto" class="header__nav-link">Contacto</a>
+          <a href={url('/servicios/')} class={`header__nav-link${isServiciosActive ? ' header__nav-link--active' : ''}`}>Servicios</a>
+          <a href={url('/casos/')} class={`header__nav-link${isCasosActive ? ' header__nav-link--active' : ''}`}>Casos de uso</a>
+          <a href={url('/sobre-mi/')} class={`header__nav-link${isSobreMiActive ? ' header__nav-link--active' : ''}`}>Sobre mí</a>
+          <a href={url('/blog/')} class={`header__nav-link${isBlogActive ? ' header__nav-link--active' : ''}`}>Blog</a>
+          <a href={url('/#contacto')} class="header__nav-link">Contacto</a>
         </nav>
       </div>
     </header>
@@ -138,31 +141,31 @@ const currentYear = new Date().getFullYear();
             <div class="footer__nav-group">
               <div class="footer__nav-title">Servicios</div>
               <ul class="footer__nav-list">
-                <li><a href="/servicios/" class="footer__nav-link">Todos los servicios</a></li>
-                <li><a href="/servicios/diagnostico-ia/" class="footer__nav-link">Diagnóstico de IA</a></li>
-                <li><a href="/servicios/automatizacion/" class="footer__nav-link">Automatización a medida</a></li>
-                <li><a href="/servicios/acompanamiento/" class="footer__nav-link">Acompañamiento mensual</a></li>
+                <li><a href={url('/servicios/')} class="footer__nav-link">Todos los servicios</a></li>
+                <li><a href={url('/servicios/diagnostico-ia/')} class="footer__nav-link">Diagnóstico de IA</a></li>
+                <li><a href={url('/servicios/automatizacion/')} class="footer__nav-link">Automatización a medida</a></li>
+                <li><a href={url('/servicios/acompanamiento/')} class="footer__nav-link">Acompañamiento mensual</a></li>
               </ul>
             </div>
 
             <div class="footer__nav-group">
               <div class="footer__nav-title">Eraldia</div>
               <ul class="footer__nav-list">
-                <li><a href="/sobre-mi/" class="footer__nav-link">Sobre mí</a></li>
-                <li><a href="/casos/" class="footer__nav-link">Casos de uso</a></li>
-                <li><a href="/blog/" class="footer__nav-link">Blog</a></li>
+                <li><a href={url('/sobre-mi/')} class="footer__nav-link">Sobre mí</a></li>
+                <li><a href={url('/casos/')} class="footer__nav-link">Casos de uso</a></li>
+                <li><a href={url('/blog/')} class="footer__nav-link">Blog</a></li>
               </ul>
             </div>
 
             <div class="footer__nav-group">
               <div class="footer__nav-title">Contacto</div>
               <ul class="footer__nav-list">
-                <li><a href="/#contacto" class="footer__nav-link">Escríbeme</a></li>
+                <li><a href={url('/#contacto')} class="footer__nav-link">Escríbeme</a></li>
                 <li><a href={`mailto:${CONTACT_EMAIL}`} class="footer__nav-link">{CONTACT_EMAIL}</a></li>
                 {LINKEDIN_URL && (
                   <li><a href={LINKEDIN_URL} class="footer__nav-link" rel="noopener" target="_blank">LinkedIn</a></li>
                 )}
-                <li><a href="/atom.xml" class="footer__nav-link">RSS</a></li>
+                <li><a href={url('/atom.xml')} class="footer__nav-link">RSS</a></li>
               </ul>
             </div>
           </div>

@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, TAGLINE, CONTACT_EMAIL, FORMSPREE_ID } from '../consts';
 ---
@@ -12,7 +13,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, TAGLINE, CONTACT_EMAIL, FORMSPREE_ID } fr
 <!-- ================================================================ -->
 <!-- Hero Section                                                       -->
 <!-- ================================================================ -->
-<section class="hero">
+<section class="hero" style={`background-image: url('${url('/images/hero/hero-background.jpg')}')`}>
   <div class="hero__fx" aria-hidden="true">
     <span class="hero__orb hero__orb--one"></span>
     <span class="hero__orb hero__orb--two"></span>
@@ -29,7 +30,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, TAGLINE, CONTACT_EMAIL, FORMSPREE_ID } fr
     </p>
     <div class="hero__actions">
       <a href="#contacto" class="btn btn--primary btn--lg">Pide tu diagnóstico gratuito</a>
-      <a href="/servicios/" class="btn btn--outline btn--lg">Ver servicios</a>
+      <a href={url('/servicios/')} class="btn btn--outline btn--lg">Ver servicios</a>
     </div>
     <div class="hero__stats">
       <div class="hero__stat">
@@ -79,7 +80,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, TAGLINE, CONTACT_EMAIL, FORMSPREE_ID } fr
 
     <div class="grid grid--3 reveal-stagger">
       <!-- Pilar 1: Diagnóstico -->
-      <a href="/servicios/diagnostico-ia/" class="card card--link reveal">
+      <a href={url('/servicios/diagnostico-ia/')} class="card card--link reveal">
         <div class="card__icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -93,7 +94,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, TAGLINE, CONTACT_EMAIL, FORMSPREE_ID } fr
       </a>
 
       <!-- Pilar 2: Automatización -->
-      <a href="/servicios/automatizacion/" class="card card--link reveal">
+      <a href={url('/servicios/automatizacion/')} class="card card--link reveal">
         <div class="card__icon card__icon--accent">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
@@ -107,7 +108,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, TAGLINE, CONTACT_EMAIL, FORMSPREE_ID } fr
       </a>
 
       <!-- Pilar 3: Acompañamiento -->
-      <a href="/servicios/acompanamiento/" class="card card--link reveal">
+      <a href={url('/servicios/acompanamiento/')} class="card card--link reveal">
         <div class="card__icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
