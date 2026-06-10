@@ -11,7 +11,7 @@ export const AUTHOR = 'Gorka Alapont';
 // TODO: cambiar por hola@eraldia.com cuando el dominio y el reenvío de correo estén activos
 export const CONTACT_EMAIL = 'alapontgorka@gmail.com';
 
-// TODO: crear el formulario en https://formspree.io (gratis) y pegar aquí el ID (p. ej. "xqkrgyzb")
-export const FORMSPREE_ID = '';
+// El formulario de contacto guarda los leads en la base de datos D1 a través de
+// /api/lead. Ver docs/LEADS-DB.md, wrangler.jsonc y migrations/.
 
 export const LINKEDIN_URL = '';

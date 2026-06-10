@@ -1,7 +1,7 @@
 ---
 import { url } from '../utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE_TITLE, SITE_DESCRIPTION, TAGLINE, CONTACT_EMAIL, FORMSPREE_ID } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, TAGLINE, CONTACT_EMAIL } from '../consts';
 ---
 
 <BaseLayout
@@ -191,42 +191,89 @@ import { SITE_TITLE, SITE_DESCRIPTION, TAGLINE, CONTACT_EMAIL, FORMSPREE_ID } fr
       </p>
     </div>
 
-    {FORMSPREE_ID ? (
-      <form class="contact-form reveal" action={`https://formspree.io/f/${FORMSPREE_ID}`} method="POST">
-        <div class="contact-form__row">
-          <div class="contact-form__field">
-            <label for="cf-nombre" class="contact-form__label">Nombre</label>
-            <input type="text" id="cf-nombre" name="nombre" class="contact-form__input" required autocomplete="name">
-          </div>
-          <div class="contact-form__field">
-            <label for="cf-email" class="contact-form__label">Email</label>
-            <input type="email" id="cf-email" name="email" class="contact-form__input" required autocomplete="email">
-          </div>
+    <div class="contact-form__success reveal" id="contact-success" hidden>
+      <h3 class="contact-form__success-title">¡Gracias! He recibido tu mensaje.</h3>
+      <p class="contact-form__success-text">
+        Te respondo en menos de 24 horas laborables con los siguientes pasos. Si es urgente,
+        escríbeme a <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+    </div>
+
+    <form class="contact-form reveal" id="contact-form" action={url('/api/lead')} method="POST">
+      <p class="contact-form__error" id="contact-error" role="alert" hidden>
+        No he podido enviar tu mensaje. Inténtalo de nuevo o escríbeme directamente a
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+      <div class="contact-form__row">
+        <div class="contact-form__field">
+          <label for="cf-nombre" class="contact-form__label">Nombre</label>
+          <input type="text" id="cf-nombre" name="nombre" class="contact-form__input" required autocomplete="name">
         </div>
         <div class="contact-form__field">
-          <label for="cf-negocio" class="contact-form__label">¿A qué se dedica tu negocio?</label>
-          <input type="text" id="cf-negocio" name="negocio" class="contact-form__input" placeholder="Ej.: clínica dental, gestoría, tienda online...">
-        </div>
-        <div class="contact-form__field">
-          <label for="cf-mensaje" class="contact-form__label">¿Qué proceso te quita más tiempo?</label>
-          <textarea id="cf-mensaje" name="mensaje" class="contact-form__textarea" rows="4" required placeholder="Ej.: contestar siempre las mismas preguntas por WhatsApp, hacer presupuestos, pasar facturas a mano..."></textarea>
-        </div>
-        {/* Honeypot anti-spam */}
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-        <button type="submit" class="btn btn--primary btn--lg contact-form__submit">Enviar y reservar mi llamada gratuita</button>
-        <p class="contact-form__note">Al enviar aceptas que use estos datos solo para responderte. Nada de newsletters sorpresa.</p>
-      </form>
-    ) : (
-      <div class="cta cta--inline cta--dark reveal" aria-label="Contacto por correo">
-        <div class="cta__inner">
-          <h2 class="cta__title">Escríbeme directamente</h2>
-          <p class="cta__desc">
-            Mándame un correo con dos líneas sobre tu negocio y el proceso que más tiempo te quita. Te respondo en menos de 24 horas laborables.
-          </p>
-          <a href={`mailto:${CONTACT_EMAIL}?subject=Llamada%20gratuita%20de%2030%20minutos`} class="btn btn--primary btn--lg">Enviar correo</a>
+          <label for="cf-email" class="contact-form__label">Email</label>
+          <input type="email" id="cf-email" name="email" class="contact-form__input" required autocomplete="email">
         </div>
       </div>
-    )}
+      <div class="contact-form__field">
+        <label for="cf-negocio" class="contact-form__label">¿A qué se dedica tu negocio?</label>
+        <input type="text" id="cf-negocio" name="negocio" class="contact-form__input" placeholder="Ej.: clínica dental, gestoría, tienda online...">
+      </div>
+      <div class="contact-form__field">
+        <label for="cf-mensaje" class="contact-form__label">¿Qué proceso te quita más tiempo?</label>
+        <textarea id="cf-mensaje" name="mensaje" class="contact-form__textarea" rows="4" required placeholder="Ej.: contestar siempre las mismas preguntas por WhatsApp, hacer presupuestos, pasar facturas a mano..."></textarea>
+      </div>
+      {/* Honeypot anti-spam */}
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <button type="submit" class="btn btn--primary btn--lg contact-form__submit">Enviar y reservar mi llamada gratuita</button>
+      <p class="contact-form__note">Al enviar aceptas que use estos datos solo para responderte. Nada de newsletters sorpresa.</p>
+    </form>
+
+    <script is:inline>
+      (function () {
+        var form = document.getElementById('contact-form');
+        var success = document.getElementById('contact-success');
+        var error = document.getElementById('contact-error');
+        if (!form) return;
+
+        function showSuccess() {
+          if (success) success.hidden = false;
+          form.hidden = true;
+          (success || form).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Si volvemos de una redirección del servidor (sin JS), refleja el estado.
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('enviado') === '1') showSuccess();
+        if (params.get('error') === '1' && error) error.hidden = false;
+
+        // Mejora progresiva: enviar por fetch para no recargar la página.
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          if (error) error.hidden = true;
+          var button = form.querySelector('button[type="submit"]');
+          if (button) button.disabled = true;
+
+          fetch(form.action, {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: new FormData(form),
+          })
+            .then(function (res) {
+              if (res.ok) {
+                showSuccess();
+              } else if (error) {
+                error.hidden = false;
+              }
+            })
+            .catch(function () {
+              if (error) error.hidden = false;
+            })
+            .finally(function () {
+              if (button) button.disabled = false;
+            });
+        });
+      })();
+    </script>
   </div>
 </section>
 

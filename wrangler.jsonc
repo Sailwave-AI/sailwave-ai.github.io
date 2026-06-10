@@ -13,5 +13,16 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "dist"
-  }
+  },
+  // Base de datos de leads (Cloudflare D1). Crea la base con:
+  //   npx wrangler d1 create eraldia-leads
+  // y pega el "database_id" que devuelve en el campo de abajo.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "eraldia-leads",
+      "database_id": "REEMPLAZA_CON_EL_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ]
 }
