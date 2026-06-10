@@ -1,7 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Eraldia favicon: monograma "E" geométrico (espina vertical + brazos) con chispa ámbar -->
+  <!-- Eraldia favicon: monograma "E" punteado (rejilla de puntos) con chispa ámbar -->
   <rect x="0" y="0" width="64" height="64" rx="14" fill="#10241F"/>
-  <path d="M44 16H20V48H44" stroke="#2DD4BF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M20 32H36" stroke="#2DD4BF" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="44" cy="32" r="4.5" fill="#F59E0B"/>
+  <g fill="#2DD4BF">
+    <circle cx="23" cy="14" r="2.4"/>
+    <circle cx="23" cy="23" r="2.4"/>
+    <circle cx="23" cy="32" r="2.4"/>
+    <circle cx="23" cy="41" r="2.4"/>
+    <circle cx="23" cy="50" r="2.4"/>
+    <circle cx="32" cy="14" r="2.4"/>
+    <circle cx="41" cy="14" r="2.4"/>
+    <circle cx="32" cy="32" r="2.4"/>
+    <circle cx="32" cy="50" r="2.4"/>
+    <circle cx="41" cy="50" r="2.4"/>
+  </g>
+  <circle cx="41" cy="32" r="3.8" fill="#F59E0B"/>
 </svg>
