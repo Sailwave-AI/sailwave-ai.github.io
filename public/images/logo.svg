@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" fill="none">
   <!-- Eraldia wordmark -->
   <!-- Monograma: E de tres barras con chispa ámbar -->
-  <path d="M12 22H44" stroke="#0F766E" stroke-width="7" stroke-linecap="round"/>
-  <path d="M12 40H32" stroke="#0F766E" stroke-width="7" stroke-linecap="round"/>
-  <path d="M12 58H44" stroke="#0F766E" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="42" cy="40" r="6" fill="#F59E0B"/>
+  <path d="M12 22H44" stroke="#B95536" stroke-width="7" stroke-linecap="round"/>
+  <path d="M12 40H32" stroke="#B95536" stroke-width="7" stroke-linecap="round"/>
+  <path d="M12 58H44" stroke="#B95536" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="42" cy="40" r="6" fill="#D69A2C"/>
   <!-- Wordmark -->
-  <text x="64" y="56" font-family="'Space Grotesk', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="48" font-weight="700" fill="#10241F" letter-spacing="-1">Eraldia</text>
+  <text x="64" y="54" font-family="'Fraunces', Georgia, 'Times New Roman', serif" font-style="italic" font-size="48" font-weight="600" fill="#261F18" letter-spacing="-1">Eraldia</text>
 </svg>

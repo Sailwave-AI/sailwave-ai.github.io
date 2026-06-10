@@ -174,7 +174,7 @@
 
 // Gradient initial "e" — doubles as the brand mark within the wordmark
 .logo-e {
-  background: linear-gradient(135deg, #5EEAD4 0%, #FBBF24 100%);
+  background: linear-gradient(135deg, $color-primary-bright 0%, $color-accent-bright 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

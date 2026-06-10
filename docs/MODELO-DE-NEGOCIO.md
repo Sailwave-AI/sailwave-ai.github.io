@@ -9,7 +9,7 @@
 - **Tagline:** *Pon tu pyme al día con la IA.*
 - **Posicionamiento:** el anti-humo. Proyectos pequeños y cerrados, resultados medibles, lenguaje llano. La persona que vende es la que ejecuta.
 - **Dominio (pendiente de comprar):** `eraldia.com` (primera opción) y `eraldia.es` (cómpralos ambos si están libres, ~20 €/año los dos). Verifica disponibilidad en [Cloudflare Registrar](https://domains.cloudflare.com) o Namecheap.
-- **Identidad visual:** verde petróleo `#0F766E` + ámbar `#F59E0B` sobre neutros cálidos. Tipografías: Space Grotesk (títulos) + Inter (texto).
+- **Identidad visual «Tierra Nocturna»:** terracota `#B95536` + ámbar `#D69A2C` + salvia `#8FA277` sobre tierra (negro cálido `#15120E` en secciones oscuras, crema `#F8F2E5` en claras). Tipografías: Fraunces itálica (títulos) + Inter (texto) + JetBrains Mono (código).
 
 ## 2. Cliente objetivo (ICP)
 
