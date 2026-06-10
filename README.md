@@ -1,41 +1,41 @@
-# salewave.github.io
+# Eraldia — web
 
-Salewave website — AI-powered sales operations for SMEs.
+Web de **Eraldia**, consultoría de transformación digital e IA para pymes. *Pon tu pyme al día con la IA.*
 
-Built with [Zola](https://www.getzola.org/), a fast Rust-based static site generator.
+Construida con [Zola](https://www.getzola.org/), generador de sitios estáticos en Rust.
 
-## Local Development
+## Documentación
+
+- [`docs/MODELO-DE-NEGOCIO.md`](docs/MODELO-DE-NEGOCIO.md) — posicionamiento, servicios, precios, embudo de captación y plan de 90 días.
+- [`docs/PUBLICACION.md`](docs/PUBLICACION.md) — cómo comprar el dominio, desplegar en Cloudflare Pages, activar el correo y el formulario de leads.
+
+## Desarrollo en local
 
 ```bash
-# Install Zola (https://www.getzola.org/documentation/getting-started/installation/)
+# Instalar Zola (https://www.getzola.org/documentation/getting-started/installation/)
 brew install zola  # macOS
-# or download from https://github.com/getzola/zola/releases
+# o descarga el binario: https://github.com/getzola/zola/releases
 
-# Serve locally with live reload
-zola serve
-
-# Build for production
-zola build
-
-# Check for broken links
-zola check
+zola serve   # servidor local con recarga en vivo
+zola build   # build de producción en ./public
+zola check   # comprobar enlaces rotos
 ```
 
-## Tests
+## Estructura
 
-```bash
-# Build the site and run smoke tests
-./tests/run_site_tests.sh
-```
+- `content/` — contenido en Markdown (portada, servicios, casos, sobre mí, blog)
+- `templates/` — plantillas Tera
+- `sass/` — estilos SCSS (los compila Zola); la identidad visual vive en `sass/_variables.scss`
+- `static/` — recursos estáticos (logo, favicon, imágenes)
+- `.github/workflows/` — CI/CD
 
-## Structure
+## Configuración pendiente (TODOs)
 
-- `content/` — Markdown content (pages, blog posts, services)
-- `templates/` — Tera HTML templates
-- `sass/` — SCSS stylesheets (compiled by Zola)
-- `static/` — Static assets (images, favicon)
-- `.github/workflows/` — CI/CD (deploy to GitHub Pages, weekly link check)
+En `config.toml`:
+- `formspree_id` — ID del formulario de Formspree para activar la captación de leads.
+- `contact_email` — cambiar a `hola@eraldia.com` cuando el correo del dominio esté activo.
+- `linkedin_url` — URL del perfil de LinkedIn para el footer.
 
-## Deployment
+## Despliegue
 
-Automatic via GitHub Actions on push to `main`. Site lives at [salewave.github.io](https://salewave.github.io).
+Mientras no haya dominio propio: GitHub Actions despliega a GitHub Pages en cada push a `main` (el workflow fuerza `--base-url`). El plan de producción es Cloudflare Pages con el dominio `eraldia.com` — pasos en [`docs/PUBLICACION.md`](docs/PUBLICACION.md).

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 
   {% block meta %}
   <meta name="description" content="{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.description }}{% endif %}">
-  <meta name="author" content="{{ config.extra.author | default(value='Salewave') }}">
+  <meta name="author" content="{{ config.extra.author | default(value='Eraldia') }}">
   {% endblock meta %}
 
   {# Open Graph #}
@@ -19,7 +19,7 @@
   <meta property="og:description" content="{% if page.description %}{{ page.description }}{% elif section.description %}{{ section.description }}{% else %}{{ config.description }}{% endif %}">
   <meta property="og:type" content="{% if page %}article{% else %}website{% endif %}">
   <meta property="og:url" content="{% if page.permalink %}{{ page.permalink }}{% elif section.permalink %}{{ section.permalink }}{% else %}{{ config.base_url }}{% endif %}">
-  <meta property="og:image" content="{% if page.extra.og_image %}{{ config.base_url }}{{ page.extra.og_image }}{% else %}{{ config.base_url }}/images/og-default.png{% endif %}">
+  <meta property="og:image" content="{% if page.extra.og_image %}{{ config.base_url }}{{ page.extra.og_image }}{% else %}{{ config.base_url }}/images/og-image.svg{% endif %}">
   <meta property="og:site_name" content="{{ config.title }}">
   {% endblock opengraph %}
 
@@ -29,10 +29,10 @@
   {# Favicon #}
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
 
-  {# Google Fonts: Inter + JetBrains Mono #}
+  {# Google Fonts: Space Grotesk (títulos) + Inter (texto) + JetBrains Mono (código) #}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   {# Stylesheet (compiled from Sass by Zola) #}
   <link rel="stylesheet" href="/style.css">
@@ -52,7 +52,7 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
   <div class="page-wrapper">
 
     {# ================================================================ #}
@@ -64,28 +64,29 @@
         <a href="{{ config.base_url }}" class="header__logo">
           <span class="header__logo-icon">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M4 18C4 18 7 10 14 10C21 10 24 18 24 18" stroke="#0057FF" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M2 22C2 22 6 14 14 14C22 14 26 22 26 22" stroke="#00C9A7" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="14" cy="8" r="3" fill="#0057FF"/>
+              <path d="M6 7.5H22" stroke="#0F766E" stroke-width="3" stroke-linecap="round"/>
+              <path d="M6 14H16" stroke="#0F766E" stroke-width="3" stroke-linecap="round"/>
+              <path d="M6 20.5H22" stroke="#0F766E" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="21.5" cy="14" r="2.5" fill="#F59E0B"/>
             </svg>
           </span>
-          Salewave
+          Eraldia
         </a>
 
         <input type="checkbox" id="nav-toggle" class="header__nav-toggle" aria-hidden="true">
-        <label for="nav-toggle" class="header__toggle-label" aria-label="Toggle navigation menu">
+        <label for="nav-toggle" class="header__toggle-label" aria-label="Abrir o cerrar el menú">
           <span class="header__toggle-bar"></span>
           <span class="header__toggle-bar"></span>
           <span class="header__toggle-bar"></span>
         </label>
 
         {% set current = current_path | default(value="/") %}
-        <nav class="header__nav" aria-label="Main navigation">
-          <a href="{{ config.base_url }}/services/" class="header__nav-link{% if current is starting_with("/services") %} header__nav-link--active{% endif %}">Services</a>
-          <a href="{{ config.base_url }}/use-cases/" class="header__nav-link{% if current is starting_with("/use-cases") %} header__nav-link--active{% endif %}">Use Cases</a>
-          <a href="{{ config.base_url }}/about/" class="header__nav-link{% if current is starting_with("/about") %} header__nav-link--active{% endif %}">About</a>
+        <nav class="header__nav" aria-label="Navegación principal">
+          <a href="{{ config.base_url }}/servicios/" class="header__nav-link{% if current is starting_with("/servicios") %} header__nav-link--active{% endif %}">Servicios</a>
+          <a href="{{ config.base_url }}/casos/" class="header__nav-link{% if current is starting_with("/casos") %} header__nav-link--active{% endif %}">Casos de uso</a>
+          <a href="{{ config.base_url }}/sobre-mi/" class="header__nav-link{% if current is starting_with("/sobre-mi") %} header__nav-link--active{% endif %}">Sobre mí</a>
           <a href="{{ config.base_url }}/blog/" class="header__nav-link{% if current is starting_with("/blog") %} header__nav-link--active{% endif %}">Blog</a>
-          <a href="mailto:{{ config.extra.contact_email }}" class="header__nav-link">Contact</a>
+          <a href="{{ config.base_url }}/#contacto" class="header__nav-link">Contacto</a>
         </nav>
       </div>
     </header>
@@ -104,16 +105,16 @@
       <div class="container footer__inner">
         <div class="footer__top">
           <div class="footer__brand">
-            <div class="footer__logo">Salewave</div>
-            <p class="footer__tagline">{{ config.extra.tagline | default(value="AI-powered sales operations for SMEs") }}</p>
+            <div class="footer__logo">Eraldia</div>
+            <p class="footer__tagline">{{ config.extra.tagline | default(value="Pon tu pyme al día con la IA") }}</p>
           </div>
 
           <div class="footer__nav">
             <div class="footer__nav-group">
-              <div class="footer__nav-title">Services</div>
+              <div class="footer__nav-title">Servicios</div>
               <ul class="footer__nav-list">
-                <li><a href="{{ config.base_url }}/services/" class="footer__nav-link">All Services</a></li>
-                {% set_global services_section = get_section(path="services/_index.md", metadata_only=true) %}
+                <li><a href="{{ config.base_url }}/servicios/" class="footer__nav-link">Todos los servicios</a></li>
+                {% set_global services_section = get_section(path="servicios/_index.md", metadata_only=true) %}
                 {% for service in services_section.pages %}
                 <li><a href="{{ service.permalink }}" class="footer__nav-link">{{ service.title }}</a></li>
                 {% endfor %}
@@ -121,26 +122,30 @@
             </div>
 
             <div class="footer__nav-group">
-              <div class="footer__nav-title">Company</div>
+              <div class="footer__nav-title">Eraldia</div>
               <ul class="footer__nav-list">
-                <li><a href="{{ config.base_url }}/about/" class="footer__nav-link">About</a></li>
-                <li><a href="{{ config.base_url }}/use-cases/" class="footer__nav-link">Use Cases</a></li>
+                <li><a href="{{ config.base_url }}/sobre-mi/" class="footer__nav-link">Sobre mí</a></li>
+                <li><a href="{{ config.base_url }}/casos/" class="footer__nav-link">Casos de uso</a></li>
                 <li><a href="{{ config.base_url }}/blog/" class="footer__nav-link">Blog</a></li>
               </ul>
             </div>
 
             <div class="footer__nav-group">
-              <div class="footer__nav-title">Connect</div>
+              <div class="footer__nav-title">Contacto</div>
               <ul class="footer__nav-list">
-                <li><a href="mailto:{{ config.extra.contact_email }}" class="footer__nav-link">Contact Us</a></li>
-                <li><a href="{{ config.base_url }}/atom.xml" class="footer__nav-link">RSS Feed</a></li>
+                <li><a href="{{ config.base_url }}/#contacto" class="footer__nav-link">Escríbeme</a></li>
+                <li><a href="mailto:{{ config.extra.contact_email }}" class="footer__nav-link">{{ config.extra.contact_email }}</a></li>
+                {% if config.extra.linkedin_url %}
+                <li><a href="{{ config.extra.linkedin_url }}" class="footer__nav-link" rel="noopener" target="_blank">LinkedIn</a></li>
+                {% endif %}
+                <li><a href="{{ config.base_url }}/atom.xml" class="footer__nav-link">RSS</a></li>
               </ul>
             </div>
           </div>
         </div>
 
         <div class="footer__bottom">
-          <span class="footer__copyright">&copy; {{ now() | date(format="%Y") }} {{ config.title }}. All rights reserved.</span>
+          <span class="footer__copyright">&copy; {{ now() | date(format="%Y") }} {{ config.title }} &middot; Gorka Alapont. Todos los derechos reservados.</span>
         </div>
       </div>
     </footer>

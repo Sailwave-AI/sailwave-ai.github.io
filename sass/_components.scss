@@ -843,3 +843,74 @@
     animation: none !important;
   }
 }
+
+// --------------------------------------------------------------------------
+// Contact form (captación de leads)
+// --------------------------------------------------------------------------
+.contact-form {
+  max-width: 640px;
+  margin: 0 auto;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-xl;
+  padding: $space-7;
+  box-shadow: $shadow-md;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-4;
+
+    @media (min-width: $bp-sm) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__field {
+    margin-bottom: $space-4;
+  }
+
+  &__label {
+    display: block;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-sm;
+    color: $color-dark;
+    margin-bottom: $space-2;
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    font-family: $font-body;
+    font-size: $font-size-base;
+    color: $color-text;
+    background: $color-light;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    padding: $space-3 $space-4;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  &__submit {
+    width: 100%;
+    margin-top: $space-2;
+  }
+
+  &__note {
+    font-size: $font-size-xs;
+    color: $color-muted;
+    text-align: center;
+    margin: $space-3 0 0;
+  }
+}

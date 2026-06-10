@@ -4,7 +4,7 @@
 
 <div class="page-header">
   <div class="container">
-    <h1 class="page-header__title">{{ section.title | default(value="Our Services") }}</h1>
+    <h1 class="page-header__title">{{ section.title | default(value="Servicios") }}</h1>
     {% if section.description %}
     <p class="page-header__desc">{{ section.description }}</p>
     {% endif %}
@@ -30,13 +30,13 @@
         {% if page.description %}
         <p class="service-card__desc">{{ page.description }}</p>
         {% endif %}
-        <span class="service-card__action">Learn more</span>
+        <span class="service-card__action">Saber más</span>
       </a>
       {% endfor %}
     </div>
     {% else %}
     <div class="empty-state">
-      <p class="empty-state__text">Services coming soon.</p>
+      <p class="empty-state__text">Servicios disponibles muy pronto.</p>
     </div>
     {% endif %}
   </div>
