@@ -110,7 +110,7 @@ jobs:
 
             ## Review Checklist
             1. **Build status**: Does the site build without errors?
-            2. **Brand alignment**: Colors (#0057FF, #00C9A7, #1A1A2E, #F8F9FA, #6C757D), fonts (Inter, JetBrains Mono), professional tone
+            2. **Brand alignment**: «Tierra Nocturna» colors (terracota #B95536, ámbar #D69A2C, salvia #8FA277, negro cálido #15120E, crema #F8F2E5, muted #897B6A), fonts (Fraunces italic, Inter, JetBrains Mono), professional tone
             3. **Code quality**: Clean HTML/CSS/Markdown, no dead code, follows existing patterns
             4. **Broken links**: Any link check failures?
             5. **Accessibility**: Alt text on images, semantic HTML, sufficient contrast

@@ -1,29 +1,37 @@
 // ==========================================================================
 // Variables — Eraldia Brand System
 // ==========================================================================
-// Paleta: verde petróleo (confianza, honestidad) + ámbar (la chispa de la IA)
-// sobre neutros cálidos. Huye del azul corporativo genérico.
+// Paleta «Tierra Nocturna»: terracota (carácter) + ámbar (la chispa de la IA)
+// + salvia (calma), sobre tierra. Las secciones oscuras usan negro cálido;
+// las claras, crema. Una sola paleta de marca en dos modos.
 
 // --------------------------------------------------------------------------
 // Colors
 // --------------------------------------------------------------------------
-$color-primary:    #0F766E;
-$color-accent:     #F59E0B;
-$color-dark:       #10241F;
-$color-light:      #F8FAF9;
-$color-muted:      #64748B;
+$color-primary:    #B95536;   // terracota
+$color-accent:     #D69A2C;   // ámbar
+$color-dark:       #15120E;   // negro cálido (secciones oscuras)
+$color-light:      #F8F2E5;   // crema (secciones claras)
+$color-muted:      #897B6A;   // taupe cálido (texto secundario)
 $color-white:      #FFFFFF;
 $color-black:      #000000;
 
+// Tercer color de marca + variantes «bright» para fondos oscuros
+$color-sage:           #8FA277;   // salvia
+$color-sage-bright:    #A6B88F;   // salvia sobre oscuro
+$color-primary-bright: #CD6043;   // terracota sobre oscuro
+$color-accent-bright:  #E6AE3E;   // ámbar sobre oscuro
+$color-surface-dark:   #211C16;   // tarjetas/superficies sobre oscuro
+
 // Derived colors
 $color-primary-dark:   darken($color-primary, 8%);
-$color-primary-light:  lighten($color-primary, 58%);
+$color-primary-light:  lighten($color-primary, 40%);
 $color-accent-dark:    darken($color-accent, 10%);
 $color-accent-light:   lighten($color-accent, 38%);
-$color-border:         #DCE5E1;
-$color-text:           #1F2D29;
-$color-text-light:     #51605B;
-$color-bg-alt:         #EFF4F1;
+$color-border:         #E6DBC7;   // borde cálido sobre crema
+$color-text:           #261F18;   // texto principal sobre claro
+$color-text-light:     #6F6253;   // texto secundario sobre claro
+$color-bg-alt:         #F1E8D6;   // crema alternativa
 
 // --------------------------------------------------------------------------
 // Typography

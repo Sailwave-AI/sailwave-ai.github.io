@@ -2,22 +2,22 @@
   <!-- Eraldia Open Graph image - 1200x630 -->
   <defs>
     <linearGradient id="bgGlow" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#0F766E" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#10241F" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#CD6043" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#15120E" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="630" fill="#10241F"/>
+  <rect width="1200" height="630" fill="#15120E"/>
   <ellipse cx="600" cy="240" rx="520" ry="230" fill="url(#bgGlow)"/>
   <!-- Monograma -->
-  <path d="M470 200H560" stroke="#2DD4BF" stroke-width="16" stroke-linecap="round"/>
-  <path d="M470 244H526" stroke="#2DD4BF" stroke-width="16" stroke-linecap="round"/>
-  <path d="M470 288H560" stroke="#2DD4BF" stroke-width="16" stroke-linecap="round"/>
-  <circle cx="554" cy="244" r="14" fill="#F59E0B"/>
+  <path d="M470 200H560" stroke="#CD6043" stroke-width="16" stroke-linecap="round"/>
+  <path d="M470 244H526" stroke="#CD6043" stroke-width="16" stroke-linecap="round"/>
+  <path d="M470 288H560" stroke="#CD6043" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="554" cy="244" r="14" fill="#E6AE3E"/>
   <!-- Wordmark -->
-  <text x="592" y="270" font-family="'Space Grotesk', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="84" font-weight="700" fill="#FFFFFF" letter-spacing="-2">Eraldia</text>
+  <text x="592" y="272" font-family="'Fraunces', Georgia, 'Times New Roman', serif" font-style="italic" font-size="84" font-weight="600" fill="#F4ECDC" letter-spacing="-2">Eraldia</text>
   <!-- Tagline -->
-  <text x="600" y="380" text-anchor="middle" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="34" font-weight="500" fill="#9FB8B0">Pon tu pyme al día con la IA</text>
-  <text x="600" y="430" text-anchor="middle" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="24" font-weight="400" fill="#6B847C">Transformación digital e IA · Precio cerrado · Sin humo</text>
+  <text x="600" y="380" text-anchor="middle" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="34" font-weight="500" fill="#C7B79D">Pon tu pyme al día con la IA</text>
+  <text x="600" y="430" text-anchor="middle" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="24" font-weight="400" fill="#A99B86">Transformación digital e IA · Precio cerrado · Sin humo</text>
   <!-- Línea de acento -->
-  <path d="M500 480H700" stroke="#F59E0B" stroke-width="4" stroke-linecap="round"/>
+  <path d="M500 480H700" stroke="#E6AE3E" stroke-width="4" stroke-linecap="round"/>
 </svg>

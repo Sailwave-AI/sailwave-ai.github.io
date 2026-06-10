@@ -85,10 +85,10 @@ jobs:
             6. If the repo uses Zola, run `zola build` to verify the site builds correctly.
             7. If the repo uses Cargo, run `cargo build` to verify compilation.
 
-            ## Brand Guidelines
-            - Primary color: #0057FF | Accent: #00C9A7
-            - Dark: #1A1A2E | Light: #F8F9FA | Muted: #6C757D
-            - Fonts: Inter (headings + body), JetBrains Mono (code)
+            ## Brand Guidelines — «Tierra Nocturna»
+            - Primary (terracota): #B95536 | Accent (ámbar): #D69A2C | Sage: #8FA277
+            - Dark (negro cálido): #15120E | Light (crema): #F8F2E5 | Muted: #897B6A
+            - Fonts: Fraunces italic (headings), Inter (body), JetBrains Mono (code)
             - Tone: Professional, confident, approachable
 
             ## Important
