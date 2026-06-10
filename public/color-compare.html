@@ -3,151 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comparativa de Paletas de Color — Eraldia</title>
+<title>Comparativa de Paletas v2 — Eraldia</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Inter', system-ui, sans-serif; background: #f1f5f9; padding: 2rem; }
-  h1 { text-align: center; margin-bottom: 2rem; font-size: 1.5rem; color: #1e293b; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1400px; margin: 0 auto; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #111; padding: 2rem; }
+  h1 { text-align: center; margin-bottom: 0.5rem; font-size: 1.4rem; color: #e5e5e5; }
+  .subtitle { text-align: center; color: #666; font-size: 0.8rem; margin-bottom: 2.5rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; max-width: 1500px; margin: 0 auto; }
 
-  .palette { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+  .palette { background: #1c1c1c; border-radius: 16px; overflow: hidden; border: 1px solid #2a2a2a; }
+  .palette__header { padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .palette__header h2 { font-size: 1rem; font-weight: 700; color: #f0f0f0; margin-bottom: 0.2rem; }
+  .palette__header p { font-size: 0.72rem; color: #888; }
+  .palette__swatches { display: flex; height: 56px; }
+  .swatch { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.04em; gap: 2px; }
+  .swatch .hex { opacity: 0.9; }
+  .swatch .name { opacity: 0.6; font-size: 0.5rem; text-transform: uppercase; }
+  .palette__preview { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .section-label { font-size: 0.6rem; font-weight: 800; color: #555; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
 
-  .palette__header { padding: 1.5rem; color: white; }
-  .palette__header h2 { font-size: 1.25rem; margin-bottom: 0.25rem; }
-  .palette__header p { font-size: 0.8rem; opacity: 0.85; }
-
-  .palette__swatches { display: flex; height: 60px; }
-  .swatch { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 600; color: rgba(255,255,255,0.9); letter-spacing: 0.02em; }
-
-  .palette__preview { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
-
-  /* Mock hero section */
-  .mock-hero { border-radius: 12px; padding: 1.5rem; color: white; }
-  .mock-hero h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-  .mock-hero p { font-size: 0.78rem; opacity: 0.8; margin-bottom: 1rem; }
+  .mock-hero { border-radius: 10px; padding: 1.25rem 1.5rem; }
+  .mock-hero h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.35rem; line-height: 1.3; }
+  .mock-hero p { font-size: 0.72rem; opacity: 0.75; margin-bottom: 0.9rem; line-height: 1.5; }
   .mock-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-  .mock-btn { padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; border: none; cursor: default; }
-  .mock-btn--primary { color: white; }
-  .mock-btn--outline { background: transparent; border: 2px solid rgba(255,255,255,0.6); color: white; }
+  .mock-btn { padding: 0.45rem 1rem; border-radius: 6px; font-size: 0.7rem; font-weight: 700; border: none; cursor: default; letter-spacing: 0.01em; }
+  .mock-btn--ghost { background: transparent; border: 1.5px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.85); }
+  .mock-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; }
+  .mock-card { background: white; border-radius: 8px; padding: 0.75rem; }
+  .mock-card__dot { width: 8px; height: 8px; border-radius: 50%; margin-bottom: 0.6rem; }
+  .mock-card h4 { font-size: 0.72rem; font-weight: 700; color: #111; margin-bottom: 0.2rem; }
+  .mock-card p { font-size: 0.62rem; color: #888; }
+  .mock-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .mock-tag { padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.62rem; font-weight: 700; }
 
-  /* Mock card */
-  .mock-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .mock-card { background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.75rem; }
-  .mock-card__icon { width: 32px; height: 32px; border-radius: 8px; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
-  .mock-card h4 { font-size: 0.75rem; font-weight: 600; color: #1e293b; margin-bottom: 0.25rem; }
-  .mock-card p { font-size: 0.65rem; color: #64748b; }
+  /* ── Palette 1: Ink + Rojo editorial ── */
+  .p1 .s1 { background:#E8271E; color:white; }
+  .p1 .s2 { background:#F5EDD8; color:#111; }
+  .p1 .s3 { background:#111009; color:rgba(255,255,255,0.6); }
+  .p1 .mock-hero { background:#111009; color:white; }
+  .p1 .mock-btn--cta { background:#E8271E; color:white; }
+  .p1 .mock-card__dot { background:#E8271E; }
+  .p1 .mock-tag { background:#E8271E15; color:#C01A12; border: 1px solid #E8271E30; }
 
-  /* Mock tag */
-  .mock-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-  .mock-tag { padding: 0.25rem 0.625rem; border-radius: 100px; font-size: 0.65rem; font-weight: 600; }
+  /* ── Palette 2: Espresso + Ámbar intenso ── */
+  .p2 .s1 { background:#8B2E00; color:#F5C876; }
+  .p2 .s2 { background:#E8A020; color:#1A0A00; }
+  .p2 .s3 { background:#1A0A00; color:rgba(255,255,255,0.5); }
+  .p2 .mock-hero { background: linear-gradient(135deg, #1A0A00 0%, #3D1400 100%); color: #F5EDD8; }
+  .p2 .mock-btn--cta { background:#E8A020; color:#1A0A00; }
+  .p2 .mock-card__dot { background:#8B2E00; }
+  .p2 .mock-tag { background:#8B2E0012; color:#6B2000; border: 1px solid #8B2E0025; }
 
-  .palette__label { font-size: 0.7rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  /* ── Palette 3: Carbón + Naranja eléctrico ── */
+  .p3 .s1 { background:#FF4D00; color:white; }
+  .p3 .s2 { background:#1A1A1A; color:rgba(255,255,255,0.6); }
+  .p3 .s3 { background:#FAFAF5; color:#444; }
+  .p3 .mock-hero { background:#0D0D0D; color:white; }
+  .p3 .mock-btn--cta { background:#FF4D00; color:white; }
+  .p3 .mock-card__dot { background:#FF4D00; }
+  .p3 .mock-tag { background:#FF4D0012; color:#CC3D00; border: 1px solid #FF4D0025; }
 
-  /* Current palette */
-  .p-current .palette__header { background: #10241F; }
-  .p-current .s1 { background: #0F766E; }
-  .p-current .s2 { background: #F59E0B; }
-  .p-current .s3 { background: #10241F; }
-  .p-current .mock-hero { background: linear-gradient(135deg, #10241F 0%, #0F766E 100%); }
-  .p-current .mock-btn--primary { background: #0F766E; }
-  .p-current .mock-card__icon { background: rgba(15,118,110,0.12); color: #0F766E; }
-  .p-current .mock-tag { background: rgba(15,118,110,0.1); color: #0F766E; }
+  /* ── Palette 4: Ciruela + Champagne ── */
+  .p4 .s1 { background:#4A1942; color:#E8CFA0; }
+  .p4 .s2 { background:#C9993A; color:white; }
+  .p4 .s3 { background:#1A0A18; color:rgba(255,255,255,0.5); }
+  .p4 .mock-hero { background:linear-gradient(135deg, #1A0A18 0%, #3A1035 100%); color:#F5EDD8; }
+  .p4 .mock-btn--cta { background:#C9993A; color:#1A0A18; }
+  .p4 .mock-card__dot { background:#4A1942; }
+  .p4 .mock-tag { background:#4A194215; color:#3A0F32; border: 1px solid #4A194228; }
 
-  /* Palette A: Deep Purple + Gold */
-  .p-a .palette__header { background: #1A0B2E; }
-  .p-a .s1 { background: #6D28D9; }
-  .p-a .s2 { background: #F59E0B; }
-  .p-a .s3 { background: #1A0B2E; }
-  .p-a .mock-hero { background: linear-gradient(135deg, #1A0B2E 0%, #6D28D9 100%); }
-  .p-a .mock-btn--primary { background: #6D28D9; }
-  .p-a .mock-card__icon { background: rgba(109,40,217,0.12); color: #6D28D9; }
-  .p-a .mock-tag { background: rgba(109,40,217,0.1); color: #6D28D9; }
-
-  /* Palette B: Crimson + Gold */
-  .p-b .palette__header { background: #1F0A10; }
-  .p-b .s1 { background: #BE123C; }
-  .p-b .s2 { background: #D97706; }
-  .p-b .s3 { background: #1F0A10; }
-  .p-b .mock-hero { background: linear-gradient(135deg, #1F0A10 0%, #BE123C 100%); }
-  .p-b .mock-btn--primary { background: #BE123C; }
-  .p-b .mock-card__icon { background: rgba(190,18,60,0.12); color: #BE123C; }
-  .p-b .mock-tag { background: rgba(190,18,60,0.1); color: #BE123C; }
-
-  /* Palette C: Dark Slate + Coral */
-  .p-c .palette__header { background: #0F172A; }
-  .p-c .s1 { background: #334155; }
-  .p-c .s2 { background: #F97316; }
-  .p-c .s3 { background: #0F172A; }
-  .p-c .mock-hero { background: linear-gradient(135deg, #0F172A 0%, #334155 100%); }
-  .p-c .mock-btn--primary { background: #F97316; color: #0F172A; }
-  .p-c .mock-card__icon { background: rgba(249,115,22,0.12); color: #F97316; }
-  .p-c .mock-tag { background: rgba(249,115,22,0.1); color: #ea6a0a; }
-
-  /* Palette D: Warm Indigo + Terracotta */
-  .p-d .palette__header { background: #1E1B4B; }
-  .p-d .s1 { background: #3730A3; }
-  .p-d .s2 { background: #C2603A; }
-  .p-d .s3 { background: #1E1B4B; }
-  .p-d .mock-hero { background: linear-gradient(135deg, #1E1B4B 0%, #3730A3 100%); }
-  .p-d .mock-btn--primary { background: #3730A3; }
-  .p-d .mock-card__icon { background: rgba(55,48,163,0.12); color: #3730A3; }
-  .p-d .mock-tag { background: rgba(55,48,163,0.1); color: #3730A3; }
-
-  /* Palette E: Midnight + Electric Lime */
-  .p-e .palette__header { background: #0D0D0D; }
-  .p-e .s1 { background: #1a1a2e; }
-  .p-e .s2 { background: #A3E635; }
-  .p-e .s3 { background: #0D0D0D; }
-  .p-e .mock-hero { background: linear-gradient(135deg, #0D0D0D 0%, #1a1a2e 100%); }
-  .p-e .mock-btn--primary { background: #A3E635; color: #0D0D0D; }
-  .p-e .mock-card__icon { background: rgba(163,230,53,0.12); color: #65a30d; }
-  .p-e .mock-tag { background: rgba(163,230,53,0.15); color: #65a30d; }
+  /* ── Palette 5: Arena + Negro + Coral oscuro ── */
+  .p5 .s1 { background:#C94040; color:white; }
+  .p5 .s2 { background:#D9B87A; color:#111; }
+  .p5 .s3 { background:#0F0E0D; color:rgba(255,255,255,0.5); }
+  .p5 .mock-hero { background:#0F0E0D; color:#EAE0CC; }
+  .p5 .mock-btn--cta { background:#C94040; color:white; }
+  .p5 .mock-card__dot { background:#C94040; }
+  .p5 .mock-tag { background:#C9404012; color:#A03030; border: 1px solid #C9404025; }
 </style>
 </head>
 <body>
-<h1>Comparativa de Paletas — Eraldia</h1>
+<h1>Paletas v2 — Eraldia</h1>
+<p class="subtitle">Sin azules, sin verdes, sin el violet genérico de startup IA</p>
 <div class="grid">
 
-  <!-- Current -->
-  <div class="palette p-current">
+  <!-- 1: Ink + Red editorial -->
+  <div class="palette p1">
     <div class="palette__header">
-      <h2>Actual (referencia)</h2>
-      <p>Verde petróleo + ámbar — lo que queremos cambiar</p>
+      <h2>1 — Tinta negra + Rojo editorial</h2>
+      <p>Como The Economist o una portada de Pentagram. Convicción sin rodeos.</p>
     </div>
     <div class="palette__swatches">
-      <div class="swatch s1">#0F766E<br>Primary</div>
-      <div class="swatch s2">#F59E0B<br>Accent</div>
-      <div class="swatch s3">#10241F<br>Dark</div>
+      <div class="swatch s1"><span class="hex">#E8271E</span><span class="name">Rojo</span></div>
+      <div class="swatch s2"><span class="hex">#F5EDD8</span><span class="name">Crema</span></div>
+      <div class="swatch s3"><span class="hex">#111009</span><span class="name">Tinta</span></div>
     </div>
     <div class="palette__preview">
       <div>
-        <div class="palette__label">Sección hero</div>
+        <div class="section-label">Hero</div>
         <div class="mock-hero">
           <h3>IA con propósito</h3>
           <p>Automatiza lo que frena tu negocio. Escala con confianza.</p>
           <div class="mock-btns">
-            <button class="mock-btn mock-btn--primary">Hablemos</button>
-            <button class="mock-btn mock-btn--outline">Ver servicios</button>
+            <button class="mock-btn mock-btn--cta">Hablemos</button>
+            <button class="mock-btn mock-btn--ghost">Ver servicios</button>
           </div>
         </div>
       </div>
       <div>
-        <div class="palette__label">Tarjetas de servicio</div>
+        <div class="section-label">Tarjetas</div>
         <div class="mock-cards">
-          <div class="mock-card">
-            <div class="mock-card__icon">⚡</div>
-            <h4>Automatización</h4>
-            <p>Flujos inteligentes</p>
-          </div>
-          <div class="mock-card">
-            <div class="mock-card__icon">🤖</div>
-            <h4>Agentes IA</h4>
-            <p>Decisiones autónomas</p>
-          </div>
+          <div class="mock-card"><div class="mock-card__dot"></div><h4>Automatización</h4><p>Flujos inteligentes</p></div>
+          <div class="mock-card"><div class="mock-card__dot"></div><h4>Agentes IA</h4><p>Decisiones autónomas</p></div>
         </div>
       </div>
       <div>
-        <div class="palette__label">Tags</div>
+        <div class="section-label">Tags</div>
         <div class="mock-tags">
           <span class="mock-tag">IA Generativa</span>
           <span class="mock-tag">Automatización</span>
@@ -157,46 +128,38 @@
     </div>
   </div>
 
-  <!-- A: Deep Purple + Gold -->
-  <div class="palette p-a">
+  <!-- 2: Espresso + Amber -->
+  <div class="palette p2">
     <div class="palette__header">
-      <h2>A — Púrpura profundo + Oro</h2>
-      <p>Sofisticado, premium, tecnológico</p>
+      <h2>2 — Espresso + Ámbar oscuro</h2>
+      <p>Cálido, artesanal, sin perder autoridad. Cercano a marcas de lujo mediterráneo.</p>
     </div>
     <div class="palette__swatches">
-      <div class="swatch s1">#6D28D9<br>Primary</div>
-      <div class="swatch s2">#F59E0B<br>Accent</div>
-      <div class="swatch s3">#1A0B2E<br>Dark</div>
+      <div class="swatch s2"><span class="hex">#E8A020</span><span class="name">Ámbar</span></div>
+      <div class="swatch s1"><span class="hex">#8B2E00</span><span class="name">Óxido</span></div>
+      <div class="swatch s3"><span class="hex">#1A0A00</span><span class="name">Espresso</span></div>
     </div>
     <div class="palette__preview">
       <div>
-        <div class="palette__label">Sección hero</div>
+        <div class="section-label">Hero</div>
         <div class="mock-hero">
           <h3>IA con propósito</h3>
           <p>Automatiza lo que frena tu negocio. Escala con confianza.</p>
           <div class="mock-btns">
-            <button class="mock-btn mock-btn--primary">Hablemos</button>
-            <button class="mock-btn mock-btn--outline">Ver servicios</button>
+            <button class="mock-btn mock-btn--cta">Hablemos</button>
+            <button class="mock-btn mock-btn--ghost">Ver servicios</button>
           </div>
         </div>
       </div>
       <div>
-        <div class="palette__label">Tarjetas de servicio</div>
+        <div class="section-label">Tarjetas</div>
         <div class="mock-cards">
-          <div class="mock-card">
-            <div class="mock-card__icon">⚡</div>
-            <h4>Automatización</h4>
-            <p>Flujos inteligentes</p>
-          </div>
-          <div class="mock-card">
-            <div class="mock-card__icon">🤖</div>
-            <h4>Agentes IA</h4>
-            <p>Decisiones autónomas</p>
-          </div>
+          <div class="mock-card"><div class="mock-card__dot"></div><h4>Automatización</h4><p>Flujos inteligentes</p></div>
+          <div class="mock-card"><div class="mock-card__dot"></div><h4>Agentes IA</h4><p>Decisiones autónomas</p></div>
         </div>
       </div>
       <div>
-        <div class="palette__label">Tags</div>
+        <div class="section-label">Tags</div>
         <div class="mock-tags">
           <span class="mock-tag">IA Generativa</span>
           <span class="mock-tag">Automatización</span>
@@ -206,46 +169,38 @@
     </div>
   </div>
 
-  <!-- B: Crimson + Gold -->
-  <div class="palette p-b">
+  <!-- 3: Charcoal + Electric orange -->
+  <div class="palette p3">
     <div class="palette__header">
-      <h2>B — Carmesí + Oro</h2>
-      <p>Audaz, seguro, memorable</p>
+      <h2>3 — Negro carbón + Naranja eléctrico</h2>
+      <p>Estudios de diseño top tier. IDEO, Frog Design. Energía sin ser ruidoso.</p>
     </div>
     <div class="palette__swatches">
-      <div class="swatch s1">#BE123C<br>Primary</div>
-      <div class="swatch s2">#D97706<br>Accent</div>
-      <div class="swatch s3">#1F0A10<br>Dark</div>
+      <div class="swatch s1" style="color:white;"><span class="hex">#FF4D00</span><span class="name">Naranja</span></div>
+      <div class="swatch s2" style="color:rgba(255,255,255,0.6);"><span class="hex">#1A1A1A</span><span class="name">Carbón</span></div>
+      <div class="swatch s3"><span class="hex">#FAFAF5</span><span class="name">Blanco cálido</span></div>
     </div>
     <div class="palette__preview">
       <div>
-        <div class="palette__label">Sección hero</div>
+        <div class="section-label">Hero</div>
         <div class="mock-hero">
           <h3>IA con propósito</h3>
           <p>Automatiza lo que frena tu negocio. Escala con confianza.</p>
           <div class="mock-btns">
-            <button class="mock-btn mock-btn--primary">Hablemos</button>
-            <button class="mock-btn mock-btn--outline">Ver servicios</button>
+            <button class="mock-btn mock-btn--cta">Hablemos</button>
+            <button class="mock-btn mock-btn--ghost">Ver servicios</button>
           </div>
         </div>
       </div>
       <div>
-        <div class="palette__label">Tarjetas de servicio</div>
+        <div class="section-label">Tarjetas</div>
         <div class="mock-cards">
-          <div class="mock-card">
-            <div class="mock-card__icon">⚡</div>
-            <h4>Automatización</h4>
-            <p>Flujos inteligentes</p>
-          </div>
-          <div class="mock-card">
-            <div class="mock-card__icon">🤖</div>
-            <h4>Agentes IA</h4>
-            <p>Decisiones autónomas</p>
-          </div>
+          <div class="mock-card"><div class="mock-card__dot"></div><h4>Automatización</h4><p>Flujos inteligentes</p></div>
+          <div class="mock-card"><div class="mock-card__dot"></div><h4>Agentes IA</h4><p>Decisiones autónomas</p></div>
         </div>
       </div>
       <div>
-        <div class="palette__label">Tags</div>
+        <div class="section-label">Tags</div>
         <div class="mock-tags">
           <span class="mock-tag">IA Generativa</span>
           <span class="mock-tag">Automatización</span>
@@ -255,46 +210,38 @@
     </div>
   </div>
 
-  <!-- C: Dark Slate + Coral -->
-  <div class="palette p-c">
+  <!-- 4: Plum + Champagne -->
+  <div class="palette p4">
     <div class="palette__header">
-      <h2>C — Slate oscuro + Naranja coral</h2>
-      <p>Moderno, limpio, energético</p>
+      <h2>4 — Ciruela profunda + Champán</h2>
+      <p>Misterioso, premium, inesperado. Nada de esto se ve en el ecosistema IA.</p>
     </div>
     <div class="palette__swatches">
-      <div class="swatch s1">#334155<br>Primary</div>
-      <div class="swatch s2">#F97316<br>Accent</div>
-      <div class="swatch s3">#0F172A<br>Dark</div>
+      <div class="swatch s1"><span class="hex">#4A1942</span><span class="name">Ciruela</span></div>
+      <div class="swatch s2"><span class="hex">#C9993A</span><span class="name">Champán</span></div>
+      <div class="swatch s3"><span class="hex">#1A0A18</span><span class="name">Noche</span></div>
     </div>
     <div class="palette__preview">
       <div>
-        <div class="palette__label">Sección hero</div>
+        <div class="section-label">Hero</div>
         <div class="mock-hero">
           <h3>IA con propósito</h3>
           <p>Automatiza lo que frena tu negocio. Escala con confianza.</p>
           <div class="mock-btns">
-            <button class="mock-btn mock-btn--primary">Hablemos</button>
-            <button class="mock-btn mock-btn--outline">Ver servicios</button>
+            <button class="mock-btn mock-btn--cta">Hablemos</button>
+            <button class="mock-btn mock-btn--ghost">Ver servicios</button>
           </div>
         </div>
       </div>
       <div>
-        <div class="palette__label">Tarjetas de servicio</div>
+        <div class="section-label">Tarjetas</div>
         <div class="mock-cards">
-          <div class="mock-card">
-            <div class="mock-card__icon">⚡</div>
-            <h4>Automatización</h4>
-            <p>Flujos inteligentes</p>
-          </div>
-          <div class="mock-card">
-            <div class="mock-card__icon">🤖</div>
-            <h4>Agentes IA</h4>
-            <p>Decisiones autónomas</p>
-          </div>
+          <div class="mock-card"><div class="mock-card__dot"></div><h4>Automatización</h4><p>Flujos inteligentes</p></div>
+          <div class="mock-card"><div class="mock-card__dot"></div><h4>Agentes IA</h4><p>Decisiones autónomas</p></div>
         </div>
       </div>
       <div>
-        <div class="palette__label">Tags</div>
+        <div class="section-label">Tags</div>
         <div class="mock-tags">
           <span class="mock-tag">IA Generativa</span>
           <span class="mock-tag">Automatización</span>
@@ -304,95 +251,38 @@
     </div>
   </div>
 
-  <!-- D: Warm Indigo + Terracotta -->
-  <div class="palette p-d">
+  <!-- 5: Arena + Coral oscuro -->
+  <div class="palette p5">
     <div class="palette__header">
-      <h2>D — Índigo + Terracota</h2>
-      <p>Único, cálido-moderno, diferenciador</p>
+      <h2>5 — Negro cálido + Coral + Arena</h2>
+      <p>Terso, humano, artesanal. Como una agencia boutique con criterio propio.</p>
     </div>
     <div class="palette__swatches">
-      <div class="swatch s1">#3730A3<br>Primary</div>
-      <div class="swatch s2">#C2603A<br>Accent</div>
-      <div class="swatch s3">#1E1B4B<br>Dark</div>
+      <div class="swatch s1"><span class="hex">#C94040</span><span class="name">Coral</span></div>
+      <div class="swatch s2"><span class="hex">#D9B87A</span><span class="name">Arena</span></div>
+      <div class="swatch s3"><span class="hex">#0F0E0D</span><span class="name">Negro cálido</span></div>
     </div>
     <div class="palette__preview">
       <div>
-        <div class="palette__label">Sección hero</div>
+        <div class="section-label">Hero</div>
         <div class="mock-hero">
           <h3>IA con propósito</h3>
           <p>Automatiza lo que frena tu negocio. Escala con confianza.</p>
           <div class="mock-btns">
-            <button class="mock-btn mock-btn--primary">Hablemos</button>
-            <button class="mock-btn mock-btn--outline">Ver servicios</button>
+            <button class="mock-btn mock-btn--cta">Hablemos</button>
+            <button class="mock-btn mock-btn--ghost">Ver servicios</button>
           </div>
         </div>
       </div>
       <div>
-        <div class="palette__label">Tarjetas de servicio</div>
+        <div class="section-label">Tarjetas</div>
         <div class="mock-cards">
-          <div class="mock-card">
-            <div class="mock-card__icon">⚡</div>
-            <h4>Automatización</h4>
-            <p>Flujos inteligentes</p>
-          </div>
-          <div class="mock-card">
-            <div class="mock-card__icon">🤖</div>
-            <h4>Agentes IA</h4>
-            <p>Decisiones autónomas</p>
-          </div>
+          <div class="mock-card"><div class="mock-card__dot"></div><h4>Automatización</h4><p>Flujos inteligentes</p></div>
+          <div class="mock-card"><div class="mock-card__dot"></div><h4>Agentes IA</h4><p>Decisiones autónomas</p></div>
         </div>
       </div>
       <div>
-        <div class="palette__label">Tags</div>
-        <div class="mock-tags">
-          <span class="mock-tag">IA Generativa</span>
-          <span class="mock-tag">Automatización</span>
-          <span class="mock-tag">n8n</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- E: Midnight + Electric Lime -->
-  <div class="palette p-e">
-    <div class="palette__header" style="background:#0D0D0D;">
-      <h2>E — Midnight + Lima eléctrico</h2>
-      <p>Oscuro, atrevido, tech/hacker</p>
-    </div>
-    <div class="palette__swatches">
-      <div class="swatch s1">#1a1a2e<br>Primary</div>
-      <div class="swatch s2" style="color:#0D0D0D;">#A3E635<br>Accent</div>
-      <div class="swatch s3">#0D0D0D<br>Dark</div>
-    </div>
-    <div class="palette__preview">
-      <div>
-        <div class="palette__label">Sección hero</div>
-        <div class="mock-hero">
-          <h3>IA con propósito</h3>
-          <p>Automatiza lo que frena tu negocio. Escala con confianza.</p>
-          <div class="mock-btns">
-            <button class="mock-btn mock-btn--primary">Hablemos</button>
-            <button class="mock-btn mock-btn--outline">Ver servicios</button>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="palette__label">Tarjetas de servicio</div>
-        <div class="mock-cards">
-          <div class="mock-card">
-            <div class="mock-card__icon">⚡</div>
-            <h4>Automatización</h4>
-            <p>Flujos inteligentes</p>
-          </div>
-          <div class="mock-card">
-            <div class="mock-card__icon">🤖</div>
-            <h4>Agentes IA</h4>
-            <p>Decisiones autónomas</p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="palette__label">Tags</div>
+        <div class="section-label">Tags</div>
         <div class="mock-tags">
           <span class="mock-tag">IA Generativa</span>
           <span class="mock-tag">Automatización</span>
