@@ -1,0 +1,29 @@
+---
+import { url } from '../utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Gracias"
+  description="Hemos recibido tu mensaje. Te respondo en menos de 24 horas laborables."
+>
+
+<section class="section section--alt">
+  <div class="container container--narrow">
+    <div class="cta cta--inline cta--dark reveal" aria-label="Mensaje recibido">
+      <div class="cta__inner">
+        <h1 class="cta__title">¡Recibido! Gracias por escribir.</h1>
+        <p class="cta__desc">
+          Tengo tus datos y te respondo en menos de 24 horas laborables con los siguientes pasos.
+          Mientras tanto, puedes echar un vistazo a casos de uso por sector o a algún artículo del blog.
+        </p>
+        <div class="hero__actions">
+          <a href={url('/casos/')} class="btn btn--primary btn--lg">Ver casos de uso</a>
+          <a href={url('/blog/')} class="btn btn--outline-white btn--lg">Leer el blog</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>

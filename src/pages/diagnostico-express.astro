@@ -1,7 +1,6 @@
 ---
 import { url, BASE } from '../utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { CONTACT_EMAIL, FORMSPREE_ID } from '../consts';
 
 const checkIcon =
   '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
@@ -29,7 +28,7 @@ const checkIcon =
     <!-- ============================================================ -->
     <!-- Quiz                                                          -->
     <!-- ============================================================ -->
-    <div class="diag reveal" id="diag" data-formspree={FORMSPREE_ID} data-email={CONTACT_EMAIL} data-base={BASE}>
+    <div class="diag reveal" id="diag" data-base={BASE}>
 
       <!-- Progreso -->
       <div class="diag__progress" id="diag-progress">
@@ -110,29 +109,26 @@ const checkIcon =
             concretas para tu caso. Sin newsletters: solo esta respuesta.
           </p>
 
-          {FORMSPREE_ID ? (
-            <form class="diag__form" id="diag-form" action={`https://formspree.io/f/${FORMSPREE_ID}`} method="POST">
-              <div class="diag__field">
-                <label class="diag__label" for="diag-nombre">Nombre</label>
-                <input class="diag__input" type="text" id="diag-nombre" name="nombre" required autocomplete="name">
-              </div>
-              <div class="diag__field">
-                <label class="diag__label" for="diag-email">Email</label>
-                <input class="diag__input" type="email" id="diag-email" name="email" required autocomplete="email">
-              </div>
-              <input type="hidden" name="sector" id="diag-h-sector">
-              <input type="hidden" name="proceso" id="diag-h-proceso">
-              <input type="hidden" name="horas" id="diag-h-horas">
-              <input type="hidden" name="metodo" id="diag-h-metodo">
-              <input type="hidden" name="recomendacion" id="diag-h-recom">
-              <input type="hidden" name="_subject" value="Diagnóstico exprés — nuevo lead">
-              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-              <button type="submit" class="btn btn--outline btn--full">Enviarme el mini-plan</button>
-              <p class="diag__note">Al enviar aceptas que use estos datos solo para responderte.</p>
-            </form>
-          ) : (
-            <a class="btn btn--outline btn--full" id="diag-mailto" href={`mailto:${CONTACT_EMAIL}`}>Enviarme el mini-plan por email</a>
-          )}
+          <form class="diag__form" id="diag-form" action={url('/api/lead')} method="POST">
+            <input type="hidden" name="source" value="diagnostico">
+            <div class="diag__field">
+              <label class="diag__label" for="diag-nombre">Nombre</label>
+              <input class="diag__input" type="text" id="diag-nombre" name="nombre" required autocomplete="name">
+            </div>
+            <div class="diag__field">
+              <label class="diag__label" for="diag-email">Email</label>
+              <input class="diag__input" type="email" id="diag-email" name="email" required autocomplete="email">
+            </div>
+            <input type="hidden" name="sector" id="diag-h-sector">
+            <input type="hidden" name="proceso" id="diag-h-proceso">
+            <input type="hidden" name="horas" id="diag-h-horas">
+            <input type="hidden" name="metodo" id="diag-h-metodo">
+            <input type="hidden" name="recomendacion" id="diag-h-recom">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+            <button type="submit" class="btn btn--outline btn--full">Enviarme el mini-plan</button>
+            <p class="diag__note">Al enviar aceptas que use estos datos solo para responderte.</p>
+            <p class="contact-form__feedback" id="diag-feedback" role="status" aria-live="polite" hidden></p>
+          </form>
         </div>
       </div>
 
@@ -269,32 +265,12 @@ const checkIcon =
     cta.href = prefix(ctaHref);
     cta.textContent = ctaText;
 
-    var resumen = [
-      'Sector: ' + (labels.sector || '—'),
-      'Proceso: ' + (labels.proceso || '—'),
-      'Tiempo/semana: ' + (labels.horas || '—'),
-      'Situación actual: ' + (labels.metodo || '—'),
-      'Recomendación: ' + level + ' — ' + action
-    ].join('\n');
-
-    // Formspree (campos ocultos) o mailto, según configuración
-    var hSector = document.getElementById('diag-h-sector');
-    if (hSector) {
-      hSector.value = labels.sector || '';
-      document.getElementById('diag-h-proceso').value = labels.proceso || '';
-      document.getElementById('diag-h-horas').value = labels.horas || '';
-      document.getElementById('diag-h-metodo').value = labels.metodo || '';
-      document.getElementById('diag-h-recom').value = level + ' — ' + action;
-    }
-
-    var mailto = document.getElementById('diag-mailto');
-    if (mailto) {
-      var email = root.getAttribute('data-email');
-      var subject = 'Diagnóstico exprés — ' + (labels.sector || 'mi negocio');
-      var bodyTxt = 'Hola Gorka,\n\nHe hecho el diagnóstico exprés y estos son mis datos:\n\n' +
-        resumen + '\n\nMe gustaría recibir el mini-plan ampliado.\n\nGracias.';
-      mailto.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyTxt);
-    }
+    // Campos ocultos que viajan a /api/lead junto al nombre y el email.
+    document.getElementById('diag-h-sector').value = labels.sector || '';
+    document.getElementById('diag-h-proceso').value = labels.proceso || '';
+    document.getElementById('diag-h-horas').value = labels.horas || '';
+    document.getElementById('diag-h-metodo').value = labels.metodo || '';
+    document.getElementById('diag-h-recom').value = level + ' — ' + action;
   }
 
   // Prefija rutas internas con la base del despliegue (GitHub Pages usa subcarpeta)
@@ -302,6 +278,42 @@ const checkIcon =
     var base = (root.getAttribute('data-base') || '').replace(/\/$/, '');
     if (path.charAt(0) !== '/') return path;
     return base + path;
+  }
+
+  // Envío del lead a /api/lead (D1) con mejora progresiva.
+  var form = document.getElementById('diag-form');
+  if (form) {
+    var feedback = document.getElementById('diag-feedback');
+    var submitBtn = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando…'; }
+      if (feedback) { feedback.hidden = true; feedback.className = 'contact-form__feedback'; }
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      })
+        .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+        .then(function (data) {
+          if (!data || !data.ok) throw new Error('Error');
+          form.reset();
+          if (feedback) {
+            feedback.textContent = '¡Hecho! Te llega el mini-plan a tu correo en menos de 24 horas laborables.';
+            feedback.classList.add('is-success');
+            feedback.hidden = false;
+          }
+          if (submitBtn) submitBtn.textContent = 'Enviado ✓';
+        })
+        .catch(function () {
+          if (feedback) {
+            feedback.textContent = 'No se pudo enviar. Inténtalo de nuevo en un momento.';
+            feedback.classList.add('is-error');
+            feedback.hidden = false;
+          }
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Enviarme el mini-plan'; }
+        });
+    });
   }
 
   show(0);

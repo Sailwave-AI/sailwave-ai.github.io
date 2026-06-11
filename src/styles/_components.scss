@@ -320,6 +320,21 @@
   justify-content: center;
 }
 
+.hero__actions-note {
+  margin: $space-4 auto 0;
+  max-width: 560px;
+  font-size: $font-size-sm;
+  color: rgba($color-white, 0.72);
+
+  a {
+    color: $color-white;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover { color: $color-accent-bright; }
+  }
+}
+
 // Hero stats block
 .hero__stats {
   display: flex;
@@ -1066,5 +1081,24 @@
     color: $color-muted;
     text-align: center;
     margin: $space-3 0 0;
+  }
+
+  &__feedback {
+    margin: $space-4 0 0;
+    padding: $space-3 $space-4;
+    border-radius: $border-radius;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    text-align: center;
+
+    &.is-success {
+      background: rgba($color-sage, 0.18);
+      color: darken($color-sage, 26%);
+    }
+
+    &.is-error {
+      background: rgba($color-primary, 0.1);
+      color: $color-primary-dark;
+    }
   }
 }
