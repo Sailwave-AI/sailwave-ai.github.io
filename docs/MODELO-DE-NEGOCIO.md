@@ -74,7 +74,7 @@ Reglas del embudo: responder a todo lead en <24 h laborables (la web lo promete)
 **Días 1–15 — Infraestructura.**
 - [ ] Verificar y comprar `eraldia.com` (y `.es`) en Cloudflare Registrar.
 - [ ] Publicar la web (ver `docs/PUBLICACION.md`) y activar `hola@eraldia.com` (reenvío gratuito con Cloudflare Email Routing).
-- [ ] Crear cuenta en Formspree y poner el ID en `config.toml` (`formspree_id`).
+- [ ] Crear la base de datos de leads en Cloudflare D1 y pegar su `database_id` en `wrangler.jsonc` (ver `docs/PUBLICACION.md`).
 - [ ] Alta de autónomo (si no está hecha) + gestoría. Epígrafe IAE 843.9 o similar; tarifa plana si aplica.
 - [ ] Perfil de LinkedIn actualizado con el posicionamiento de Eraldia y enlace a la web.
 - [ ] Plantillas listas: propuesta de diagnóstico, contrato simple de proyecto, factura.

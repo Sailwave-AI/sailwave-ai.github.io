@@ -33,13 +33,30 @@ Cloudflare → tu dominio → **Email → Email Routing**:
 2. Para **enviar** como `hola@eraldia.com` desde Gmail: Ajustes de Gmail → Cuentas → "Enviar como" (usa los datos SMTP de Gmail con tu cuenta).
 3. Actualiza `CONTACT_EMAIL` en `src/consts.ts`.
 
-## Paso 3 — Formulario de leads (Formspree)
+## Paso 3 — Formulario de leads (Cloudflare D1)
 
-1. Cuenta gratis en [formspree.io](https://formspree.io) (50 envíos/mes de sobra para empezar).
-2. Crea un formulario apuntando a tu correo y copia su ID (p. ej. `xqkrgyzb`).
-3. Pégalo en `src/consts.ts` → `export const FORMSPREE_ID = "xqkrgyzb"`.
-4. Haz commit: el formulario de la portada se activa solo (mientras esté vacío, la web muestra un botón de correo como alternativa).
-5. En Formspree, activa la notificación por email y prueba un envío real.
+Los leads del formulario de contacto y del diagnóstico exprés se guardan en una base de datos
+**Cloudflare D1** propia (sin servicios de terceros), vía el endpoint `POST /api/lead`.
+
+1. Crea la base de datos:
+   ```bash
+   npx wrangler d1 create eraldia-leads
+   ```
+2. Copia el `database_id` que devuelve y pégalo en `wrangler.jsonc` → `d1_databases[0].database_id`.
+3. Aplica el esquema (la tabla `leads`):
+   ```bash
+   npx wrangler d1 migrations apply eraldia-leads --remote
+   ```
+4. Despliega (`npm run deploy`) y prueba un envío real desde la web.
+5. Consulta los leads cuando quieras:
+   ```bash
+   npx wrangler d1 execute eraldia-leads --remote \
+     --command "SELECT created_at, source, nombre, email FROM leads ORDER BY created_at DESC LIMIT 20"
+   ```
+
+> Aviso por email opcional: si quieres recibir un correo por cada lead, añade un envío con
+> [MailChannels/Resend](https://developers.cloudflare.com/workers/) dentro de `src/pages/api/lead.ts`
+> tras el `INSERT`. De momento los leads quedan guardados en D1 y se consultan con el comando de arriba.
 
 ## Paso 4 — Analítica (sin cookies, sin banner)
 

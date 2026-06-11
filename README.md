@@ -26,15 +26,40 @@ npm run preview   # previsualizar el build local
 - `src/layouts/BaseLayout.astro` — layout base con head SEO, header, footer y script reveal
 - `src/styles/` — estilos SCSS (la identidad visual vive en `src/styles/_variables.scss`)
 - `public/` — recursos estáticos (imágenes: logo, favicon, og-image, hero, services, use-cases)
-- `src/consts.ts` — constantes globales (título, tagline, email de contacto, Formspree ID, LinkedIn)
+- `src/consts.ts` — constantes globales (título, tagline, email de contacto, LinkedIn)
+- `src/pages/api/lead.ts` — endpoint que guarda los leads del formulario y del diagnóstico exprés en Cloudflare D1
+- `migrations/` — esquema SQL de la base de datos D1 de leads
 - `.github/workflows/` — CI/CD con Node 20 y Astro
+
+## Captación de leads (Cloudflare D1)
+
+El formulario de contacto y el diagnóstico exprés (`/diagnostico-express/`) envían los datos al
+endpoint `POST /api/lead`, que los inserta en una base de datos [Cloudflare D1](https://developers.cloudflare.com/d1/).
+Sin servicios de terceros: los leads quedan en tu propia base.
+
+Puesta en marcha (una sola vez):
+
+```bash
+npx wrangler d1 create eraldia-leads          # copia el database_id que devuelve
+# pégalo en wrangler.jsonc → d1_databases[0].database_id
+npx wrangler d1 migrations apply eraldia-leads            # aplica el esquema en local
+npx wrangler d1 migrations apply eraldia-leads --remote   # y en producción
+```
+
+Para consultar los leads guardados:
+
+```bash
+npx wrangler d1 execute eraldia-leads --remote --command "SELECT * FROM leads ORDER BY created_at DESC LIMIT 20"
+```
 
 ## Configuración pendiente (TODOs)
 
 En `src/consts.ts`:
-- `FORMSPREE_ID` — ID del formulario de Formspree para activar la captación de leads.
 - `CONTACT_EMAIL` — cambiar a `hola@eraldia.com` cuando el correo del dominio esté activo.
 - `LINKEDIN_URL` — URL del perfil de LinkedIn para el footer.
+
+En `wrangler.jsonc`:
+- `d1_databases[0].database_id` — pegar el ID real de la base D1 (ver sección anterior).
 
 ## Despliegue
 

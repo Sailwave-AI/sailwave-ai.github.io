@@ -13,5 +13,17 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "dist"
-  }
+  },
+  // Base de datos D1 para guardar los leads del formulario de contacto y del
+  // diagnóstico exprés. Crea la base con `npx wrangler d1 create eraldia-leads`
+  // y pega aquí el `database_id` que devuelve. Aplica el esquema con
+  // `npx wrangler d1 migrations apply eraldia-leads` (local) y `--remote` (prod).
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "eraldia-leads",
+      "database_id": "REEMPLAZAR_CON_EL_DATABASE_ID_DE_D1",
+      "migrations_dir": "migrations"
+    }
+  ]
 }
