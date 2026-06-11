@@ -1,0 +1,298 @@
+// ==========================================================================
+// Diagnóstico exprés — quiz interactivo de captación
+// ==========================================================================
+// Herramienta de 4 preguntas que devuelve una recomendación orientativa y
+// alimenta el embudo (Formspree o mailto). Markup estático, JS progresivo.
+
+.diag {
+  max-width: 720px;
+  margin: 0 auto;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-xl;
+  padding: $space-7;
+  box-shadow: $shadow-md;
+
+  @media (max-width: $bp-sm) {
+    padding: $space-5;
+  }
+
+  // --- Barra de progreso ---------------------------------------------------
+  &__progress {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    margin-bottom: $space-6;
+  }
+
+  &__progress-track {
+    flex: 1;
+    height: 6px;
+    background: $color-bg-alt;
+    border-radius: $border-radius-full;
+    overflow: hidden;
+  }
+
+  &__progress-bar {
+    display: block;
+    height: 100%;
+    width: 25%;
+    background: linear-gradient(90deg, $color-primary, $color-accent);
+    border-radius: $border-radius-full;
+    transition: width $transition-base;
+  }
+
+  &__progress-label {
+    font-family: $font-code;
+    font-size: $font-size-xs;
+    color: $color-muted;
+    white-space: nowrap;
+  }
+
+  // --- Pasos ---------------------------------------------------------------
+  &__step {
+    display: none;
+
+    &.is-active {
+      display: block;
+      animation: diag-fade 300ms ease both;
+    }
+  }
+
+  &__eyebrow {
+    display: block;
+    font-family: $font-code;
+    font-size: $font-size-xs;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $color-primary;
+    margin-bottom: $space-2;
+  }
+
+  &__question {
+    font-family: $font-heading;
+    font-style: italic;
+    font-size: $font-size-xl;
+    line-height: $line-height-tight;
+    color: $color-dark;
+    margin: 0 0 $space-5;
+  }
+
+  // --- Opciones ------------------------------------------------------------
+  &__options {
+    display: grid;
+    gap: $space-3;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    width: 100%;
+    text-align: left;
+    font-family: $font-body;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-text;
+    background: $color-light;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    padding: $space-4;
+    cursor: pointer;
+    transition: border-color $transition-fast, background $transition-fast, transform $transition-fast;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $color-primary;
+      background: $color-white;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    &.is-selected {
+      border-color: $color-primary;
+      background: rgba($color-primary, 0.06);
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.12);
+    }
+  }
+
+  &__option-mark {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    border-radius: $border-radius-full;
+    border: 2px solid $color-border;
+    display: grid;
+    place-items: center;
+    color: $color-white;
+    transition: border-color $transition-fast, background $transition-fast;
+
+    .diag__option.is-selected & {
+      border-color: $color-primary;
+      background: $color-primary;
+    }
+
+    svg {
+      opacity: 0;
+      transition: opacity $transition-fast;
+
+      .diag__option.is-selected & {
+        opacity: 1;
+      }
+    }
+  }
+
+  // --- Navegación ----------------------------------------------------------
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $space-6;
+  }
+
+  &__back {
+    background: none;
+    border: none;
+    font-family: $font-body;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-muted;
+    cursor: pointer;
+    padding: $space-2 0;
+
+    &:hover { color: $color-primary; }
+    &[hidden] { visibility: hidden; }
+  }
+
+  // --- Resultado -----------------------------------------------------------
+  &__result-level {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    font-family: $font-code;
+    font-size: $font-size-xs;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: $font-weight-medium;
+    padding: $space-2 $space-3;
+    border-radius: $border-radius-full;
+    margin-bottom: $space-4;
+
+    &--alto   { background: rgba($color-primary, 0.1); color: $color-primary-dark; }
+    &--medio  { background: rgba($color-accent, 0.16); color: $color-accent-dark; }
+    &--explorar { background: rgba($color-sage, 0.18); color: darken($color-sage, 22%); }
+  }
+
+  &__result-title {
+    font-family: $font-heading;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: $line-height-tight;
+    color: $color-dark;
+    margin: 0 0 $space-4;
+  }
+
+  &__result-body {
+    font-size: $font-size-base;
+    color: $color-text-light;
+    line-height: $line-height-base;
+    margin: 0 0 $space-5;
+  }
+
+  &__result-card {
+    background: $color-light;
+    border: 1px solid $color-border;
+    border-left: 3px solid $color-primary;
+    border-radius: $border-radius;
+    padding: $space-4 $space-5;
+    margin-bottom: $space-6;
+  }
+
+  &__result-card-label {
+    font-family: $font-code;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $color-muted;
+    margin: 0 0 $space-1;
+  }
+
+  &__result-card-text {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-dark;
+    margin: 0;
+  }
+
+  // --- Captura de lead -----------------------------------------------------
+  &__capture {
+    border-top: 1px solid $color-border;
+    padding-top: $space-6;
+    margin-top: $space-6;
+  }
+
+  &__capture-title {
+    font-family: $font-heading;
+    font-style: italic;
+    font-size: $font-size-xl;
+    color: $color-dark;
+    margin: 0 0 $space-2;
+  }
+
+  &__capture-desc {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    margin: 0 0 $space-5;
+  }
+
+  &__field { margin-bottom: $space-4; }
+
+  &__label {
+    display: block;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-sm;
+    color: $color-dark;
+    margin-bottom: $space-2;
+  }
+
+  &__input {
+    width: 100%;
+    font-family: $font-body;
+    font-size: $font-size-base;
+    color: $color-text;
+    background: $color-light;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    padding: $space-3 $space-4;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
+    }
+  }
+
+  &__note {
+    font-size: $font-size-xs;
+    color: $color-muted;
+    text-align: center;
+    margin: $space-3 0 0;
+  }
+
+  // --- Sin JavaScript ------------------------------------------------------
+  &__noscript {
+    margin-top: $space-5;
+    padding: $space-4 $space-5;
+    background: $color-light;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    font-size: $font-size-sm;
+    color: $color-text-light;
+  }
+}
+
+@keyframes diag-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

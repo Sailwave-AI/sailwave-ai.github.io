@@ -1,0 +1,311 @@
+---
+import { url, BASE } from '../utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT_EMAIL, FORMSPREE_ID } from '../consts';
+
+const checkIcon =
+  '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+---
+
+<BaseLayout
+  title="Diagnóstico exprés"
+  description="Responde 4 preguntas y descubre en un minuto qué proceso de tu pyme conviene automatizar primero y por dónde empezar. Gratis y sin registro."
+>
+
+<!-- ================================================================ -->
+<!-- Cabecera                                                          -->
+<!-- ================================================================ -->
+<section class="section section--alt">
+  <div class="container container--narrow">
+    <div class="section__header">
+      <span class="hero__badge">Gratis · 1 minuto · sin registro</span>
+      <h1 class="section__title">Diagnóstico exprés de automatización</h1>
+      <p class="section__subtitle">
+        Cuatro preguntas rápidas sobre tu negocio y te digo qué proceso conviene automatizar
+        primero y cuál es el siguiente paso más sensato. Sin compromiso y sin jerga.
+      </p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- Quiz                                                          -->
+    <!-- ============================================================ -->
+    <div class="diag reveal" id="diag" data-formspree={FORMSPREE_ID} data-email={CONTACT_EMAIL} data-base={BASE}>
+
+      <!-- Progreso -->
+      <div class="diag__progress" id="diag-progress">
+        <div class="diag__progress-track">
+          <span class="diag__progress-bar" id="diag-bar"></span>
+        </div>
+        <span class="diag__progress-label" id="diag-progress-label">Paso 1 de 4</span>
+      </div>
+
+      <!-- Paso 1 — Sector -->
+      <div class="diag__step is-active" data-step="0">
+        <span class="diag__eyebrow">Tu negocio</span>
+        <h2 class="diag__question">¿A qué se dedica tu pyme?</h2>
+        <div class="diag__options" data-key="sector">
+          <button type="button" class="diag__option" data-value="gestoria" data-label="Gestoría o asesoría"><span class="diag__option-mark" set:html={checkIcon}></span>Gestoría o asesoría</button>
+          <button type="button" class="diag__option" data-value="clinica" data-label="Clínica (dental, fisio, veterinaria)"><span class="diag__option-mark" set:html={checkIcon}></span>Clínica (dental, fisio, veterinaria)</button>
+          <button type="button" class="diag__option" data-value="hosteleria" data-label="Hostelería o gimnasio"><span class="diag__option-mark" set:html={checkIcon}></span>Hostelería, restaurante o gimnasio</button>
+          <button type="button" class="diag__option" data-value="inmo" data-label="Inmobiliaria o despacho"><span class="diag__option-mark" set:html={checkIcon}></span>Inmobiliaria o despacho profesional</button>
+          <button type="button" class="diag__option" data-value="otro" data-label="Otro sector"><span class="diag__option-mark" set:html={checkIcon}></span>Otro tipo de negocio</button>
+        </div>
+      </div>
+
+      <!-- Paso 2 — Proceso -->
+      <div class="diag__step" data-step="1">
+        <span class="diag__eyebrow">El dolor</span>
+        <h2 class="diag__question">¿Qué tarea os come más tiempo cada semana?</h2>
+        <div class="diag__options" data-key="proceso">
+          <button type="button" class="diag__option" data-value="atencion" data-label="Responder siempre las mismas preguntas"><span class="diag__option-mark" set:html={checkIcon}></span>Responder siempre las mismas preguntas (teléfono, email, WhatsApp)</button>
+          <button type="button" class="diag__option" data-value="citas" data-label="Gestionar citas o reservas"><span class="diag__option-mark" set:html={checkIcon}></span>Gestionar citas o reservas (y las ausencias)</button>
+          <button type="button" class="diag__option" data-value="presupuestos" data-label="Hacer presupuestos o pasar facturas"><span class="diag__option-mark" set:html={checkIcon}></span>Hacer presupuestos o pasar facturas a mano</button>
+          <button type="button" class="diag__option" data-value="informes" data-label="Preparar informes o mover datos"><span class="diag__option-mark" set:html={checkIcon}></span>Preparar informes o mover datos entre programas</button>
+          <button type="button" class="diag__option" data-value="captacion" data-label="Captar y seguir a clientes nuevos"><span class="diag__option-mark" set:html={checkIcon}></span>Captar y dar seguimiento a clientes nuevos</button>
+        </div>
+      </div>
+
+      <!-- Paso 3 — Horas -->
+      <div class="diag__step" data-step="2">
+        <span class="diag__eyebrow">El volumen</span>
+        <h2 class="diag__question">¿Cuánto tiempo le dedicáis a la semana?</h2>
+        <div class="diag__options" data-key="horas">
+          <button type="button" class="diag__option" data-value="1" data-label="Menos de 2 horas"><span class="diag__option-mark" set:html={checkIcon}></span>Menos de 2 horas</button>
+          <button type="button" class="diag__option" data-value="3" data-label="Entre 2 y 5 horas"><span class="diag__option-mark" set:html={checkIcon}></span>Entre 2 y 5 horas</button>
+          <button type="button" class="diag__option" data-value="7" data-label="Entre 5 y 10 horas"><span class="diag__option-mark" set:html={checkIcon}></span>Entre 5 y 10 horas</button>
+          <button type="button" class="diag__option" data-value="12" data-label="Más de 10 horas"><span class="diag__option-mark" set:html={checkIcon}></span>Más de 10 horas</button>
+        </div>
+      </div>
+
+      <!-- Paso 4 — Método actual -->
+      <div class="diag__step" data-step="3">
+        <span class="diag__eyebrow">El punto de partida</span>
+        <h2 class="diag__question">¿Cómo lo hacéis ahora mismo?</h2>
+        <div class="diag__options" data-key="metodo">
+          <button type="button" class="diag__option" data-value="manual" data-label="A mano, sin herramientas"><span class="diag__option-mark" set:html={checkIcon}></span>A mano, sin ninguna herramienta</button>
+          <button type="button" class="diag__option" data-value="sheets" data-label="Con hojas de cálculo"><span class="diag__option-mark" set:html={checkIcon}></span>Con hojas de cálculo (Excel, Sheets)</button>
+          <button type="button" class="diag__option" data-value="software" data-label="Con un programa, metiendo datos a mano"><span class="diag__option-mark" set:html={checkIcon}></span>Con un programa, pero metiendo datos a mano</button>
+          <button type="button" class="diag__option" data-value="auto" data-label="Ya algo automatizado, quiero mejorarlo"><span class="diag__option-mark" set:html={checkIcon}></span>Ya tengo algo automatizado y quiero mejorarlo</button>
+        </div>
+      </div>
+
+      <!-- Paso 5 — Resultado -->
+      <div class="diag__step" data-step="4">
+        <span class="diag__result-level" id="diag-level"></span>
+        <h2 class="diag__result-title" id="diag-result-title"></h2>
+        <p class="diag__result-body" id="diag-result-body"></p>
+
+        <div class="diag__result-card">
+          <p class="diag__result-card-label">Por dónde empezaría</p>
+          <p class="diag__result-card-text" id="diag-result-action"></p>
+        </div>
+
+        <a class="btn btn--primary btn--lg btn--full" id="diag-cta" href={url('/#contacto')}>Reservar mi llamada gratuita</a>
+
+        <!-- Captura de lead -->
+        <div class="diag__capture">
+          <h3 class="diag__capture-title">¿Te envío el mini-plan por email?</h3>
+          <p class="diag__capture-desc">
+            Te mando un correo con esta recomendación ampliada y las 2-3 automatizaciones
+            concretas para tu caso. Sin newsletters: solo esta respuesta.
+          </p>
+
+          {FORMSPREE_ID ? (
+            <form class="diag__form" id="diag-form" action={`https://formspree.io/f/${FORMSPREE_ID}`} method="POST">
+              <div class="diag__field">
+                <label class="diag__label" for="diag-nombre">Nombre</label>
+                <input class="diag__input" type="text" id="diag-nombre" name="nombre" required autocomplete="name">
+              </div>
+              <div class="diag__field">
+                <label class="diag__label" for="diag-email">Email</label>
+                <input class="diag__input" type="email" id="diag-email" name="email" required autocomplete="email">
+              </div>
+              <input type="hidden" name="sector" id="diag-h-sector">
+              <input type="hidden" name="proceso" id="diag-h-proceso">
+              <input type="hidden" name="horas" id="diag-h-horas">
+              <input type="hidden" name="metodo" id="diag-h-metodo">
+              <input type="hidden" name="recomendacion" id="diag-h-recom">
+              <input type="hidden" name="_subject" value="Diagnóstico exprés — nuevo lead">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+              <button type="submit" class="btn btn--outline btn--full">Enviarme el mini-plan</button>
+              <p class="diag__note">Al enviar aceptas que use estos datos solo para responderte.</p>
+            </form>
+          ) : (
+            <a class="btn btn--outline btn--full" id="diag-mailto" href={`mailto:${CONTACT_EMAIL}`}>Enviarme el mini-plan por email</a>
+          )}
+        </div>
+      </div>
+
+      <!-- Navegación -->
+      <div class="diag__nav" id="diag-nav">
+        <button type="button" class="diag__back" id="diag-back" hidden>&larr; Atrás</button>
+        <span></span>
+      </div>
+
+      <noscript>
+        <p class="diag__noscript">
+          Esta herramienta necesita JavaScript. Si lo tienes desactivado,
+          <a href={url('/#contacto')}>escríbeme dos líneas sobre tu negocio</a> y te respondo en menos de 24 horas.
+        </p>
+      </noscript>
+
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+(function () {
+  var root = document.getElementById('diag');
+  if (!root) return;
+
+  var TOTAL = 4;
+  var answers = {};
+  var labels = {};
+  var current = 0;
+
+  var steps = Array.prototype.slice.call(root.querySelectorAll('.diag__step'));
+  var bar = document.getElementById('diag-bar');
+  var progress = document.getElementById('diag-progress');
+  var progressLabel = document.getElementById('diag-progress-label');
+  var back = document.getElementById('diag-back');
+
+  function show(index) {
+    current = index;
+    steps.forEach(function (s) {
+      s.classList.toggle('is-active', Number(s.getAttribute('data-step')) === index);
+    });
+    var isResult = index >= TOTAL;
+    progress.style.display = isResult ? 'none' : '';
+    if (!isResult) {
+      bar.style.width = ((index + 1) / TOTAL) * 100 + '%';
+      progressLabel.textContent = 'Paso ' + (index + 1) + ' de ' + TOTAL;
+    }
+    back.hidden = index === 0 || isResult;
+    var focusable = steps[index] && steps[index].querySelector('.diag__option, input, a, button');
+    if (focusable && index > 0) { try { focusable.focus({ preventScroll: true }); } catch (e) {} }
+  }
+
+  // Selección de opción
+  root.querySelectorAll('.diag__options').forEach(function (group) {
+    var key = group.getAttribute('data-key');
+    group.querySelectorAll('.diag__option').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        group.querySelectorAll('.diag__option').forEach(function (b) { b.classList.remove('is-selected'); });
+        btn.classList.add('is-selected');
+        answers[key] = btn.getAttribute('data-value');
+        labels[key] = btn.getAttribute('data-label');
+        setTimeout(function () {
+          if (current + 1 >= TOTAL) { buildResult(); show(TOTAL); }
+          else { show(current + 1); }
+        }, 220);
+      });
+    });
+  });
+
+  back.addEventListener('click', function () { if (current > 0) show(current - 1); });
+
+  // --- Lógica de recomendación ------------------------------------------
+  var PROCESOS = {
+    atencion:     { nombre: 'la atención a preguntas repetidas', accion: 'un asistente que responde las preguntas frecuentes por WhatsApp, web o email a cualquier hora, y te pasa solo lo que necesita tu intervención.' },
+    citas:        { nombre: 'la gestión de citas y reservas', accion: 'recordatorios automáticos y gestión de citas/reservas que reducen las ausencias y los huecos sin llamadas manuales.' },
+    presupuestos: { nombre: 'los presupuestos y la facturación', accion: 'generación automática de presupuestos y facturas a partir de tus datos, lista para enviar en minutos en vez de horas.' },
+    informes:     { nombre: 'los informes y el traspaso de datos', accion: 'un flujo que mueve los datos entre tus programas y arma los informes solo, sin copiar y pegar.' },
+    captacion:    { nombre: 'la captación y el seguimiento de clientes', accion: 'un seguimiento automático de cada contacto nuevo (CRM ligero) para que ningún lead se enfríe ni se pierda.' }
+  };
+
+  var SECTORES = {
+    gestoria: 'gestoría o asesoría', clinica: 'clínica', hosteleria: 'negocio de hostelería o fitness',
+    inmo: 'inmobiliaria o despacho', otro: 'negocio'
+  };
+
+  var METODO_PESO = { manual: 1.0, sheets: 0.9, software: 0.8, auto: 0.5 };
+
+  function buildResult() {
+    var horas = Number(answers.horas) || 1;
+    var peso = METODO_PESO[answers.metodo] != null ? METODO_PESO[answers.metodo] : 0.8;
+    var score = horas * peso;
+    var proc = PROCESOS[answers.proceso] || PROCESOS.atencion;
+    var sector = SECTORES[answers.sector] || 'negocio';
+
+    var level, levelClass, title, body, action, ctaHref, ctaText;
+    var serviciosBase = '/servicios/';
+
+    if (score >= 6) {
+      level = 'Potencial alto';
+      levelClass = 'alto';
+      title = 'Tienes un caso claro para automatizar.';
+      body = 'Dedicáis bastante tiempo a ' + proc.nombre + ' y todavía de forma manual. En una ' +
+        sector + ' eso es justo el tipo de proceso repetible que sale rentable automatizar pronto: el ahorro de horas se nota desde el primer mes.';
+      action = 'Una automatización a medida: ' + proc.accion;
+      ctaHref = serviciosBase + 'automatizacion/';
+      ctaText = 'Ver cómo sería la automatización';
+    } else if (score >= 3) {
+      level = 'Potencial medio';
+      levelClass = 'medio';
+      title = 'Hay margen, y conviene medirlo bien antes de invertir.';
+      body = 'En tu ' + sector + ' se va tiempo en ' + proc.nombre + ', pero merece la pena cuantificar el ahorro real ' +
+        'antes de construir nada. Para eso está el diagnóstico: dos semanas para priorizar qué automatizar y con qué retorno.';
+      action = 'Un diagnóstico de IA que mida el ahorro de automatizar ' + proc.nombre + ' y lo priorice frente a otras tareas.';
+      ctaHref = serviciosBase + 'diagnostico-ia/';
+      ctaText = 'Ver el diagnóstico de IA';
+    } else {
+      level = 'Para explorar';
+      levelClass = 'explorar';
+      title = 'Aún no es tu mayor urgencia, pero hay por dónde empezar.';
+      body = 'De momento ' + proc.nombre + ' no os quita tantas horas, así que no tiene sentido un proyecto grande. ' +
+        'Lo más rentable es una llamada de 30 minutos para detectar el proceso que de verdad duela en tu ' + sector + '.';
+      action = 'Una llamada gratuita de 30 minutos para localizar el proceso con más potencial antes de invertir nada.';
+      ctaHref = '/#contacto';
+      ctaText = 'Reservar mi llamada gratuita';
+    }
+
+    document.getElementById('diag-level').textContent = level;
+    document.getElementById('diag-level').className = 'diag__result-level diag__result-level--' + levelClass;
+    document.getElementById('diag-result-title').textContent = title;
+    document.getElementById('diag-result-body').textContent = body;
+    document.getElementById('diag-result-action').textContent = action;
+
+    var cta = document.getElementById('diag-cta');
+    cta.href = prefix(ctaHref);
+    cta.textContent = ctaText;
+
+    var resumen = [
+      'Sector: ' + (labels.sector || '—'),
+      'Proceso: ' + (labels.proceso || '—'),
+      'Tiempo/semana: ' + (labels.horas || '—'),
+      'Situación actual: ' + (labels.metodo || '—'),
+      'Recomendación: ' + level + ' — ' + action
+    ].join('\n');
+
+    // Formspree (campos ocultos) o mailto, según configuración
+    var hSector = document.getElementById('diag-h-sector');
+    if (hSector) {
+      hSector.value = labels.sector || '';
+      document.getElementById('diag-h-proceso').value = labels.proceso || '';
+      document.getElementById('diag-h-horas').value = labels.horas || '';
+      document.getElementById('diag-h-metodo').value = labels.metodo || '';
+      document.getElementById('diag-h-recom').value = level + ' — ' + action;
+    }
+
+    var mailto = document.getElementById('diag-mailto');
+    if (mailto) {
+      var email = root.getAttribute('data-email');
+      var subject = 'Diagnóstico exprés — ' + (labels.sector || 'mi negocio');
+      var bodyTxt = 'Hola Gorka,\n\nHe hecho el diagnóstico exprés y estos son mis datos:\n\n' +
+        resumen + '\n\nMe gustaría recibir el mini-plan ampliado.\n\nGracias.';
+      mailto.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyTxt);
+    }
+  }
+
+  // Prefija rutas internas con la base del despliegue (GitHub Pages usa subcarpeta)
+  function prefix(path) {
+    var base = (root.getAttribute('data-base') || '').replace(/\/$/, '');
+    if (path.charAt(0) !== '/') return path;
+    return base + path;
+  }
+
+  show(0);
+})();
+</script>
+
+</BaseLayout>
