@@ -38,6 +38,10 @@ jobs:
         id: publish
         env:
           FORCE: ${{ inputs.force && '1' || '' }}
+          # Publicación en LinkedIn en pausa hasta nueva orden (junio 2026).
+          # La web se sigue publicando con normalidad. Para reanudar LinkedIn,
+          # pon SKIP_LINKEDIN a "" (o borra esta línea).
+          SKIP_LINKEDIN: "1"
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_AUTHOR_URN: ${{ secrets.LINKEDIN_AUTHOR_URN }}
           SITE_URL: "https://sailwave-ai.github.io/eraldia-web"

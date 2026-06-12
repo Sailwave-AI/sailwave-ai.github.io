@@ -84,6 +84,15 @@ setOutput('remaining', String(queued.length - 1));
 if (queued.length - 1 <= 2) setOutput('queue_low', 'true');
 
 // --- 3. LinkedIn ------------------------------------------------------------
+// Pausa de LinkedIn: SKIP_LINKEDIN detiene SOLO la publicación social; el post
+// web ya está publicado y la cadencia sigue igual. El .linkedin.md se conserva
+// en la cola para no perder el texto. Quitar la variable en el workflow reanuda.
+if (process.env.SKIP_LINKEDIN) {
+  console.log('LinkedIn en pausa (SKIP_LINKEDIN): se omite la publicación social.');
+  setOutput('linkedin', 'skipped');
+  process.exit(0);
+}
+
 const liFile = join(QUEUE_DIR, queueFile.replace(/\.md$/, '.linkedin.md'));
 const postUrl = `${SITE_URL}/blog/${slug}/`;
 let liText = null;
