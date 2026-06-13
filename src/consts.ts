@@ -10,7 +10,7 @@ export const AUTHOR = 'Gorka Alapont';
 
 // Correo del dominio (Proton). Es el email público (footer, contacto) y el
 // destino de los avisos de leads que envía /api/lead.
-export const CONTACT_EMAIL = 'hello@eraldia.com';
+export const CONTACT_EMAIL = 'hola@eraldia.com';
 
 // Remitente de los avisos de leads (formulario de contacto y diagnóstico exprés).
 // Debe ser una dirección de un dominio verificado en Resend; mientras eraldia.com
