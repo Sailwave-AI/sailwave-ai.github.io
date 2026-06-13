@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { url } from '../../utils';
-import { CONTACT_EMAIL, LEAD_NOTIFY_FROM } from '../../consts';
+import { LEAD_NOTIFY_TO, LEAD_NOTIFY_FROM } from '../../consts';
 
 // Endpoint dinámico: no se prerenderiza, se ejecuta en el Worker de Cloudflare.
 export const prerender = false;
@@ -184,7 +184,7 @@ async function notifyByEmail(apiKey: string, lead: Lead): Promise<void> {
     },
     body: JSON.stringify({
       from: LEAD_NOTIFY_FROM,
-      to: [CONTACT_EMAIL],
+      to: [LEAD_NOTIFY_TO],
       subject,
       html,
       // Responder al correo de aviso escribe directamente al lead.

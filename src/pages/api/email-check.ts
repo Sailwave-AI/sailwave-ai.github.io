@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { CONTACT_EMAIL, LEAD_NOTIFY_FROM } from '../../consts';
+import { LEAD_NOTIFY_TO, LEAD_NOTIFY_FROM } from '../../consts';
 
 // Endpoint de diagnóstico TEMPORAL para confirmar, tras un deploy, que el
 // Worker ve la RESEND_API_KEY y que Resend la acepta. Nunca devuelve el valor
@@ -17,7 +17,7 @@ export const GET: APIRoute = async ({ url, locals }) => {
     resendKeyPresent: keyPresent,
     dbBound: Boolean(env?.DB),
     from: LEAD_NOTIFY_FROM,
-    to: CONTACT_EMAIL,
+    to: LEAD_NOTIFY_TO,
   };
 
   if (url.searchParams.get('ping') === '1' && keyPresent) {
