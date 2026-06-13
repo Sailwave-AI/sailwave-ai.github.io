@@ -8,9 +8,12 @@ export const SITE_DESCRIPTION =
 export const TAGLINE = 'Pon tu pyme al día con la IA';
 export const AUTHOR = 'Gorka Alapont';
 
-// Correo del dominio (Proton). Es el email público (footer, contacto) y el
-// destino de los avisos de leads que envía /api/lead.
+// Correo público del dominio (Proton): footer, formulario, NAP.
 export const CONTACT_EMAIL = 'hola@eraldia.com';
+
+// Destinatario interno de los avisos de leads que envía /api/lead (puede ser
+// distinto del email público de arriba).
+export const LEAD_NOTIFY_TO = 'gorka@eraldia.com';
 
 // Remitente de los avisos de leads (formulario de contacto y diagnóstico exprés).
 // Debe ser una dirección de un dominio verificado en Resend; mientras eraldia.com
