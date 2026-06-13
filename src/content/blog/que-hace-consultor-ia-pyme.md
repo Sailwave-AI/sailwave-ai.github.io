@@ -1,7 +1,7 @@
 ---
 title: "Qué hace un consultor de IA para pymes (y cuándo no necesitas uno)"
 description: "Qué hace exactamente un consultor de IA para pymes, qué entregables debes exigir, cuánto cuesta en 2026 y en qué casos no te hace falta contratar a nadie."
-date: 2026-01-01
+date: 2026-06-13
 tags: ["consultoría", "ia", "pymes"]
 categories: ["guías"]
 ---
