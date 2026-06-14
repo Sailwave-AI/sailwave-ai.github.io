@@ -35,7 +35,7 @@ El error no suele ser la herramienta: es pegar datos de clientes en cualquier IA
 
 ## Lo que esto no es
 
-No es una opinión legal: para la parte jurídica del RGPD está tu asesor de protección de datos. Lo que aquí cuento es el lado técnico —cómo se configuran y documentan los flujos— para que la conversación con quien lleve vuestro cumplimiento sea fácil. Puedes ver cómo trabajo con [asesorías y gestorías](/casos/gestorias/) o cómo planteo la [automatización a medida](/servicios/automatizacion/) con estos límites desde el diseño.
+No es una opinión legal: para la parte jurídica del RGPD está tu asesor de protección de datos. Lo que aquí cuento es el lado técnico —cómo se configuran y documentan los flujos— para que la conversación con quien lleve vuestro cumplimiento sea fácil. Puedes ver cómo trabajo con [asesorías y gestorías](/ia-para-asesorias/) o cómo planteo la [automatización a medida](/servicios/automatizacion/) con estos límites desde el diseño.
 
 ## Preguntas frecuentes
 

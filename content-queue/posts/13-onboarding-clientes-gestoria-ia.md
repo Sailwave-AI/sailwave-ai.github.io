@@ -35,7 +35,7 @@ Cada atasco es una ida y vuelta de correos que retrasa el primer trabajo factura
 
 La relación. La llamada de bienvenida, explicarle al cliente cómo trabajáis, decidir cómo encaja su caso: eso es lo que fideliza y es vuestro. La automatización quita la parte administrativa del alta para que tengáis tiempo de hacer bien la parte humana.
 
-Si tu despacho capta clientes con regularidad y cada alta es un pequeño caos, esto suele ser de las primeras automatizaciones que rinden. Lo concreto sale del [diagnóstico](/servicios/diagnostico-ia/) (dos semanas, 490 €, precios de 2026); puedes ver cómo trabajo con [asesorías y gestorías](/casos/gestorias/) y, si quieres una idea rápida de por dónde empezar, hacer el [diagnóstico exprés](/diagnostico-express/) en un minuto.
+Si tu despacho capta clientes con regularidad y cada alta es un pequeño caos, esto suele ser de las primeras automatizaciones que rinden. Lo concreto sale del [diagnóstico](/servicios/diagnostico-ia/) (dos semanas, 490 €, precios de 2026); puedes ver cómo trabajo con [asesorías y gestorías](/ia-para-asesorias/) y, si quieres una idea rápida de por dónde empezar, hacer el [diagnóstico exprés](/diagnostico-express/) en un minuto.
 
 ## Preguntas frecuentes
 

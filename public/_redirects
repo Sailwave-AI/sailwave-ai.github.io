@@ -1,0 +1,4 @@
+# Redirecciones (Cloudflare Pages). Las landings de sector se movieron a URLs
+# keyword-rich propias; mantenemos el enlace de las antiguas /casos/*.
+/casos/gestorias/  /ia-para-asesorias/  301
+/casos/abogados/   /ia-para-abogados/   301
