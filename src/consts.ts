@@ -21,3 +21,7 @@ export const LEAD_NOTIFY_TO = 'gorka@eraldia.com';
 export const LEAD_NOTIFY_FROM = 'Eraldia <hola@eraldia.com>';
 
 export const LINKEDIN_URL = '';
+
+// Perfil de Twitter/X (handle y URL): Twitter Cards y sameAs del schema.
+export const TWITTER_HANDLE = '@alapontg';
+export const TWITTER_URL = 'https://twitter.com/alapontg';
