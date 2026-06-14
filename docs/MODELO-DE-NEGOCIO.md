@@ -15,12 +15,20 @@
 
 **Pyme española de 3 a 50 empleados** con procesos administrativos o de atención al cliente que se hacen a mano, facturación estable (>200k €/año) y un gerente accesible que decide rápido.
 
+**Vertical dominante de la web (2026):** el escaparate se enfoca sobre todo en
+**asesorías/gestorías** y **despachos de abogados** (landings propias en
+`/ia-para-asesorias/` y `/ia-para-abogados/`), con doble ángulo: ahorrar horas
+e *impulsar el negocio* (más capacidad sin contratar, retención, referidos). El
+resto de pymes se mantiene como vía secundaria.
+
 Sectores de entrada (donde el dolor es más claro y repetible):
 1. **Gestorías y asesorías** — papel, plazos y consultas repetitivas. Además, son *multiplicadores*: cada gestoría tiene decenas de clientes pyme a los que te puede referir.
-2. **Clínicas** (dental, fisio, veterinaria) — citas, ausencias, dudas frecuentes.
-3. **Hostelería y gimnasios** — reservas, opiniones, retención.
+2. **Despachos de abogados** — documento, plazos procesales, intake y horas no facturables; con el secreto profesional como punto de partida.
+3. **Clínicas** (dental, fisio, veterinaria) — citas, ausencias, dudas frecuentes.
+4. **Hostelería y gimnasios** — reservas, opiniones, retención.
 
-Regla práctica: di que sí a cualquier pyme con un proceso claro que duela; especialízate de facto en el sector del que vengan los 3 primeros clientes.
+Regla práctica: di que sí a cualquier pyme con un proceso claro que duela, pero
+**prioriza asesorías y despachos** en web, contenido y captación.
 
 ## 3. Servicios (escalera de valor)
 

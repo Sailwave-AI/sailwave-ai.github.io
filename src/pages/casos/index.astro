@@ -8,6 +8,22 @@ const description = 'Dónde la automatización con IA paga más rápido: ejemplo
 
 const sectores = await getCollection('sectores');
 sectores.sort((a, b) => (a.data.weight ?? 99) - (b.data.weight ?? 99));
+
+// Sectores prioritarios: tienen landing propia y profunda.
+const focos = [
+  {
+    href: url('/ia-para-asesorias/'),
+    badge: 'Foco principal',
+    title: 'IA para asesorías y gestorías',
+    desc: 'Picado de facturas y nóminas, recordatorios de plazos, respuestas a consultas y onboarding. Menos horas administrativas y más capacidad para crecer.',
+  },
+  {
+    href: url('/ia-para-abogados/'),
+    badge: 'Foco principal',
+    title: 'IA para despachos de abogados',
+    desc: 'Resumen y búsqueda en expedientes, control de plazos procesales e intake —con el secreto profesional por delante. Más horas facturables.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -21,6 +37,19 @@ sectores.sort((a, b) => (a.data.weight ?? 99) - (b.data.weight ?? 99));
 
 <section class="section">
   <div class="container container--narrow">
+    <div class="grid grid--2 reveal-stagger" style="margin-bottom: 3rem;">
+      {focos.map(foco => (
+        <a href={foco.href} class="service-card reveal">
+          <span class="use-case-card__badge">{foco.badge}</span>
+          <h2 class="service-card__title" style="margin-top: 1rem;">{foco.title}</h2>
+          <p class="service-card__desc">{foco.desc}</p>
+          <span class="service-card__action">Ver automatizaciones y precios</span>
+        </a>
+      ))}
+    </div>
+
+    <h2 class="section__title" style="text-align:center; margin-bottom: 2rem;">Otros sectores donde también trabajo</h2>
+
     <div class="use-cases-grid">
       {sectores.map(sector => (
         <a href={url(`/casos/${sector.slug}/`)} class={`card use-case-card use-case-card--link${sector.data.featured ? ' use-case-card--featured' : ''}`}>

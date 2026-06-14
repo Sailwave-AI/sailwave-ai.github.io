@@ -6,7 +6,7 @@ metaDescription: "Automatización con IA para clínicas dentales, de fisioterapi
 image: "/images/use-cases/healthcare.jpg"
 imageAlt: "Equipo de una clínica usando herramientas digitales"
 weight: 2
-featured: true
+featured: false
 bullets:
   - "Citas automatizadas con recordatorios que reducen ausencias"
   - "Asistente de IA para dudas frecuentes y pre-triaje"

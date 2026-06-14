@@ -39,7 +39,7 @@ No toda la extracción necesita un modelo de lenguaje. Para datos muy estructura
 
 ## Cuándo se amortiza
 
-La regla práctica: con más de 100 facturas a la semana, el registro automático se amortiza en el primer trimestre. Por debajo de eso, sigue mereciendo la pena por el error que evita y por liberar a alguien del picado, pero el retorno se mide más en tranquilidad que en horas. Lo concreto para tu despacho sale del diagnóstico; puedes ver cómo trabajo con [asesorías y gestorías](/casos/gestorias/) o pasar directamente a la [automatización a medida](/servicios/automatizacion/).
+La regla práctica: con más de 100 facturas a la semana, el registro automático se amortiza en el primer trimestre. Por debajo de eso, sigue mereciendo la pena por el error que evita y por liberar a alguien del picado, pero el retorno se mide más en tranquilidad que en horas. Lo concreto para tu despacho sale del diagnóstico; puedes ver cómo trabajo con [asesorías y gestorías](/ia-para-asesorias/) o pasar directamente a la [automatización a medida](/servicios/automatizacion/).
 
 ## Preguntas frecuentes
 

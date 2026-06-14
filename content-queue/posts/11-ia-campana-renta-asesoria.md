@@ -40,7 +40,7 @@ Las tres se automatizan sin tocar tu programa de Renta.
 
 Una automatización de campaña hay que montarla **antes** de la campaña, no durante. Lo realista es implantarla entre enero y marzo para que en abril ya esté rodada. Si lo dejas para abril, la propia urgencia impide pararse a montarla.
 
-Si quieres llegar al próximo abril con esto funcionando, lo sensato es empezar por un [diagnóstico](/servicios/diagnostico-ia/) en otoño: dos semanas, 490 € (precios de 2026), y sales sabiendo cuál de las tres te conviene primero. Puedes ver cómo trabajo con despachos en la página de [asesorías y gestorías](/casos/gestorias/).
+Si quieres llegar al próximo abril con esto funcionando, lo sensato es empezar por un [diagnóstico](/servicios/diagnostico-ia/) en otoño: dos semanas, 490 € (precios de 2026), y sales sabiendo cuál de las tres te conviene primero. Puedes ver cómo trabajo con despachos en la página de [asesorías y gestorías](/ia-para-asesorias/).
 
 ## Preguntas frecuentes
 
