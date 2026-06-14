@@ -2,6 +2,7 @@
 import { url } from '../../utils';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { SITE_TITLE, AUTHOR } from '../../consts';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -22,6 +23,38 @@ const { Content } = await render(post);
 
 const pageUrl = Astro.url.href;
 const publishedTime = post.data.date.toISOString();
+const author = post.data.author ?? AUTHOR;
+
+const siteUrl = new URL(url('/'), Astro.url).href;
+const sobreMiUrl = new URL(url('/sobre-mi/'), Astro.url).href;
+const ogImageUrl = new URL(url('/images/og-image.png'), Astro.url).href;
+
+// Article JSON-LD: el tipo de contenido que más citan los motores generativos.
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  inLanguage: 'es',
+  datePublished: publishedTime,
+  dateModified: publishedTime,
+  image: ogImageUrl,
+  mainEntityOfPage: pageUrl,
+  author: { '@type': 'Person', '@id': `${siteUrl}#gorka`, name: author, url: sobreMiUrl },
+  publisher: { '@type': 'Organization', '@id': `${siteUrl}#eraldia`, name: SITE_TITLE, url: siteUrl },
+  ...(post.data.tags && post.data.tags.length ? { keywords: post.data.tags.join(', ') } : {}),
+};
+
+// BreadcrumbList JSON-LD: Inicio › Blog › título.
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL(url('/blog/'), Astro.url).href },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: pageUrl },
+  ],
+};
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
@@ -40,6 +73,9 @@ function formatDatetime(date: Date) {
   tags={post.data.tags}
   canonicalUrl={pageUrl}
 >
+
+<script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
 <article class="blog-post">
   <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -70,12 +106,10 @@ function formatDatetime(date: Date) {
         </span>
       )}
 
-      {post.data.author && (
-        <>
-          <span class="blog-post__meta-divider">&middot;</span>
-          <span class="blog-post__meta-item">{post.data.author}</span>
-        </>
-      )}
+      <span class="blog-post__meta-divider">&middot;</span>
+      <span class="blog-post__meta-item">
+        Por <a href={url('/sobre-mi/')} rel="author">{author}</a>, consultor de IA para pymes en Bilbao
+      </span>
     </div>
   </header>
 

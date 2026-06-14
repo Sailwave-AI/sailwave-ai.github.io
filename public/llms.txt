@@ -28,6 +28,7 @@
 
 ## Por zona
 
+- [Todas las zonas](https://eraldia.com/zonas/)
 - [Consultor de IA en Bilbao](https://eraldia.com/consultor-ia-bilbao/)
 - [Consultor de IA en el País Vasco](https://eraldia.com/consultor-ia-pais-vasco/)
 - [Consultor de IA en Córdoba](https://eraldia.com/consultor-ia-cordoba/)
