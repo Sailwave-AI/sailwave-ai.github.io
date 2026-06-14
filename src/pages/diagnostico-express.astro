@@ -43,10 +43,10 @@ const checkIcon =
         <span class="diag__eyebrow">Tu negocio</span>
         <h2 class="diag__question">¿A qué se dedica tu pyme?</h2>
         <div class="diag__options" data-key="sector">
-          <button type="button" class="diag__option" data-value="gestoria" data-label="Gestoría o asesoría"><span class="diag__option-mark" set:html={checkIcon}></span>Gestoría o asesoría</button>
+          <button type="button" class="diag__option" data-value="asesoria" data-label="Asesoría o gestoría"><span class="diag__option-mark" set:html={checkIcon}></span>Asesoría o gestoría</button>
+          <button type="button" class="diag__option" data-value="despacho" data-label="Despacho de abogados"><span class="diag__option-mark" set:html={checkIcon}></span>Despacho de abogados</button>
           <button type="button" class="diag__option" data-value="clinica" data-label="Clínica (dental, fisio, veterinaria)"><span class="diag__option-mark" set:html={checkIcon}></span>Clínica (dental, fisio, veterinaria)</button>
           <button type="button" class="diag__option" data-value="hosteleria" data-label="Hostelería o gimnasio"><span class="diag__option-mark" set:html={checkIcon}></span>Hostelería, restaurante o gimnasio</button>
-          <button type="button" class="diag__option" data-value="inmo" data-label="Inmobiliaria o despacho"><span class="diag__option-mark" set:html={checkIcon}></span>Inmobiliaria o despacho profesional</button>
           <button type="button" class="diag__option" data-value="otro" data-label="Otro sector"><span class="diag__option-mark" set:html={checkIcon}></span>Otro tipo de negocio</button>
         </div>
       </div>
@@ -210,8 +210,8 @@ const checkIcon =
   };
 
   var SECTORES = {
-    gestoria: 'gestoría o asesoría', clinica: 'clínica', hosteleria: 'negocio de hostelería o fitness',
-    inmo: 'inmobiliaria o despacho', otro: 'negocio'
+    asesoria: 'asesoría o gestoría', despacho: 'despacho de abogados', clinica: 'clínica',
+    hosteleria: 'negocio de hostelería o fitness', otro: 'negocio'
   };
 
   var METODO_PESO = { manual: 1.0, sheets: 0.9, software: 0.8, auto: 0.5 };
