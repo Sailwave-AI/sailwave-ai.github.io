@@ -42,6 +42,7 @@ const isBlogActive = currentPath.startsWith('/blog');
 const isDiagnosticoActive = currentPath.startsWith('/diagnostico-express');
 const isAsesoriasActive = currentPath.startsWith('/ia-para-asesorias');
 const isAbogadosActive = currentPath.startsWith('/ia-para-abogados');
+const isZonasActive = currentPath.startsWith('/zonas') || currentPath.startsWith('/consultor-ia');
 
 // JSON-LD global: identifica la entidad Eraldia (servicio profesional enfocado a
 // asesorías y despachos) y a Gorka como persona, para SEO/GEO. Una sola vez.
@@ -175,6 +176,7 @@ const currentYear = new Date().getFullYear();
           <a href={url('/servicios/')} class={`header__nav-link${isServiciosActive ? ' header__nav-link--active' : ''}`}>Servicios</a>
           <a href={url('/ia-para-asesorias/')} class={`header__nav-link${isAsesoriasActive ? ' header__nav-link--active' : ''}`}>Asesorías</a>
           <a href={url('/ia-para-abogados/')} class={`header__nav-link${isAbogadosActive ? ' header__nav-link--active' : ''}`}>Abogados</a>
+          <a href={url('/zonas/')} class={`header__nav-link${isZonasActive ? ' header__nav-link--active' : ''}`}>Zonas</a>
           <a href={url('/sobre-mi/')} class={`header__nav-link${isSobreMiActive ? ' header__nav-link--active' : ''}`}>Sobre mí</a>
           <a href={url('/blog/')} class={`header__nav-link${isBlogActive ? ' header__nav-link--active' : ''}`}>Blog</a>
           <a href={url('/diagnostico-express/')} class={`header__nav-link${isDiagnosticoActive ? ' header__nav-link--active' : ''}`}>Diagnóstico exprés</a>
@@ -227,6 +229,7 @@ const currentYear = new Date().getFullYear();
             <div class="footer__nav-group">
               <div class="footer__nav-title">Zonas</div>
               <ul class="footer__nav-list">
+                <li><a href={url('/zonas/')} class="footer__nav-link">Todas las zonas</a></li>
                 <li><a href={url('/consultor-ia-bilbao/')} class="footer__nav-link">IA en Bilbao</a></li>
                 <li><a href={url('/consultor-ia-pais-vasco/')} class="footer__nav-link">IA en el País Vasco</a></li>
                 <li><a href={url('/consultor-ia-cordoba/')} class="footer__nav-link">IA en Córdoba</a></li>

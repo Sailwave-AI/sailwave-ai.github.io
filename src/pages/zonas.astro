@@ -1,0 +1,114 @@
+---
+import { url } from '../utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const title = 'Consultor de IA por zonas: Bilbao, País Vasco y Andalucía';
+const description =
+  'Automatización con IA para pymes por zonas: Bilbao y el País Vasco (Bizkaia, Gipuzkoa, Álava) y Andalucía (Córdoba, Sevilla, Málaga). Atención presencial en Bilbao y en remoto para toda España, con precio cerrado.';
+
+const lugares = await getCollection('lugares');
+lugares.sort((a, b) => (a.data.weight ?? 99) - (b.data.weight ?? 99));
+
+// Descripción corta para la tarjeta: primera frase del intro, recortada.
+function resumen(texto: string, max = 160) {
+  const limpio = texto.replace(/\s+/g, ' ').trim();
+  if (limpio.length <= max) return limpio;
+  const corte = limpio.slice(0, max);
+  return corte.slice(0, corte.lastIndexOf(' ')).trimEnd() + '…';
+}
+
+const siteUrl = new URL(url('/'), Astro.url).href;
+const pageUrl = new URL(url('/zonas/'), Astro.url).href;
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description,
+  url: pageUrl,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: lugares.map((l, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `Consultor de IA en ${l.data.ciudad}`,
+      url: new URL(url(`/consultor-ia-${l.slug}/`), Astro.url).href,
+    })),
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Zonas', item: pageUrl },
+  ],
+};
+---
+
+<BaseLayout title={title} description={description}>
+
+<script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol class="breadcrumb__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href={url('/')} class="breadcrumb__link" itemprop="item"><span itemprop="name">Inicio</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <li class="breadcrumb__item breadcrumb__item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+          <span itemprop="name">Zonas</span>
+          <meta itemprop="position" content="2">
+        </li>
+      </ol>
+    </nav>
+    <h1 class="page-header__title">Consultor de IA para pymes por zonas</h1>
+    <p class="page-header__desc">
+      Trabajo desde Bilbao para pymes de todo el País Vasco y, en remoto, para toda España, con foco en
+      Andalucía. Elige tu zona para ver los sectores donde más rinde la IA y las ayudas disponibles.
+    </p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid--3 reveal-stagger">
+      {lugares.map((l) => (
+        <a href={url(`/consultor-ia-${l.slug}/`)} class="card card--link reveal">
+          <span class="hero__badge">{l.data.region}</span>
+          <h2 class="card__title" style="margin-top: 0.75rem;">IA en {l.data.ciudad}</h2>
+          <p class="card__desc">{resumen(l.data.intro)}</p>
+          <span class="card__link">Ver zona</span>
+        </a>
+      ))}
+    </div>
+
+    <p style="text-align:center; margin-top: 3rem;">
+      ¿No ves tu ciudad? Atiendo en remoto a toda España. Cuéntame tu caso en la
+      <a href={url('/#contacto')}>llamada gratuita de 30 minutos</a> o haz el
+      <a href={url('/diagnostico-express/')}>diagnóstico exprés (1 min)</a>.
+    </p>
+  </div>
+</section>
+
+<!-- CTA final -->
+<section class="section">
+  <div class="container">
+    <div class="cta cta--inline cta--dark reveal" aria-label="Contacto">
+      <div class="cta__inner">
+        <h2 class="cta__title">¿Lo vemos en tu negocio?</h2>
+        <p class="cta__desc">
+          Cuéntame en dos líneas qué proceso te quita más tiempo y te digo, sin humo, si la IA puede ayudarte y cuánto costaría.
+        </p>
+        <a href={url('/#contacto')} class="btn btn--primary btn--lg">Hablamos 30 minutos, gratis</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>
