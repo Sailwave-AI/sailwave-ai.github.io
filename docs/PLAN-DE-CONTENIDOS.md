@@ -26,8 +26,10 @@ con constancia.
 
 1. **Local / geográfico** — Bilbao, Bizkaia, Euskadi, Sevilla, Málaga, Andalucía.
    Convierte por intención ("busco a alguien cerca").
-2. **Sectorial** — asesorías, clínicas (dental/fisio/veterinaria), hostelería,
-   gimnasios. Coincide con los sectores prioritarios del modelo de negocio.
+2. **Sectorial** — **vertical dominante: asesorías/gestorías y despachos de
+   abogados** (landings profundas en `/ia-para-asesorias/` y
+   `/ia-para-abogados/`), que concentran el grueso del contenido nuevo. Clínicas
+   (dental/fisio/veterinaria), hostelería y gimnasios quedan como secundarios.
 3. **Problema → solución** — "respondo igual 30 veces al día", "pierdo horas con
    facturas", "no hago seguimiento de presupuestos". Es como busca el cliente real.
 4. **Dinero y decisión** — precios, plazos, ayudas y subvenciones, cómo elegir

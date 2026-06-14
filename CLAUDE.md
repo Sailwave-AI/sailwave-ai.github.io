@@ -21,6 +21,12 @@ Detalle completo en [`docs/MODELO-DE-NEGOCIO.md`](docs/MODELO-DE-NEGOCIO.md).
 - **Cliente objetivo:** pyme española de 3–50 empleados con procesos manuales
   que duelen. Sectores de entrada: gestorías/asesorías (multiplicadores de
   referidos), clínicas (dental/fisio/veterinaria), hostelería y gimnasios.
+- **Foco de la web (vertical dominante, 2026):** el escaparate se dirige
+  principalmente a **asesorías/gestorías** (`/ia-para-asesorias/`) y
+  **despachos de abogados** (`/ia-para-abogados/`), con doble ángulo —ahorrar
+  horas y *hacer crecer el despacho*—. El resto de pymes son vía secundaria
+  (clínicas, gimnasios e inmobiliarias quedan como casos secundarios en
+  `/casos/`). Al crear contenido nuevo, prioriza este vertical.
 - **Escalera de servicios (precios 2026, siempre cerrados, nunca por horas):**
   1. Llamada de diagnóstico — gratis, 30 min (cualifica).
   2. Diagnóstico de IA y automatización — desde 490 €, 2 semanas (producto de
